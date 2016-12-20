@@ -22,16 +22,16 @@ If you feel like donating — [Give it a thought.](https://flattr.com/profile/al
 
 1. [Install Jekyll](http://jekyllrb.com) if you haven't already.
 2. Download this bad boy.
-3. Fork the [Progress repo](http://github.com/alexanderussell/progress-for-jekyll/)
+3. Fork the [Progress repo](http://github.com/alexanderussell)
 4. Twerk it out so it's just for you.
 5. ???
 6. Profit
 
-## [Preview the Theme](http://alexanderussell.github.io/progress-for-jekyll)
+## [Preview the Theme](http://alexanderussell.github.io/art-processor)
 <br>
 
 ``` bash
-progress-for-jekyll/
+art-processor/
 ├── data
 |    ├── navigation.yml  //an array of navigation items for easy editing
 ├── _includes
