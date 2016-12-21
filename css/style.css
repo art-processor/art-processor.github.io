@@ -63,8 +63,8 @@ h4 {
 }
 
 h5 {
-  font-size: 12px;
-  margin: 10px 0 5px 0;
+  font-size: 14px;
+  margin: 20px 0 10px 0;
 }
 
 h6 {
@@ -106,12 +106,12 @@ button, #ws {
 }
 
 table, dl, blockquote, code, kbd, pre, samp {
-    margin: 1em 0;
+    /*margin: 1em 0;*/
 }
 
 code, kbd, pre, samp, #ws, #message {
   font-family: monospace, monospace;
-  font-size: 1em;
+  /*font-size: 1em;*/
 }
 
 /*code {
@@ -267,7 +267,7 @@ img, svg {
 }
 .header h1 {
   font-family: Georgia, serif;
-  font-size: 2rem;
+  /*font-size: 2rem;*/
   color: #141414;
 }
 @media only screen and (min-width: 1100px) {
@@ -359,7 +359,7 @@ Articles
   margin: .6em 0 .2em;
   color: #141414;
   line-height: 1.2;
-  font-size: 2.4rem;
+  /*font-size: 2.4rem;*/
   font-weight: 400;
 }
 .articles p {
