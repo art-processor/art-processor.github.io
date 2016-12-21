@@ -107,12 +107,47 @@
       Let's see how ART can be applied with some simple code snippet examples.
       The ART language like other languages allows us to declare and use variables. Let's look at the following simple example:
     </p>
-    <textarea id="snippet-1" name="snippet-1" class="codearea">
+    <h5>ART snippet:</h5>
+    <textarea id="snippet-1" class="codearea">
     #set var_a = "AAA"
     Value of var_a is: ?@var_a?
     </textarea>
-    <textarea id="snippet-2" name="snippet-1" class="codearea">
+    <h5>Result:</h5>
+    <textarea id="snippet-2" class="codearea">
     Value of var_a is: AAA
+    </textarea>
+    <h5>Other Example, ART snippet:</h5>
+    <textarea id="snippet-3" class="codearea">
+    #set date              = "2015-12-15"
+    #set my_name           = "Peter Griffin"
+    #set authorized_name   = "Meg Griffin"
+    #set lawyer_name       = "Dr. House"
+    #set days_valid        = "30"
+    %All setting done, now we adapt the template file
+    #adapt "file2.art"
+    <h5>file2.art:</h5>
+    <textarea id="snippet-4" class="codearea">
+    Authorization Letter
+
+    I ?@my_name? hereby authorize ?@authorized_name? to collect my property documents from my lawyer ?@lawyer_name?.
+    This authorization letter is valid for ?@days_valid? days from the issuance date after which it becomes null and void.
+    For security purposes, I have attested below the signature of the authorized person.
+
+    _________ ?@my_name?
+
+    _________ ?@authorized_name?
+    </textarea>
+    <h5>Result:</h5>
+    <textarea id="snippet-5" class="codearea">
+    Authorization Letter
+
+    I Peter Griffin hereby authorize Meg Griffin to collect my property documents from my lawyer Dr. House.
+    This authorization letter is valid for 30 days from the issuance date after which it becomes null and void.
+    For security purposes, I have attested below the signature of the authorized person.
+
+    _________ Peter Griffin
+
+    _________ Meg Griffin   
     </textarea>
 <h2 id="features">Features:</h2>
 <ul>
@@ -351,6 +386,9 @@
     window.onload = function () {
         createOutputCodeField('snippet-1', 60);
         createOutputCodeField('snippet-2', 60);
+        createOutputCodeField('snippet-3', 220);
+        createOutputCodeField('snippet-4', 220);
+        createOutputCodeField('snippet-5', 220);
         //createOutputCodeField('file2');
         //createInputCodeField('file3');
         //createOutputCodeField('output');
