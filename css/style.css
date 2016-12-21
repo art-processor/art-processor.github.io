@@ -630,7 +630,11 @@ i.link-i {
   float: left;
 }
 
-span.vcl-command-span {
+span.art-command-span {
   font-weight:  bold;
   color: blue;
+}
+
+div.img-crop {
+    overflow: hidden;
 }

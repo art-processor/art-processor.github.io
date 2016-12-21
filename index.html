@@ -87,15 +87,17 @@
       <h1> How it Works </h1>
     </header>
      <p>
-     ART is a simple text processor, read text files and outputs text files. If the current line in the currently read file is an ART command <span class="vcl-command-span">(#[cmd])</span>, it will be processed, otherwise it will be emitted to the output.
+     ART is a simple text processor, read text files and outputs text files. If the current line in the currently read file is an ART command <span class="art-command-span">(#[cmd])</span>, it will be processed, otherwise it will be emitted to the output.
      </p>
      <div class="bs-callout bs-callout-info">
          <h4>Adapting input files</h4>
          <p>
-         The ART Processor starts processing with the input file (start file, specification file). ART commands in the start file, and in each subsequently adapted file, are processed in the sequence in which they appear. Whenever the processor encounters an <span class="vcl-command-span">#adapt</span> command in the currently processed file, processing of the current file is suspended and the Processor starts processing the given file. Once processing of the file is completed, the Processor resumes processing of the current file just after <span class="vcl-command-span">#adapt</span> command. In that way the processing ends when VCL Processor reaches the end of the start file.
+         The ART Processor starts processing with the input file (start file, specification file). ART commands in the start file, and in each subsequently adapted file, are processed in the sequence in which they appear. Whenever the processor encounters an <span class="art-command-span">#adapt</span> command in the currently processed file, processing of the current file is suspended and the Processor starts processing the given file. Once processing of the file is completed, the Processor resumes processing of the current file just after <span class="art-command-span">#adapt</span> command. In that way the processing ends when VCL Processor reaches the end of the start file.
          </p>
      </div>
-     <img src="../img/adapt.gif"/>
+     <div class="img-crop">
+        <img style="margin-top: -10px;" src="../img/adapt.gif"/>
+      </div>
   </article>
   <article class="post">
     <header>
@@ -105,9 +107,12 @@
       Let's see how ART can be applied with some simple code snippet examples.
       The ART language like other languages allows us to declare and use variables. Let's look at the following simple example:
     </p>
-    <textarea id="example1" name="example1" class="codearea">
+    <textarea id="snippet-1" name="snippet-1" class="codearea">
     #set var_a = "AAA"
     Value of var_a is: ?@var_a?
+    </textarea>
+    <textarea id="snippet-2" name="snippet-1" class="codearea">
+    Value of var_a is: AAA
     </textarea>
 <h2 id="features">Features:</h2>
 <ul>
@@ -344,27 +349,28 @@
     <script src="js/codemirror/simple.js"></script>
     <script>
     window.onload = function () {
-        createOutputCodeField('example1');
+        createOutputCodeField('snippet-1', 60);
+        createOutputCodeField('snippet-2', 60);
         //createOutputCodeField('file2');
         //createInputCodeField('file3');
         //createOutputCodeField('output');
     };
 
-    function createInputCodeField(id) {
+    function createInputCodeField(id, size) {
         var editableCodeMirror = CodeMirror.fromTextArea(document.getElementById(id), {
             mode: "simplemode",
             theme: "neat",
             lineNumbers: true
-        }).setSize('', '200');
+        }).setSize('', size);
     }
 
-    function createOutputCodeField(id) {
+    function createOutputCodeField(id, size) {
         var editableCodeMirror = CodeMirror.fromTextArea(document.getElementById(id), {
             mode: "simplemode",
             theme: "neat",
             lineNumbers: true,
             readOnly: true
-        }).setSize('', '250');
+        }).setSize('', size);
     }
 
     CodeMirror.defineSimpleMode("simplemode", {
