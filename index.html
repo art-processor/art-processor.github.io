@@ -20,6 +20,9 @@
   <meta name="twitter:description" content="">
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/codemirror/codemirror.css">
+  <link rel="stylesheet" href="css/codemirror/neat.css">
+  <link rel="stylesheet" href="css/style.css">
   <script src="js/modernizr.js"></script> 
 </head>
 <body>
@@ -42,30 +45,32 @@
       <h1> About ART </h1>
     </header>
     <p>
-      ART is a Variability  Management  Technique (VMT)
-      <div class="bs-callout bs-callout-info">
+      ART is a Variability  Management  Technique (VMT) using Frame Technology (FT).
+      <div class="bs-callout bs-callout-warning">
         <h4>Variability  Management  Techniques  (VMT)</h4>
         <p>
         help  developers  manage the  base  code  for  families  of  system variants,  e.g.,  a  family  of  Linux  versions  running  on  various  platforms,  or  financial  systems  used  in  different companies.  VMTs  organize  and/or  instrument  the  base  code  for  ease  of  adaptation  and  reuse.
         </p>
       </div>
-      ART is using Frame Technology (FT)
-      <div class="bs-callout bs-callout-info">
+      <div class="bs-callout bs-callout-warning">
         <h4>Frame technology (FT)</h4>
-        <p> is a language-neutral (i.e., processes various languages) system that manufactures custom software[1] from reusable, machine-adaptable building blocks, called frames. FT is used to reduce the time, effort, and errors involved in the design, construction, and evolution of large, complex software systems.
+        <p> is a language-neutral (i.e., processes various languages) system that manufactures custom software[1] from reusable, machine-adaptable building blocks, called frames. FT is used to reduce the time, effort, and errors involved in the design, construction, and evolution of large, complex software systems. <a href="https://en.wikipedia.org/wiki/Frame_technology_(software_engineering)"><i>more about FT</i></a>
         </p>
       </div>
+      ART is here to help you automate common every day software engineering task through code generation and to help you eliminate human coding mistakes and achieve better code quality. However almost all our examples will talk about examples and usage in software engineering, ART has been proven to be useful in other aspects as well. In example for description to image generation (link, desc) and mass document handling (link, desc).
     </p>
   </article>
   <article class="post">
     <header>
-      <img src="img/img-1.png" alt="img-1.png">
-      <h1> Introduction to Progress </h1>
+      <h1> Simple Example </h1>
     </header>
-    <p>Progress was built by <a href="http://alexanderussell.org">Alexander Russell</a> and inspired by <a href="https://codyhouse.co/">Cody House’s</a> <a href="https://codyhouse.co/demo/reading-progress-indicator/index.html">Reading Progress Indicator</a>. The folks over at Cody House are pretty fantastic and are making some awesome things. They’re also super responsive to comments, so head on over there and check out what they’ve been doing.</p>
-	<p>Progress features a quick blablabla  and simple environment that is set up so users can input all the necesarry info in the config file and start blogging. Further reiterations are in progress to turn this into a Wordpress theme or make it fully editable with Cloudcannon CMS. I cannot let you resell this unless you contact me.</p>
-<p>If you’d like give credit somewhere on your blog or tweet a shout out to abc, that would be pretty sweet.</p>
-<p>If you feel like donating — <a href="https://flattr.com/profile/alexanderussell">Give it a thought.</a></p>
+    <p>
+      
+    </p>
+    <textarea id="file1" name="file1" class="vclarea">
+    #set var_a = "AAA"
+    Value of var_a is: ?@var_a?
+    </textarea>
 <h2 id="features">Features:</h2>
 <ul>
   <li>flexible, uses max-width for responsive goodness</li>
@@ -238,7 +243,7 @@
     <ul>
       <li>
         <a href="#">
-          <h3><em>Forestry Test</em></h3>
+          <h3><em>About ART</em></h3>
           <small><b></b></small>
           <svg x="0px" y="0px" width="36px" height="36px" viewBox="0 0 36 36"><circle fill="none" stroke-width="2" cx="18" cy="18" r="16" stroke-dasharray="100 100" stroke-dashoffset="100" transform="rotate(-90 18 18)"></circle></svg>
         </a>
@@ -292,5 +297,88 @@
 </footer>
     <script src="js/jquery-2.1.4.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/codemirror/codemirror.js"></script>
+    <script src="js/codemirror/simple.js"></script>
+    <script>
+    window.onload = function () {
+        createOutputCodeField('example1');
+        //createOutputCodeField('file2');
+        //createInputCodeField('file3');
+        //createOutputCodeField('output');
+    };
+
+    function createInputCodeField(id) {
+        var editableCodeMirror = CodeMirror.fromTextArea(document.getElementById(id), {
+            mode: "simplemode",
+            theme: "neat",
+            lineNumbers: true
+        }).setSize('', '200');
+    }
+
+    function createOutputCodeField(id) {
+        var editableCodeMirror = CodeMirror.fromTextArea(document.getElementById(id), {
+            mode: "simplemode",
+            theme: "neat",
+            lineNumbers: true,
+            readOnly: true
+        }).setSize('', '250');
+    }
+
+    CodeMirror.defineSimpleMode("simplemode", {
+        // The start state contains the rules that are intially used
+        start: [
+          // The regex matches the token, the token property contains the type
+          { regex: /"(?:[^\\]|\\.)*?"/, token: "string" },
+          { regex: /\?@[a-z$][\w$]*\?/, token: "atom" },
+          // You can match multiple tokens at once. Note that the captured
+          // groups must span the whole string in this case
+          {
+              regex: /(#(set|set-multi))(\s+)([a-z$][\w$]*)/,
+              token: ["keyword", null, "variable-2"]
+          },
+          // Rules are matched in the order in which they appear, so there is
+          // no ambiguity between this one and the one above
+          {
+              regex: /(?:#(set|set-multi|adapt|adapt-samelevel|adapt-continue|while|endwhile|if|else|elseif|endif|select|option|endoption|otherwise|endotherwise|adapt|endadapt|break|endbreak|insert|endinsert))\b/,
+              token: "keyword"
+          },
+          { regex: /true|false|null|undefined/, token: "atom" },
+          {
+              regex: /0x[a-f\d]+|[-+]?(?:\.\d+|\d+\.?\d*)(?:e[-+]?\d+)?/i,
+              token: "number"
+          },
+          { regex: /\/\/.*/, token: "comment" },
+          { regex: /%.*/, token: "comment" },
+          { regex: /\/(?:[^\\]|\\.)*?\//, token: "variable-3" },
+          // A next property will cause the mode to move to a different state
+          { regex: /\/\*/, token: "comment", next: "comment" },
+          { regex: /#comment:/, token: "comment", next: "comment" },
+          { regex: /[-+\/*=<>!]+/, token: "operator" },
+          { regex: /#comment.*/, token: "comment" },
+          // indent and dedent properties guide autoindentation
+          { regex: /[\{\[\(]/, indent: true },
+          { regex: /[\}\]\)]/, dedent: true },
+          // You can embed other modes with the mode property. This rule
+          // causes all code between << and >> to be highlighted with the XML
+          // mode.
+          { regex: /<</, token: "meta", mode: { spec: "xml", end: />>/ } }
+        ],
+        // The multi-line comment state.
+        comment: [
+          { regex: /.*?\*\//, token: "comment", next: "start" },
+          { regex: /.*?#endcomment/, token: "comment", next: "start" },
+          { regex: /.*/, token: "comment" }
+        ],
+        // The meta property contains global information about the mode. It
+        // can contain properties like lineComment, which are supported by
+        // all modes, and also directives like dontIndentStates, which are
+        // specific to simple modes.
+        meta: {
+            dontIndentStates: ["comment"],
+            lineComment: "//"
+        }
+    });
+
+  </script>
   </body>
 </html>
