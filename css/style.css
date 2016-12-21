@@ -40,6 +40,8 @@
   src: url("https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-bold-webfont.woff");
 }*/
 
+
+
 h1, h2, h3, h4, h5, h6 {
   font-weight: bold;
 }
@@ -362,9 +364,10 @@ Articles
   font-weight: 400;
 }
 .articles p {
-  padding: 1em 0;
+  font-size: 18px;
+  /*padding: 1em 0;
   line-height: 1.6;
-  font-weight: 400;
+  font-weight: 400;*/
 }
 .articles p:last-of-type {
   padding-bottom: 0;
@@ -599,10 +602,12 @@ nav a:hover {
 
 .bs-ref-info {
   color: #1b809e;
+  font-weight: bold;
 }
 
 .bs-ref-warning {
   color: #aa6708;
+  font-weight: bold;
 }
 
 .bs-callout-warning h4 {
@@ -620,4 +625,9 @@ nav a:hover {
 
 p {
     margin: 0 0 10px;
+}
+
+i.link-i {
+  font-style: italic;
+  float: left;
 }
