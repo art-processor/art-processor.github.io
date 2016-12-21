@@ -189,7 +189,6 @@
 
         // ...
     }
-
     </textarea>
     <h5>Result:</h5>
     <textarea id="snippet-8" class="codearea">
@@ -205,7 +204,6 @@
 
         // ...
     }
-
     public class Archer {
         public Hp { get; set; }
         public Cp { get; set; }
@@ -324,30 +322,30 @@
     <script src="js/codemirror/simple.js"></script>
     <script>
     window.onload = function () {
-        createOutputCodeField('snippet-1', 70);
-        createOutputCodeField('snippet-2', 60);
-        createOutputCodeField('snippet-3', 180);
-        createOutputCodeField('snippet-4', 270);
-        createOutputCodeField('snippet-5', 270);
-        createOutputCodeField('snippet-6', 180);
-        createOutputCodeField('snippet-7', 210);
-        createOutputCodeField('snippet-8', 700);
+        createOutputCodeField('snippet-1', 70, "simplemode");
+        createOutputCodeField('snippet-2', 60, "simplemode");
+        createOutputCodeField('snippet-3', 180, "simplemode");
+        createOutputCodeField('snippet-4', 270, "simplemode");
+        createOutputCodeField('snippet-5', 270, "simplemode");
+        createOutputCodeField('snippet-6', 170, "simplemode");
+        createOutputCodeField('snippet-7', 250, "simplemode");
+        createOutputCodeField('snippet-8', 800, "java");
         //createOutputCodeField('file2');
         //createInputCodeField('file3');
         //createOutputCodeField('output');
     };
 
-    function createInputCodeField(id, size) {
+    function createInputCodeField(id, size, mode) {
         var editableCodeMirror = CodeMirror.fromTextArea(document.getElementById(id), {
-            mode: "simplemode",
+            mode: mode,
             theme: "neat",
             lineNumbers: true
         }).setSize('', size);
     }
 
-    function createOutputCodeField(id, size) {
+    function createOutputCodeField(id, size, mode) {
         var editableCodeMirror = CodeMirror.fromTextArea(document.getElementById(id), {
-            mode: "simplemode",
+            mode: mode,
             theme: "neat",
             lineNumbers: true,
             readOnly: true
