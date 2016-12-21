@@ -165,7 +165,7 @@
     I can run this with my own set of values, then my neighbor can run it with his own set of values, we both get the output we wanted, even though we were running the through the same template without any changes to it.</p>
     <p>This looks kinda useful, but it is not that convincing...</p>
     <h4>Let's add a new command to it.</h4>
-    <p>We can give multiple values to a variable with a <span class="art-command-span">#set-multi</span> command in the following way. This is not the new command, we already knew #set, and this is just a variant of it. (We will see a few more variants of the commands in the future). Our new command is <span class="art-command-span">#while</span>, and of course we can guess what is it going to do. Let's see it in action:</p>
+    <p>We can give multiple values to a variable with a <span class="art-command-span">#set-multi</span> command. This is not the new command, we already knew <span class="art-command-span">#set</span>, and this is just a variant of it. (We will see a few more variants of the commands in the future). Our new command is <span class="art-command-span">#while</span>, and of course we can guess what is it going to do. Let's see it in action:</p>
     <h5>ART snippet:</h5>
     <textarea id="snippet-6" class="codearea">
     #set-multi class       = "SwordsMan", "Archer", "Knight"
@@ -181,7 +181,8 @@
     public class ?@class? {
         public Hp { get; set; }
         public Cp { get; set; }
-
+        
+        // default constructor 
         public ?@class?() {
           this.Hp = ?@hp?;
           this.Cp = ?@cp?;
@@ -196,7 +197,7 @@
         public Hp { get; set; }
         public Cp { get; set; }
 
-        // default const 
+        // default constructor 
         public SwordsMan() {
           this.Hp = 25;
           this.Cp = 40;
@@ -208,7 +209,7 @@
         public Hp { get; set; }
         public Cp { get; set; }
 
-        // default const
+        // default constructor
         public Archer() {
           this.Hp = 15;
           this.Cp = 50;
@@ -221,7 +222,7 @@
         public Hp { get; set; }
         public Cp { get; set; }
 
-        // default const
+        // default constructor
         public Knight() {
           this.Hp = 150;
           this.Cp = 200;
@@ -231,7 +232,85 @@
     }
     </textarea>
     <br>
-    <p>OK... Getting closer to useful...</p>
+    <p>OK... Getting closer to useful... Let's modify our code. Let's say it is time to add another class to it called 'Mage'. Now to do that we only need to make a very small change in our definition and we don't need to change the template code at all. Let's see:</p>
+    <h5>ART snippet:</h5>
+    <textarea id="snippet-6" class="codearea">
+    #set-multi class       = "SwordsMan", "Archer", "Knight", "Mage"
+    #set-multi hp          = "25",        "15".     "150",    "90"
+    #set-multi cp          = "40",        "50".     "200",    "240"
+    %All setting done, now we adapt the template file
+    #while class, hp, cp
+        #adapt "template.art"
+    #endwhile
+    </textarea>
+    <h5>template.art (all the same, no change):</h5>
+    <textarea id="snippet-7" class="codearea">
+    public class ?@class? {
+        public Hp { get; set; }
+        public Cp { get; set; }
+        
+        // default constructor 
+        public ?@class?() {
+          this.Hp = ?@hp?;
+          this.Cp = ?@cp?;
+        }
+
+        // ...
+    }
+    </textarea>
+    <h5>Result:</h5>
+    <textarea id="snippet-8" class="codearea">
+    public class SwordsMan {
+        public Hp { get; set; }
+        public Cp { get; set; }
+
+        // default constructor 
+        public SwordsMan() {
+          this.Hp = 25;
+          this.Cp = 40;
+        }
+
+        // ...
+    }
+    public class Archer {
+        public Hp { get; set; }
+        public Cp { get; set; }
+
+        // default constructor
+        public Archer() {
+          this.Hp = 15;
+          this.Cp = 50;
+        }
+
+        // ...
+    }
+
+    public class Knight {
+        public Hp { get; set; }
+        public Cp { get; set; }
+
+        // default constructor
+        public Knight() {
+          this.Hp = 150;
+          this.Cp = 200;
+        }
+
+        // ...
+    }
+
+    public class Mage {
+        public Hp { get; set; }
+        public Cp { get; set; }
+
+        // default constructor
+        public Knight() {
+          this.Hp = 90;
+          this.Cp = 240;
+        }
+
+        // ...
+    }
+    </textarea>
   </article>
   <article class="post">
     <header>
