@@ -1,44 +1,45 @@
 /** Ultra Light */
-@font-face {
+/*@font-face {
   font-family: "sans-serif";
   font-weight: 100;
   src: url("https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-ultralight-webfont.woff");
-}
+}*/
 
 /** Thin */
-@font-face {
+/*@font-face {
   font-family: "sans-serif";
   font-weight: 200;
   src: url("https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-thin-webfont.woff");
-}
+}*/
 
 /** Regular */
-@font-face {
+/*@font-face {
   font-family: "sans-serif";
   font-weight: 400;
   src: url("https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-regular-webfont.woff");
-}
+}*/
 
 /** Medium */
-@font-face {
+/*@font-face {
   font-family: "sans-serif";
   font-weight: 500;
   src: url("https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-medium-webfont.woff");
-}
+}*/
 
 /** Semi Bold */
-@font-face {
+/*@font-face {
   font-family: "sans-serif";
   font-weight: 600;
   src: url("https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-semibold-webfont.woff");
-}
+}*/
 
 /** Bold */ 
-@font-face {
+/*@font-face {
   font-family: "sans-serif";
   font-weight: 700;
   src: url("https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-bold-webfont.woff");
-}
+}*/
+
 h1, h2, h3, h4, h5, h6 {
   font-weight: bold;
 }
@@ -594,6 +595,14 @@ nav a:hover {
 
 .bs-callout-info h4 {
     color: #1b809e;
+}
+
+.bs-ref-info {
+  color: #1b809e;
+}
+
+.bs-ref-warning {
+  color: #aa6708;
 }
 
 .bs-callout-warning h4 {

@@ -24,6 +24,20 @@
   <link rel="stylesheet" href="css/codemirror/neat.css">
   <link rel="stylesheet" href="css/style.css">
   <script src="js/modernizr.js"></script> 
+  <style>
+        .CodeMirror {
+            border: 1px solid lightgray;
+        }
+        .separator {
+            padding: 1px;
+        }
+        .body-content {
+            margin: 5px;
+        }
+        .container {
+            max-width: none;
+        }
+  </style>
 </head>
 <body>
   <header class="header">
@@ -45,8 +59,8 @@
       <h1> About ART </h1>
     </header>
     <p>
-      ART is a Variability  Management  Technique (VMT) using Frame Technology (FT).
-      <div class="bs-callout bs-callout-warning">
+      ART is a Variability <span class="bs-ref-info">Management Technique (VMT)</span> using <span class="bs-ref-warning">Frame Technology (FT)</span>.
+      <div class="bs-callout bs-callout-info">
         <h4>Variability  Management  Techniques  (VMT)</h4>
         <p>
         help  developers  manage the  base  code  for  families  of  system variants,  e.g.,  a  family  of  Linux  versions  running  on  various  platforms,  or  financial  systems  used  in  different companies.  VMTs  organize  and/or  instrument  the  base  code  for  ease  of  adaptation  and  reuse.
@@ -57,7 +71,9 @@
         <p> is a language-neutral (i.e., processes various languages) system that manufactures custom software[1] from reusable, machine-adaptable building blocks, called frames. FT is used to reduce the time, effort, and errors involved in the design, construction, and evolution of large, complex software systems. <a href="https://en.wikipedia.org/wiki/Frame_technology_(software_engineering)"><i>more about FT</i></a>
         </p>
       </div>
+      <p>
       ART is here to help you automate common every day software engineering task through code generation and to help you eliminate human coding mistakes and achieve better code quality. However almost all our examples will talk about examples and usage in software engineering, ART has been proven to be useful in other aspects as well. In example for description to image generation (link, desc) and mass document handling (link, desc).
+      </p>
     </p>
   </article>
   <article class="post">
