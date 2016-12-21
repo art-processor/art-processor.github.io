@@ -1,41 +1,41 @@
 /** Ultra Light */
 @font-face {
-  font-family: "San Francisco";
+  font-family: "sans-serif";
   font-weight: 100;
   src: url("https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-ultralight-webfont.woff");
 }
 
 /** Thin */
 @font-face {
-  font-family: "San Francisco";
+  font-family: "sans-serif";
   font-weight: 200;
   src: url("https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-thin-webfont.woff");
 }
 
 /** Regular */
 @font-face {
-  font-family: "San Francisco";
+  font-family: "sans-serif";
   font-weight: 400;
   src: url("https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-regular-webfont.woff");
 }
 
 /** Medium */
 @font-face {
-  font-family: "San Francisco";
+  font-family: "sans-serif";
   font-weight: 500;
   src: url("https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-medium-webfont.woff");
 }
 
 /** Semi Bold */
 @font-face {
-  font-family: "San Francisco";
+  font-family: "sans-serif";
   font-weight: 600;
   src: url("https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-semibold-webfont.woff");
 }
 
 /** Bold */ 
 @font-face {
-  font-family: "San Francisco";
+  font-family: "sans-serif";
   font-weight: 700;
   src: url("https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-bold-webfont.woff");
 }
@@ -211,7 +211,7 @@ figure {
 
 figure figcaption {
   font-size: 12px;
-  font-family: "San Francisco", "Helvetica Neue", "Arial", sans-serif;
+  font-family: "sans-serif", "Helvetica Neue", "Arial", sans-serif;
   font-weight: bold;
   color: #bbbbbb;
   text-align: center;
@@ -243,7 +243,7 @@ html {
 
 body {
   font-size: 1.6rem;
-  font-family: "San Francisco", "Helvetica Neue", Arial, sans-serif;
+  font-family: "sans-serif", "Helvetica Neue", Arial, sans-serif;
   color: #777;
   background-color: #ffffff;
 }
@@ -581,7 +581,7 @@ nav a:hover {
 }
 
 .bs-callout-warning {
-    border-left-color: #aa6708;
+    border-left: solid 2px #aa6708;
 }
 
 
