@@ -165,7 +165,7 @@
     I can run this with my own set of values, then my neighbor can run it with his own set of values, we both get the output we wanted, even though we were running the through the same template without any changes to it.</p>
     <p>This looks kinda useful, but it is not that convincing...</p>
     <h4>Let's add a new command to it.</h4>
-    <p>We can give multiple values to a variable with a <span class="art-command-span">#set-multi</span> command in the following way. This is not the new command, we already knew #set, and this is just a variant of it. (We will see a few more variants of the commands in the future). Our new command is <span class="art-command-span">#foreach</span>, and of course we can guess what is it going to do. Let's see it in action:</p>
+    <p>We can give multiple values to a variable with a <span class="art-command-span">#set-multi</span> command in the following way. This is not the new command, we already knew #set, and this is just a variant of it. (We will see a few more variants of the commands in the future). Our new command is <span class="art-command-span">#while</span>, and of course we can guess what is it going to do. Let's see it in action:</p>
     <h5>ART snippet:</h5>
     <textarea id="snippet-6" class="codearea">
     #set-multi class       = "SwordsMan", "Archer", "Knight"
@@ -197,7 +197,8 @@
         public Hp { get; set; }
         public Cp { get; set; }
 
-        public ?@class?() {
+        // default const 
+        public SwordsMan() {
           this.Hp = 25;
           this.Cp = 40;
         }
@@ -209,7 +210,8 @@
         public Hp { get; set; }
         public Cp { get; set; }
 
-        public ?@class?() {
+        // default const
+        public Archer() {
           this.Hp = 15;
           this.Cp = 50;
         }
@@ -221,7 +223,8 @@
         public Hp { get; set; }
         public Cp { get; set; }
 
-        public ?@class?() {
+        // default const
+        public Knight() {
           this.Hp = 150;
           this.Cp = 200;
         }
@@ -326,9 +329,9 @@
         createOutputCodeField('snippet-3', 180);
         createOutputCodeField('snippet-4', 270);
         createOutputCodeField('snippet-5', 270);
-        createOutputCodeField('snippet-6', 150);
-        createOutputCodeField('snippet-7', 120);
-        createOutputCodeField('snippet-8', 360);
+        createOutputCodeField('snippet-6', 180);
+        createOutputCodeField('snippet-7', 210);
+        createOutputCodeField('snippet-8', 700);
         //createOutputCodeField('file2');
         //createInputCodeField('file3');
         //createOutputCodeField('output');
