@@ -1,3 +1,785 @@
+// CodeMirror, copyright (c) by Marijn Haverbeke and others
+// Distributed under an MIT license: http://codemirror.net/LICENSE
 
-<!-- saved from url=(0034)https://codemirror.net/mode/clike/ -->
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></head><body><div class="line-gutter-backdrop"></div><table><tbody><tr><td class="line-number" value="1"></td><td class="line-content"><span class="html-doctype">&lt;!doctype html&gt;</span></td></tr><tr><td class="line-number" value="2"></td><td class="line-content"><br></td></tr><tr><td class="line-number" value="3"></td><td class="line-content"><span class="html-tag">&lt;title&gt;</span>CodeMirror: C-like mode<span class="html-tag">&lt;/title&gt;</span></td></tr><tr><td class="line-number" value="4"></td><td class="line-content"><span class="html-tag">&lt;meta <span class="html-attribute-name">charset</span>="<span class="html-attribute-value">utf-8</span>"/&gt;</span></td></tr><tr><td class="line-number" value="5"></td><td class="line-content"><span class="html-tag">&lt;link <span class="html-attribute-name">rel</span>=<span class="html-attribute-value">stylesheet</span> <span class="html-attribute-name">href</span>="<a class="html-attribute-value html-resource-link" target="_blank" href="https://codemirror.net/doc/docs.css">../../doc/docs.css</a>"&gt;</span></td></tr><tr><td class="line-number" value="6"></td><td class="line-content"><br></td></tr><tr><td class="line-number" value="7"></td><td class="line-content"><span class="html-tag">&lt;link <span class="html-attribute-name">rel</span>="<span class="html-attribute-value">stylesheet</span>" <span class="html-attribute-name">href</span>="<a class="html-attribute-value html-resource-link" target="_blank" href="https://codemirror.net/lib/codemirror.css">../../lib/codemirror.css</a>"&gt;</span></td></tr><tr><td class="line-number" value="8"></td><td class="line-content"><span class="html-tag">&lt;script <span class="html-attribute-name">src</span>="<a class="html-attribute-value html-resource-link" target="_blank" href="https://codemirror.net/lib/codemirror.js">../../lib/codemirror.js</a>"&gt;</span><span class="html-tag">&lt;/script&gt;</span></td></tr><tr><td class="line-number" value="9"></td><td class="line-content"><span class="html-tag">&lt;script <span class="html-attribute-name">src</span>="<a class="html-attribute-value html-resource-link" target="_blank" href="https://codemirror.net/addon/edit/matchbrackets.js">../../addon/edit/matchbrackets.js</a>"&gt;</span><span class="html-tag">&lt;/script&gt;</span></td></tr><tr><td class="line-number" value="10"></td><td class="line-content"><span class="html-tag">&lt;link <span class="html-attribute-name">rel</span>="<span class="html-attribute-value">stylesheet</span>" <span class="html-attribute-name">href</span>="<a class="html-attribute-value html-resource-link" target="_blank" href="https://codemirror.net/addon/hint/show-hint.css">../../addon/hint/show-hint.css</a>"&gt;</span></td></tr><tr><td class="line-number" value="11"></td><td class="line-content"><span class="html-tag">&lt;script <span class="html-attribute-name">src</span>="<a class="html-attribute-value html-resource-link" target="_blank" href="https://codemirror.net/addon/hint/show-hint.js">../../addon/hint/show-hint.js</a>"&gt;</span><span class="html-tag">&lt;/script&gt;</span></td></tr><tr><td class="line-number" value="12"></td><td class="line-content"><span class="html-tag">&lt;script <span class="html-attribute-name">src</span>="<a class="html-attribute-value html-resource-link" target="_blank" href="https://codemirror.net/mode/clike/clike.js">clike.js</a>"&gt;</span><span class="html-tag">&lt;/script&gt;</span></td></tr><tr><td class="line-number" value="13"></td><td class="line-content"><span class="html-tag">&lt;style&gt;</span>.CodeMirror {border: 2px inset #dee;}<span class="html-tag">&lt;/style&gt;</span></td></tr><tr><td class="line-number" value="14"></td><td class="line-content"><span class="html-tag">&lt;div <span class="html-attribute-name">id</span>=<span class="html-attribute-value">nav</span>&gt;</span></td></tr><tr><td class="line-number" value="15"></td><td class="line-content">  <span class="html-tag">&lt;a <span class="html-attribute-name">href</span>="<a class="html-attribute-value html-external-link" target="_blank" href="http://codemirror.net/">http://codemirror.net</a>"&gt;</span><span class="html-tag">&lt;h1&gt;</span>CodeMirror<span class="html-tag">&lt;/h1&gt;</span><span class="html-tag">&lt;img <span class="html-attribute-name">id</span>=<span class="html-attribute-value">logo</span> <span class="html-attribute-name">src</span>="<a class="html-attribute-value html-resource-link" target="_blank" href="https://codemirror.net/doc/logo.png">../../doc/logo.png</a>"&gt;</span><span class="html-tag">&lt;/a&gt;</span></td></tr><tr><td class="line-number" value="16"></td><td class="line-content"><br></td></tr><tr><td class="line-number" value="17"></td><td class="line-content">  <span class="html-tag">&lt;ul&gt;</span></td></tr><tr><td class="line-number" value="18"></td><td class="line-content">    <span class="html-tag">&lt;li&gt;</span><span class="html-tag">&lt;a <span class="html-attribute-name">href</span>="<a class="html-attribute-value html-external-link" target="_blank" href="https://codemirror.net/index.html">../../index.html</a>"&gt;</span>Home<span class="html-tag">&lt;/a&gt;</span></td></tr><tr><td class="line-number" value="19"></td><td class="line-content">    <span class="html-tag">&lt;li&gt;</span><span class="html-tag">&lt;a <span class="html-attribute-name">href</span>="<a class="html-attribute-value html-external-link" target="_blank" href="https://codemirror.net/doc/manual.html">../../doc/manual.html</a>"&gt;</span>Manual<span class="html-tag">&lt;/a&gt;</span></td></tr><tr><td class="line-number" value="20"></td><td class="line-content">    <span class="html-tag">&lt;li&gt;</span><span class="html-tag">&lt;a <span class="html-attribute-name">href</span>="<a class="html-attribute-value html-external-link" target="_blank" href="https://github.com/codemirror/codemirror">https://github.com/codemirror/codemirror</a>"&gt;</span>Code<span class="html-tag">&lt;/a&gt;</span></td></tr><tr><td class="line-number" value="21"></td><td class="line-content">  <span class="html-tag">&lt;/ul&gt;</span></td></tr><tr><td class="line-number" value="22"></td><td class="line-content">  <span class="html-tag">&lt;ul&gt;</span></td></tr><tr><td class="line-number" value="23"></td><td class="line-content">    <span class="html-tag">&lt;li&gt;</span><span class="html-tag">&lt;a <span class="html-attribute-name">href</span>="<a class="html-attribute-value html-external-link" target="_blank" href="https://codemirror.net/mode/index.html">../index.html</a>"&gt;</span>Language modes<span class="html-tag">&lt;/a&gt;</span></td></tr><tr><td class="line-number" value="24"></td><td class="line-content">    <span class="html-tag">&lt;li&gt;</span><span class="html-tag">&lt;a <span class="html-attribute-name">class</span>=<span class="html-attribute-value">active</span> <span class="html-attribute-name">href</span>="<a class="html-attribute-value html-external-link" target="_blank" href="https://codemirror.net/mode/clike/#">#</a>"&gt;</span>C-like<span class="html-tag">&lt;/a&gt;</span></td></tr><tr><td class="line-number" value="25"></td><td class="line-content">  <span class="html-tag">&lt;/ul&gt;</span></td></tr><tr><td class="line-number" value="26"></td><td class="line-content"><span class="html-tag">&lt;/div&gt;</span></td></tr><tr><td class="line-number" value="27"></td><td class="line-content"><br></td></tr><tr><td class="line-number" value="28"></td><td class="line-content"><span class="html-tag">&lt;article&gt;</span></td></tr><tr><td class="line-number" value="29"></td><td class="line-content"><span class="html-tag">&lt;h2&gt;</span>C-like mode<span class="html-tag">&lt;/h2&gt;</span></td></tr><tr><td class="line-number" value="30"></td><td class="line-content"><br></td></tr><tr><td class="line-number" value="31"></td><td class="line-content"><span class="html-tag">&lt;div&gt;</span><span class="html-tag">&lt;textarea <span class="html-attribute-name">id</span>="<span class="html-attribute-value">c-code</span>"&gt;</span></td></tr><tr><td class="line-number" value="32"></td><td class="line-content">/* C demo code */</td></tr><tr><td class="line-number" value="33"></td><td class="line-content"><br></td></tr><tr><td class="line-number" value="34"></td><td class="line-content">#include &lt;zmq.h&gt;</td></tr><tr><td class="line-number" value="35"></td><td class="line-content">#include &lt;pthread.h&gt;</td></tr><tr><td class="line-number" value="36"></td><td class="line-content">#include &lt;semaphore.h&gt;</td></tr><tr><td class="line-number" value="37"></td><td class="line-content">#include &lt;time.h&gt;</td></tr><tr><td class="line-number" value="38"></td><td class="line-content">#include &lt;stdio.h&gt;</td></tr><tr><td class="line-number" value="39"></td><td class="line-content">#include &lt;fcntl.h&gt;</td></tr><tr><td class="line-number" value="40"></td><td class="line-content">#include &lt;malloc.h&gt;</td></tr><tr><td class="line-number" value="41"></td><td class="line-content"><br></td></tr><tr><td class="line-number" value="42"></td><td class="line-content">typedef struct {</td></tr><tr><td class="line-number" value="43"></td><td class="line-content">  void* arg_socket;</td></tr><tr><td class="line-number" value="44"></td><td class="line-content">  zmq_msg_t* arg_msg;</td></tr><tr><td class="line-number" value="45"></td><td class="line-content">  char* arg_string;</td></tr><tr><td class="line-number" value="46"></td><td class="line-content">  unsigned long arg_len;</td></tr><tr><td class="line-number" value="47"></td><td class="line-content">  int arg_int, arg_command;</td></tr><tr><td class="line-number" value="48"></td><td class="line-content"><br></td></tr><tr><td class="line-number" value="49"></td><td class="line-content">  int signal_fd;</td></tr><tr><td class="line-number" value="50"></td><td class="line-content">  int pad;</td></tr><tr><td class="line-number" value="51"></td><td class="line-content">  void* context;</td></tr><tr><td class="line-number" value="52"></td><td class="line-content">  sem_t sem;</td></tr><tr><td class="line-number" value="53"></td><td class="line-content">} acl_zmq_context;</td></tr><tr><td class="line-number" value="54"></td><td class="line-content"><br></td></tr><tr><td class="line-number" value="55"></td><td class="line-content">#define p(X) (context-&gt;arg_##X)</td></tr><tr><td class="line-number" value="56"></td><td class="line-content"><br></td></tr><tr><td class="line-number" value="57"></td><td class="line-content">void* zmq_thread(void* context_pointer) {</td></tr><tr><td class="line-number" value="58"></td><td class="line-content">  acl_zmq_context* context = (acl_zmq_context*)context_pointer;</td></tr><tr><td class="line-number" value="59"></td><td class="line-content">  char ok = 'K', err = 'X';</td></tr><tr><td class="line-number" value="60"></td><td class="line-content">  int res;</td></tr><tr><td class="line-number" value="61"></td><td class="line-content"><br></td></tr><tr><td class="line-number" value="62"></td><td class="line-content">  while (1) {</td></tr><tr><td class="line-number" value="63"></td><td class="line-content">    while ((res = sem_wait(&amp;amp;context-&gt;sem)) == EINTR);</td></tr><tr><td class="line-number" value="64"></td><td class="line-content">    if (res) {write(context-&gt;signal_fd, &amp;amp;err, 1); goto cleanup;}</td></tr><tr><td class="line-number" value="65"></td><td class="line-content">    switch(p(command)) {</td></tr><tr><td class="line-number" value="66"></td><td class="line-content">    case 0: goto cleanup;</td></tr><tr><td class="line-number" value="67"></td><td class="line-content">    case 1: p(socket) = zmq_socket(context-&gt;context, p(int)); break;</td></tr><tr><td class="line-number" value="68"></td><td class="line-content">    case 2: p(int) = zmq_close(p(socket)); break;</td></tr><tr><td class="line-number" value="69"></td><td class="line-content">    case 3: p(int) = zmq_bind(p(socket), p(string)); break;</td></tr><tr><td class="line-number" value="70"></td><td class="line-content">    case 4: p(int) = zmq_connect(p(socket), p(string)); break;</td></tr><tr><td class="line-number" value="71"></td><td class="line-content">    case 5: p(int) = zmq_getsockopt(p(socket), p(int), (void*)p(string), &amp;amp;p(len)); break;</td></tr><tr><td class="line-number" value="72"></td><td class="line-content">    case 6: p(int) = zmq_setsockopt(p(socket), p(int), (void*)p(string), p(len)); break;</td></tr><tr><td class="line-number" value="73"></td><td class="line-content">    case 7: p(int) = zmq_send(p(socket), p(msg), p(int)); break;</td></tr><tr><td class="line-number" value="74"></td><td class="line-content">    case 8: p(int) = zmq_recv(p(socket), p(msg), p(int)); break;</td></tr><tr><td class="line-number" value="75"></td><td class="line-content">    case 9: p(int) = zmq_poll(p(socket), p(int), p(len)); break;</td></tr><tr><td class="line-number" value="76"></td><td class="line-content">    }</td></tr><tr><td class="line-number" value="77"></td><td class="line-content">    p(command) = errno;</td></tr><tr><td class="line-number" value="78"></td><td class="line-content">    write(context-&gt;signal_fd, &amp;amp;ok, 1);</td></tr><tr><td class="line-number" value="79"></td><td class="line-content">  }</td></tr><tr><td class="line-number" value="80"></td><td class="line-content"> cleanup:</td></tr><tr><td class="line-number" value="81"></td><td class="line-content">  close(context-&gt;signal_fd);</td></tr><tr><td class="line-number" value="82"></td><td class="line-content">  free(context_pointer);</td></tr><tr><td class="line-number" value="83"></td><td class="line-content">  return 0;</td></tr><tr><td class="line-number" value="84"></td><td class="line-content">}</td></tr><tr><td class="line-number" value="85"></td><td class="line-content"><br></td></tr><tr><td class="line-number" value="86"></td><td class="line-content">void* zmq_thread_init(void* zmq_context, int signal_fd) {</td></tr><tr><td class="line-number" value="87"></td><td class="line-content">  acl_zmq_context* context = malloc(sizeof(acl_zmq_context));</td></tr><tr><td class="line-number" value="88"></td><td class="line-content">  pthread_t thread;</td></tr><tr><td class="line-number" value="89"></td><td class="line-content"><br></td></tr><tr><td class="line-number" value="90"></td><td class="line-content">  context-&gt;context = zmq_context;</td></tr><tr><td class="line-number" value="91"></td><td class="line-content">  context-&gt;signal_fd = signal_fd;</td></tr><tr><td class="line-number" value="92"></td><td class="line-content">  sem_init(&amp;amp;context-&gt;sem, 1, 0);</td></tr><tr><td class="line-number" value="93"></td><td class="line-content">  pthread_create(&amp;amp;thread, 0, &amp;amp;zmq_thread, context);</td></tr><tr><td class="line-number" value="94"></td><td class="line-content">  pthread_detach(thread);</td></tr><tr><td class="line-number" value="95"></td><td class="line-content">  return context;</td></tr><tr><td class="line-number" value="96"></td><td class="line-content">}</td></tr><tr><td class="line-number" value="97"></td><td class="line-content"><span class="html-tag">&lt;/textarea&gt;</span><span class="html-tag">&lt;/div&gt;</span></td></tr><tr><td class="line-number" value="98"></td><td class="line-content"><br></td></tr><tr><td class="line-number" value="99"></td><td class="line-content"><span class="html-tag">&lt;h2&gt;</span>C++ example<span class="html-tag">&lt;/h2&gt;</span></td></tr><tr><td class="line-number" value="100"></td><td class="line-content"><br></td></tr><tr><td class="line-number" value="101"></td><td class="line-content"><span class="html-tag">&lt;div&gt;</span><span class="html-tag">&lt;textarea <span class="html-attribute-name">id</span>="<span class="html-attribute-value">cpp-code</span>"&gt;</span></td></tr><tr><td class="line-number" value="102"></td><td class="line-content">#include &lt;iostream&gt;</td></tr><tr><td class="line-number" value="103"></td><td class="line-content">#include "mystuff/util.h"</td></tr><tr><td class="line-number" value="104"></td><td class="line-content"><br></td></tr><tr><td class="line-number" value="105"></td><td class="line-content">namespace {</td></tr><tr><td class="line-number" value="106"></td><td class="line-content">enum Enum {</td></tr><tr><td class="line-number" value="107"></td><td class="line-content">  VAL1, VAL2, VAL3</td></tr><tr><td class="line-number" value="108"></td><td class="line-content">};</td></tr><tr><td class="line-number" value="109"></td><td class="line-content"><br></td></tr><tr><td class="line-number" value="110"></td><td class="line-content">char32_t unicode_string = U"\U0010FFFF";</td></tr><tr><td class="line-number" value="111"></td><td class="line-content">string raw_string = R"delim(anything</td></tr><tr><td class="line-number" value="112"></td><td class="line-content">you</td></tr><tr><td class="line-number" value="113"></td><td class="line-content">want)delim";</td></tr><tr><td class="line-number" value="114"></td><td class="line-content"><br></td></tr><tr><td class="line-number" value="115"></td><td class="line-content">int Helper(const MyType&amp; param) {</td></tr><tr><td class="line-number" value="116"></td><td class="line-content">  return 0;</td></tr><tr><td class="line-number" value="117"></td><td class="line-content">}</td></tr><tr><td class="line-number" value="118"></td><td class="line-content">} // namespace</td></tr><tr><td class="line-number" value="119"></td><td class="line-content"><br></td></tr><tr><td class="line-number" value="120"></td><td class="line-content">class ForwardDec;</td></tr><tr><td class="line-number" value="121"></td><td class="line-content"><br></td></tr><tr><td class="line-number" value="122"></td><td class="line-content">template &lt;class T, class V&gt;</td></tr><tr><td class="line-number" value="123"></td><td class="line-content">class Class : public BaseClass {</td></tr><tr><td class="line-number" value="124"></td><td class="line-content">  const MyType&lt;T, V&gt; member_;</td></tr><tr><td class="line-number" value="125"></td><td class="line-content"><br></td></tr><tr><td class="line-number" value="126"></td><td class="line-content"> public:</td></tr><tr><td class="line-number" value="127"></td><td class="line-content">  const MyType&lt;T, V&gt;&amp; Method() const {</td></tr><tr><td class="line-number" value="128"></td><td class="line-content">    return member_;</td></tr><tr><td class="line-number" value="129"></td><td class="line-content">  }</td></tr><tr><td class="line-number" value="130"></td><td class="line-content"><br></td></tr><tr><td class="line-number" value="131"></td><td class="line-content">  void Method2(MyType&lt;T, V&gt;* value);</td></tr><tr><td class="line-number" value="132"></td><td class="line-content">}</td></tr><tr><td class="line-number" value="133"></td><td class="line-content"><br></td></tr><tr><td class="line-number" value="134"></td><td class="line-content">template &lt;class T, class V&gt;</td></tr><tr><td class="line-number" value="135"></td><td class="line-content">void Class::Method2(MyType&lt;T, V&gt;* value) {</td></tr><tr><td class="line-number" value="136"></td><td class="line-content">  std::out &lt;&lt; 1 &gt;&gt; method();</td></tr><tr><td class="line-number" value="137"></td><td class="line-content">  value-&gt;Method3(member_);</td></tr><tr><td class="line-number" value="138"></td><td class="line-content">  member_ = value;</td></tr><tr><td class="line-number" value="139"></td><td class="line-content">}</td></tr><tr><td class="line-number" value="140"></td><td class="line-content"><span class="html-tag">&lt;/textarea&gt;</span><span class="html-tag">&lt;/div&gt;</span></td></tr><tr><td class="line-number" value="141"></td><td class="line-content"><br></td></tr><tr><td class="line-number" value="142"></td><td class="line-content"><span class="html-tag">&lt;h2&gt;</span>Objective-C example<span class="html-tag">&lt;/h2&gt;</span></td></tr><tr><td class="line-number" value="143"></td><td class="line-content"><br></td></tr><tr><td class="line-number" value="144"></td><td class="line-content"><span class="html-tag">&lt;div&gt;</span><span class="html-tag">&lt;textarea <span class="html-attribute-name">id</span>="<span class="html-attribute-value">objectivec-code</span>"&gt;</span></td></tr><tr><td class="line-number" value="145"></td><td class="line-content">/*</td></tr><tr><td class="line-number" value="146"></td><td class="line-content">This is a longer comment</td></tr><tr><td class="line-number" value="147"></td><td class="line-content">That spans two lines</td></tr><tr><td class="line-number" value="148"></td><td class="line-content">*/</td></tr><tr><td class="line-number" value="149"></td><td class="line-content"><br></td></tr><tr><td class="line-number" value="150"></td><td class="line-content">#import &lt;Test/Test.h&gt;</td></tr><tr><td class="line-number" value="151"></td><td class="line-content">@implementation YourAppDelegate</td></tr><tr><td class="line-number" value="152"></td><td class="line-content"><br></td></tr><tr><td class="line-number" value="153"></td><td class="line-content">// This is a one-line comment</td></tr><tr><td class="line-number" value="154"></td><td class="line-content"><br></td></tr><tr><td class="line-number" value="155"></td><td class="line-content">- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions{</td></tr><tr><td class="line-number" value="156"></td><td class="line-content">  char myString[] = "This is a C character array";</td></tr><tr><td class="line-number" value="157"></td><td class="line-content">  int test = 5;</td></tr><tr><td class="line-number" value="158"></td><td class="line-content">  return YES;</td></tr><tr><td class="line-number" value="159"></td><td class="line-content">}</td></tr><tr><td class="line-number" value="160"></td><td class="line-content"><span class="html-tag">&lt;/textarea&gt;</span><span class="html-tag">&lt;/div&gt;</span></td></tr><tr><td class="line-number" value="161"></td><td class="line-content"><br></td></tr><tr><td class="line-number" value="162"></td><td class="line-content"><span class="html-tag">&lt;h2&gt;</span>Java example<span class="html-tag">&lt;/h2&gt;</span></td></tr><tr><td class="line-number" value="163"></td><td class="line-content"><br></td></tr><tr><td class="line-number" value="164"></td><td class="line-content"><span class="html-tag">&lt;div&gt;</span><span class="html-tag">&lt;textarea <span class="html-attribute-name">id</span>="<span class="html-attribute-value">java-code</span>"&gt;</span></td></tr><tr><td class="line-number" value="165"></td><td class="line-content">import com.demo.util.MyType;</td></tr><tr><td class="line-number" value="166"></td><td class="line-content">import com.demo.util.MyInterface;</td></tr><tr><td class="line-number" value="167"></td><td class="line-content"><br></td></tr><tr><td class="line-number" value="168"></td><td class="line-content">public enum Enum {</td></tr><tr><td class="line-number" value="169"></td><td class="line-content">  VAL1, VAL2, VAL3</td></tr><tr><td class="line-number" value="170"></td><td class="line-content">}</td></tr><tr><td class="line-number" value="171"></td><td class="line-content"><br></td></tr><tr><td class="line-number" value="172"></td><td class="line-content">public class Class&lt;T, V&gt; implements MyInterface {</td></tr><tr><td class="line-number" value="173"></td><td class="line-content">  public static final MyType&lt;T, V&gt; member;</td></tr><tr><td class="line-number" value="174"></td><td class="line-content">  </td></tr><tr><td class="line-number" value="175"></td><td class="line-content">  private class InnerClass {</td></tr><tr><td class="line-number" value="176"></td><td class="line-content">    public int zero() {</td></tr><tr><td class="line-number" value="177"></td><td class="line-content">      return 0;</td></tr><tr><td class="line-number" value="178"></td><td class="line-content">    }</td></tr><tr><td class="line-number" value="179"></td><td class="line-content">  }</td></tr><tr><td class="line-number" value="180"></td><td class="line-content"><br></td></tr><tr><td class="line-number" value="181"></td><td class="line-content">  @Override</td></tr><tr><td class="line-number" value="182"></td><td class="line-content">  public MyType method() {</td></tr><tr><td class="line-number" value="183"></td><td class="line-content">    return member;</td></tr><tr><td class="line-number" value="184"></td><td class="line-content">  }</td></tr><tr><td class="line-number" value="185"></td><td class="line-content"><br></td></tr><tr><td class="line-number" value="186"></td><td class="line-content">  public void method2(MyType&lt;T, V&gt; value) {</td></tr><tr><td class="line-number" value="187"></td><td class="line-content">    method();</td></tr><tr><td class="line-number" value="188"></td><td class="line-content">    value.method3();</td></tr><tr><td class="line-number" value="189"></td><td class="line-content">    member = value;</td></tr><tr><td class="line-number" value="190"></td><td class="line-content">  }</td></tr><tr><td class="line-number" value="191"></td><td class="line-content">}</td></tr><tr><td class="line-number" value="192"></td><td class="line-content"><span class="html-tag">&lt;/textarea&gt;</span><span class="html-tag">&lt;/div&gt;</span></td></tr><tr><td class="line-number" value="193"></td><td class="line-content"><br></td></tr><tr><td class="line-number" value="194"></td><td class="line-content"><span class="html-tag">&lt;h2&gt;</span>Scala example<span class="html-tag">&lt;/h2&gt;</span></td></tr><tr><td class="line-number" value="195"></td><td class="line-content"><br></td></tr><tr><td class="line-number" value="196"></td><td class="line-content"><span class="html-tag">&lt;div&gt;</span><span class="html-tag">&lt;textarea <span class="html-attribute-name">id</span>="<span class="html-attribute-value">scala-code</span>"&gt;</span></td></tr><tr><td class="line-number" value="197"></td><td class="line-content">object FilterTest extends App {</td></tr><tr><td class="line-number" value="198"></td><td class="line-content">  def filter(xs: List[Int], threshold: Int) = {</td></tr><tr><td class="line-number" value="199"></td><td class="line-content">    def process(ys: List[Int]): List[Int] =</td></tr><tr><td class="line-number" value="200"></td><td class="line-content">      if (ys.isEmpty) ys</td></tr><tr><td class="line-number" value="201"></td><td class="line-content">      else if (ys.head &lt; threshold) ys.head :: process(ys.tail)</td></tr><tr><td class="line-number" value="202"></td><td class="line-content">      else process(ys.tail)</td></tr><tr><td class="line-number" value="203"></td><td class="line-content">    process(xs)</td></tr><tr><td class="line-number" value="204"></td><td class="line-content">  }</td></tr><tr><td class="line-number" value="205"></td><td class="line-content">  println(filter(List(1, 9, 2, 8, 3, 7, 4), 5))</td></tr><tr><td class="line-number" value="206"></td><td class="line-content">}</td></tr><tr><td class="line-number" value="207"></td><td class="line-content"><span class="html-tag">&lt;/textarea&gt;</span><span class="html-tag">&lt;/div&gt;</span></td></tr><tr><td class="line-number" value="208"></td><td class="line-content"><br></td></tr><tr><td class="line-number" value="209"></td><td class="line-content"><span class="html-tag">&lt;h2&gt;</span>Kotlin mode<span class="html-tag">&lt;/h2&gt;</span></td></tr><tr><td class="line-number" value="210"></td><td class="line-content"><br></td></tr><tr><td class="line-number" value="211"></td><td class="line-content"><span class="html-tag">&lt;div&gt;</span><span class="html-tag">&lt;textarea <span class="html-attribute-name">id</span>="<span class="html-attribute-value">kotlin-code</span>"&gt;</span></td></tr><tr><td class="line-number" value="212"></td><td class="line-content">package org.wasabi.http</td></tr><tr><td class="line-number" value="213"></td><td class="line-content"><br></td></tr><tr><td class="line-number" value="214"></td><td class="line-content">import java.util.concurrent.Executors</td></tr><tr><td class="line-number" value="215"></td><td class="line-content">import java.net.InetSocketAddress</td></tr><tr><td class="line-number" value="216"></td><td class="line-content">import org.wasabi.app.AppConfiguration</td></tr><tr><td class="line-number" value="217"></td><td class="line-content">import io.netty.bootstrap.ServerBootstrap</td></tr><tr><td class="line-number" value="218"></td><td class="line-content">import io.netty.channel.nio.NioEventLoopGroup</td></tr><tr><td class="line-number" value="219"></td><td class="line-content">import io.netty.channel.socket.nio.NioServerSocketChannel</td></tr><tr><td class="line-number" value="220"></td><td class="line-content">import org.wasabi.app.AppServer</td></tr><tr><td class="line-number" value="221"></td><td class="line-content"><br></td></tr><tr><td class="line-number" value="222"></td><td class="line-content">public class HttpServer(private val appServer: AppServer) {</td></tr><tr><td class="line-number" value="223"></td><td class="line-content"><br></td></tr><tr><td class="line-number" value="224"></td><td class="line-content">    val bootstrap: ServerBootstrap</td></tr><tr><td class="line-number" value="225"></td><td class="line-content">    val primaryGroup: NioEventLoopGroup</td></tr><tr><td class="line-number" value="226"></td><td class="line-content">    val workerGroup:  NioEventLoopGroup</td></tr><tr><td class="line-number" value="227"></td><td class="line-content"><br></td></tr><tr><td class="line-number" value="228"></td><td class="line-content">    init {</td></tr><tr><td class="line-number" value="229"></td><td class="line-content">        // Define worker groups</td></tr><tr><td class="line-number" value="230"></td><td class="line-content">        primaryGroup = NioEventLoopGroup()</td></tr><tr><td class="line-number" value="231"></td><td class="line-content">        workerGroup = NioEventLoopGroup()</td></tr><tr><td class="line-number" value="232"></td><td class="line-content"><br></td></tr><tr><td class="line-number" value="233"></td><td class="line-content">        // Initialize bootstrap of server</td></tr><tr><td class="line-number" value="234"></td><td class="line-content">        bootstrap = ServerBootstrap()</td></tr><tr><td class="line-number" value="235"></td><td class="line-content"><br></td></tr><tr><td class="line-number" value="236"></td><td class="line-content">        bootstrap.group(primaryGroup, workerGroup)</td></tr><tr><td class="line-number" value="237"></td><td class="line-content">        bootstrap.channel(javaClass&lt;NioServerSocketChannel&gt;())</td></tr><tr><td class="line-number" value="238"></td><td class="line-content">        bootstrap.childHandler(NettyPipelineInitializer(appServer))</td></tr><tr><td class="line-number" value="239"></td><td class="line-content">    }</td></tr><tr><td class="line-number" value="240"></td><td class="line-content"><br></td></tr><tr><td class="line-number" value="241"></td><td class="line-content">    public fun start(wait: Boolean = true) {</td></tr><tr><td class="line-number" value="242"></td><td class="line-content">        val channel = bootstrap.bind(appServer.configuration.port)?.sync()?.channel()</td></tr><tr><td class="line-number" value="243"></td><td class="line-content"><br></td></tr><tr><td class="line-number" value="244"></td><td class="line-content">        if (wait) {</td></tr><tr><td class="line-number" value="245"></td><td class="line-content">            channel?.closeFuture()?.sync()</td></tr><tr><td class="line-number" value="246"></td><td class="line-content">        }</td></tr><tr><td class="line-number" value="247"></td><td class="line-content">    }</td></tr><tr><td class="line-number" value="248"></td><td class="line-content"><br></td></tr><tr><td class="line-number" value="249"></td><td class="line-content">    public fun stop() {</td></tr><tr><td class="line-number" value="250"></td><td class="line-content">        // Shutdown all event loops</td></tr><tr><td class="line-number" value="251"></td><td class="line-content">        primaryGroup.shutdownGracefully()</td></tr><tr><td class="line-number" value="252"></td><td class="line-content">        workerGroup.shutdownGracefully()</td></tr><tr><td class="line-number" value="253"></td><td class="line-content"><br></td></tr><tr><td class="line-number" value="254"></td><td class="line-content">        // Wait till all threads are terminated</td></tr><tr><td class="line-number" value="255"></td><td class="line-content">        primaryGroup.terminationFuture().sync()</td></tr><tr><td class="line-number" value="256"></td><td class="line-content">        workerGroup.terminationFuture().sync()</td></tr><tr><td class="line-number" value="257"></td><td class="line-content">    }</td></tr><tr><td class="line-number" value="258"></td><td class="line-content">}</td></tr><tr><td class="line-number" value="259"></td><td class="line-content"><span class="html-tag">&lt;/textarea&gt;</span><span class="html-tag">&lt;/div&gt;</span></td></tr><tr><td class="line-number" value="260"></td><td class="line-content"><br></td></tr><tr><td class="line-number" value="261"></td><td class="line-content"><span class="html-tag">&lt;h2&gt;</span>Ceylon mode<span class="html-tag">&lt;/h2&gt;</span></td></tr><tr><td class="line-number" value="262"></td><td class="line-content"><br></td></tr><tr><td class="line-number" value="263"></td><td class="line-content"><span class="html-tag">&lt;div&gt;</span><span class="html-tag">&lt;textarea <span class="html-attribute-name">id</span>="<span class="html-attribute-value">ceylon-code</span>"&gt;</span></td></tr><tr><td class="line-number" value="264"></td><td class="line-content">"Produces the [[stream|Iterable]] that results from repeated</td></tr><tr><td class="line-number" value="265"></td><td class="line-content"> application of the given [[function|next]] to the given</td></tr><tr><td class="line-number" value="266"></td><td class="line-content"> [[first]] element of the stream, until the function first</td></tr><tr><td class="line-number" value="267"></td><td class="line-content"> returns [[finished]]. If the given function never returns </td></tr><tr><td class="line-number" value="268"></td><td class="line-content"> `finished`, the resulting stream is infinite.</td></tr><tr><td class="line-number" value="269"></td><td class="line-content"><br></td></tr><tr><td class="line-number" value="270"></td><td class="line-content"> For example:</td></tr><tr><td class="line-number" value="271"></td><td class="line-content"><br></td></tr><tr><td class="line-number" value="272"></td><td class="line-content">     loop(0)(2.plus).takeWhile(10.largerThan)</td></tr><tr><td class="line-number" value="273"></td><td class="line-content"><br></td></tr><tr><td class="line-number" value="274"></td><td class="line-content"> produces the stream `{ 0, 2, 4, 6, 8 }`."</td></tr><tr><td class="line-number" value="275"></td><td class="line-content">tagged("Streams")</td></tr><tr><td class="line-number" value="276"></td><td class="line-content">shared {Element+} loop&amp;lt;Element&amp;gt;(</td></tr><tr><td class="line-number" value="277"></td><td class="line-content">        "The first element of the resulting stream."</td></tr><tr><td class="line-number" value="278"></td><td class="line-content">        Element first)(</td></tr><tr><td class="line-number" value="279"></td><td class="line-content">        "The function that produces the next element of the</td></tr><tr><td class="line-number" value="280"></td><td class="line-content">         stream, given the current element. The function may</td></tr><tr><td class="line-number" value="281"></td><td class="line-content">         return [[finished]] to indicate the end of the </td></tr><tr><td class="line-number" value="282"></td><td class="line-content">         stream."</td></tr><tr><td class="line-number" value="283"></td><td class="line-content">        Element|Finished next(Element element))</td></tr><tr><td class="line-number" value="284"></td><td class="line-content">    =&amp;gt; let (start = first)</td></tr><tr><td class="line-number" value="285"></td><td class="line-content">    object satisfies {Element+} {</td></tr><tr><td class="line-number" value="286"></td><td class="line-content">        first =&amp;gt; start;</td></tr><tr><td class="line-number" value="287"></td><td class="line-content">        empty =&amp;gt; false;</td></tr><tr><td class="line-number" value="288"></td><td class="line-content">        function nextElement(Element element)</td></tr><tr><td class="line-number" value="289"></td><td class="line-content">                =&amp;gt; next(element);</td></tr><tr><td class="line-number" value="290"></td><td class="line-content">        iterator()</td></tr><tr><td class="line-number" value="291"></td><td class="line-content">                =&amp;gt; object satisfies Iterator&amp;lt;Element&amp;gt; {</td></tr><tr><td class="line-number" value="292"></td><td class="line-content">            variable Element|Finished current = start;</td></tr><tr><td class="line-number" value="293"></td><td class="line-content">            shared actual Element|Finished next() {</td></tr><tr><td class="line-number" value="294"></td><td class="line-content">                if (!is Finished result = current) {</td></tr><tr><td class="line-number" value="295"></td><td class="line-content">                    current = nextElement(result);</td></tr><tr><td class="line-number" value="296"></td><td class="line-content">                    return result;</td></tr><tr><td class="line-number" value="297"></td><td class="line-content">                }</td></tr><tr><td class="line-number" value="298"></td><td class="line-content">                else {</td></tr><tr><td class="line-number" value="299"></td><td class="line-content">                    return finished;</td></tr><tr><td class="line-number" value="300"></td><td class="line-content">                }</td></tr><tr><td class="line-number" value="301"></td><td class="line-content">            }</td></tr><tr><td class="line-number" value="302"></td><td class="line-content">        };</td></tr><tr><td class="line-number" value="303"></td><td class="line-content">    };</td></tr><tr><td class="line-number" value="304"></td><td class="line-content"><span class="html-tag">&lt;/textarea&gt;</span><span class="html-tag">&lt;/div&gt;</span></td></tr><tr><td class="line-number" value="305"></td><td class="line-content"><br></td></tr><tr><td class="line-number" value="306"></td><td class="line-content">    <span class="html-tag">&lt;script&gt;</span></td></tr><tr><td class="line-number" value="307"></td><td class="line-content">      var cEditor = CodeMirror.fromTextArea(document.getElementById("c-code"), {</td></tr><tr><td class="line-number" value="308"></td><td class="line-content">        lineNumbers: true,</td></tr><tr><td class="line-number" value="309"></td><td class="line-content">        matchBrackets: true,</td></tr><tr><td class="line-number" value="310"></td><td class="line-content">        mode: "text/x-csrc"</td></tr><tr><td class="line-number" value="311"></td><td class="line-content">      });</td></tr><tr><td class="line-number" value="312"></td><td class="line-content">      var cppEditor = CodeMirror.fromTextArea(document.getElementById("cpp-code"), {</td></tr><tr><td class="line-number" value="313"></td><td class="line-content">        lineNumbers: true,</td></tr><tr><td class="line-number" value="314"></td><td class="line-content">        matchBrackets: true,</td></tr><tr><td class="line-number" value="315"></td><td class="line-content">        mode: "text/x-c++src"</td></tr><tr><td class="line-number" value="316"></td><td class="line-content">      });</td></tr><tr><td class="line-number" value="317"></td><td class="line-content">      var javaEditor = CodeMirror.fromTextArea(document.getElementById("java-code"), {</td></tr><tr><td class="line-number" value="318"></td><td class="line-content">        lineNumbers: true,</td></tr><tr><td class="line-number" value="319"></td><td class="line-content">        matchBrackets: true,</td></tr><tr><td class="line-number" value="320"></td><td class="line-content">        mode: "text/x-java"</td></tr><tr><td class="line-number" value="321"></td><td class="line-content">      });</td></tr><tr><td class="line-number" value="322"></td><td class="line-content">      var objectivecEditor = CodeMirror.fromTextArea(document.getElementById("objectivec-code"), {</td></tr><tr><td class="line-number" value="323"></td><td class="line-content">        lineNumbers: true,</td></tr><tr><td class="line-number" value="324"></td><td class="line-content">        matchBrackets: true,</td></tr><tr><td class="line-number" value="325"></td><td class="line-content">        mode: "text/x-objectivec"</td></tr><tr><td class="line-number" value="326"></td><td class="line-content">      });</td></tr><tr><td class="line-number" value="327"></td><td class="line-content">      var scalaEditor = CodeMirror.fromTextArea(document.getElementById("scala-code"), {</td></tr><tr><td class="line-number" value="328"></td><td class="line-content">        lineNumbers: true,</td></tr><tr><td class="line-number" value="329"></td><td class="line-content">        matchBrackets: true,</td></tr><tr><td class="line-number" value="330"></td><td class="line-content">        mode: "text/x-scala"</td></tr><tr><td class="line-number" value="331"></td><td class="line-content">      });</td></tr><tr><td class="line-number" value="332"></td><td class="line-content">      var kotlinEditor = CodeMirror.fromTextArea(document.getElementById("kotlin-code"), {</td></tr><tr><td class="line-number" value="333"></td><td class="line-content">          lineNumbers: true,</td></tr><tr><td class="line-number" value="334"></td><td class="line-content">          matchBrackets: true,</td></tr><tr><td class="line-number" value="335"></td><td class="line-content">          mode: "text/x-kotlin"</td></tr><tr><td class="line-number" value="336"></td><td class="line-content">      });</td></tr><tr><td class="line-number" value="337"></td><td class="line-content">      var ceylonEditor = CodeMirror.fromTextArea(document.getElementById("ceylon-code"), {</td></tr><tr><td class="line-number" value="338"></td><td class="line-content">          lineNumbers: true,</td></tr><tr><td class="line-number" value="339"></td><td class="line-content">          matchBrackets: true,</td></tr><tr><td class="line-number" value="340"></td><td class="line-content">          mode: "text/x-ceylon"</td></tr><tr><td class="line-number" value="341"></td><td class="line-content">      });</td></tr><tr><td class="line-number" value="342"></td><td class="line-content">      var mac = CodeMirror.keyMap.default == CodeMirror.keyMap.macDefault;</td></tr><tr><td class="line-number" value="343"></td><td class="line-content">      CodeMirror.keyMap.default[(mac ? "Cmd" : "Ctrl") + "-Space"] = "autocomplete";</td></tr><tr><td class="line-number" value="344"></td><td class="line-content">    <span class="html-tag">&lt;/script&gt;</span></td></tr><tr><td class="line-number" value="345"></td><td class="line-content"><br></td></tr><tr><td class="line-number" value="346"></td><td class="line-content">    <span class="html-tag">&lt;p&gt;</span>Simple mode that tries to handle C-like languages as well as it</td></tr><tr><td class="line-number" value="347"></td><td class="line-content">    can. Takes two configuration parameters: <span class="html-tag">&lt;code&gt;</span>keywords<span class="html-tag">&lt;/code&gt;</span>, an</td></tr><tr><td class="line-number" value="348"></td><td class="line-content">    object whose property names are the keywords in the language,</td></tr><tr><td class="line-number" value="349"></td><td class="line-content">    and <span class="html-tag">&lt;code&gt;</span>useCPP<span class="html-tag">&lt;/code&gt;</span>, which determines whether C preprocessor</td></tr><tr><td class="line-number" value="350"></td><td class="line-content">    directives are recognized.<span class="html-tag">&lt;/p&gt;</span></td></tr><tr><td class="line-number" value="351"></td><td class="line-content"><br></td></tr><tr><td class="line-number" value="352"></td><td class="line-content">    <span class="html-tag">&lt;p&gt;</span><span class="html-tag">&lt;strong&gt;</span>MIME types defined:<span class="html-tag">&lt;/strong&gt;</span> <span class="html-tag">&lt;code&gt;</span>text/x-csrc<span class="html-tag">&lt;/code&gt;</span></td></tr><tr><td class="line-number" value="353"></td><td class="line-content">    (C), <span class="html-tag">&lt;code&gt;</span>text/x-c++src<span class="html-tag">&lt;/code&gt;</span> (C++), <span class="html-tag">&lt;code&gt;</span>text/x-java<span class="html-tag">&lt;/code&gt;</span></td></tr><tr><td class="line-number" value="354"></td><td class="line-content">    (Java), <span class="html-tag">&lt;code&gt;</span>text/x-csharp<span class="html-tag">&lt;/code&gt;</span> (C#),</td></tr><tr><td class="line-number" value="355"></td><td class="line-content">    <span class="html-tag">&lt;code&gt;</span>text/x-objectivec<span class="html-tag">&lt;/code&gt;</span> (Objective-C),</td></tr><tr><td class="line-number" value="356"></td><td class="line-content">    <span class="html-tag">&lt;code&gt;</span>text/x-scala<span class="html-tag">&lt;/code&gt;</span> (Scala), <span class="html-tag">&lt;code&gt;</span>text/x-vertex<span class="html-tag">&lt;/code&gt;</span></td></tr><tr><td class="line-number" value="357"></td><td class="line-content">    <span class="html-tag">&lt;code&gt;</span>x-shader/x-fragment<span class="html-tag">&lt;/code&gt;</span> (shader programs),</td></tr><tr><td class="line-number" value="358"></td><td class="line-content">    <span class="html-tag">&lt;code&gt;</span>text/x-squirrel<span class="html-tag">&lt;/code&gt;</span> (Squirrel) and</td></tr><tr><td class="line-number" value="359"></td><td class="line-content">    <span class="html-tag">&lt;code&gt;</span>text/x-ceylon<span class="html-tag">&lt;/code&gt;</span> (Ceylon)<span class="html-tag">&lt;/p&gt;</span></td></tr><tr><td class="line-number" value="360"></td><td class="line-content"><span class="html-tag">&lt;/article&gt;</span></td></tr><tr><td class="line-number" value="361"></td><td class="line-content"><span class="html-end-of-file"></span></td></tr></tbody></table></body></html>
+(function(mod) {
+  if (typeof exports == "object" && typeof module == "object") // CommonJS
+    mod(require("../../lib/codemirror"));
+  else if (typeof define == "function" && define.amd) // AMD
+    define(["../../lib/codemirror"], mod);
+  else // Plain browser env
+    mod(CodeMirror);
+})(function(CodeMirror) {
+"use strict";
+
+function Context(indented, column, type, info, align, prev) {
+  this.indented = indented;
+  this.column = column;
+  this.type = type;
+  this.info = info;
+  this.align = align;
+  this.prev = prev;
+}
+function pushContext(state, col, type, info) {
+  var indent = state.indented;
+  if (state.context && state.context.type == "statement" && type != "statement")
+    indent = state.context.indented;
+  return state.context = new Context(indent, col, type, info, null, state.context);
+}
+function popContext(state) {
+  var t = state.context.type;
+  if (t == ")" || t == "]" || t == "}")
+    state.indented = state.context.indented;
+  return state.context = state.context.prev;
+}
+
+function typeBefore(stream, state, pos) {
+  if (state.prevToken == "variable" || state.prevToken == "variable-3") return true;
+  if (/\S(?:[^- ]>|[*\]])\s*$|\*$/.test(stream.string.slice(0, pos))) return true;
+  if (state.typeAtEndOfLine && stream.column() == stream.indentation()) return true;
+}
+
+function isTopScope(context) {
+  for (;;) {
+    if (!context || context.type == "top") return true;
+    if (context.type == "}" && context.prev.info != "namespace") return false;
+    context = context.prev;
+  }
+}
+
+CodeMirror.defineMode("clike", function(config, parserConfig) {
+  var indentUnit = config.indentUnit,
+      statementIndentUnit = parserConfig.statementIndentUnit || indentUnit,
+      dontAlignCalls = parserConfig.dontAlignCalls,
+      keywords = parserConfig.keywords || {},
+      types = parserConfig.types || {},
+      builtin = parserConfig.builtin || {},
+      blockKeywords = parserConfig.blockKeywords || {},
+      defKeywords = parserConfig.defKeywords || {},
+      atoms = parserConfig.atoms || {},
+      hooks = parserConfig.hooks || {},
+      multiLineStrings = parserConfig.multiLineStrings,
+      indentStatements = parserConfig.indentStatements !== false,
+      indentSwitch = parserConfig.indentSwitch !== false,
+      namespaceSeparator = parserConfig.namespaceSeparator,
+      isPunctuationChar = parserConfig.isPunctuationChar || /[\[\]{}\(\),;\:\.]/,
+      numberStart = parserConfig.numberStart || /[\d\.]/,
+      number = parserConfig.number || /^(?:0x[a-f\d]+|0b[01]+|(?:\d+\.?\d*|\.\d+)(?:e[-+]?\d+)?)(u|ll?|l|f)?/i,
+      isOperatorChar = parserConfig.isOperatorChar || /[+\-*&%=<>!?|\/]/;
+
+  var curPunc, isDefKeyword;
+
+  function tokenBase(stream, state) {
+    var ch = stream.next();
+    if (hooks[ch]) {
+      var result = hooks[ch](stream, state);
+      if (result !== false) return result;
+    }
+    if (ch == '"' || ch == "'") {
+      state.tokenize = tokenString(ch);
+      return state.tokenize(stream, state);
+    }
+    if (isPunctuationChar.test(ch)) {
+      curPunc = ch;
+      return null;
+    }
+    if (numberStart.test(ch)) {
+      stream.backUp(1)
+      if (stream.match(number)) return "number"
+      stream.next()
+    }
+    if (ch == "/") {
+      if (stream.eat("*")) {
+        state.tokenize = tokenComment;
+        return tokenComment(stream, state);
+      }
+      if (stream.eat("/")) {
+        stream.skipToEnd();
+        return "comment";
+      }
+    }
+    if (isOperatorChar.test(ch)) {
+      while (!stream.match(/^\/[\/*]/, false) && stream.eat(isOperatorChar)) {}
+      return "operator";
+    }
+    stream.eatWhile(/[\w\$_\xa1-\uffff]/);
+    if (namespaceSeparator) while (stream.match(namespaceSeparator))
+      stream.eatWhile(/[\w\$_\xa1-\uffff]/);
+
+    var cur = stream.current();
+    if (contains(keywords, cur)) {
+      if (contains(blockKeywords, cur)) curPunc = "newstatement";
+      if (contains(defKeywords, cur)) isDefKeyword = true;
+      return "keyword";
+    }
+    if (contains(types, cur)) return "variable-3";
+    if (contains(builtin, cur)) {
+      if (contains(blockKeywords, cur)) curPunc = "newstatement";
+      return "builtin";
+    }
+    if (contains(atoms, cur)) return "atom";
+    return "variable";
+  }
+
+  function tokenString(quote) {
+    return function(stream, state) {
+      var escaped = false, next, end = false;
+      while ((next = stream.next()) != null) {
+        if (next == quote && !escaped) {end = true; break;}
+        escaped = !escaped && next == "\\";
+      }
+      if (end || !(escaped || multiLineStrings))
+        state.tokenize = null;
+      return "string";
+    };
+  }
+
+  function tokenComment(stream, state) {
+    var maybeEnd = false, ch;
+    while (ch = stream.next()) {
+      if (ch == "/" && maybeEnd) {
+        state.tokenize = null;
+        break;
+      }
+      maybeEnd = (ch == "*");
+    }
+    return "comment";
+  }
+
+  function maybeEOL(stream, state) {
+    if (parserConfig.typeFirstDefinitions && stream.eol() && isTopScope(state.context))
+      state.typeAtEndOfLine = typeBefore(stream, state, stream.pos)
+  }
+
+  // Interface
+
+  return {
+    startState: function(basecolumn) {
+      return {
+        tokenize: null,
+        context: new Context((basecolumn || 0) - indentUnit, 0, "top", null, false),
+        indented: 0,
+        startOfLine: true,
+        prevToken: null
+      };
+    },
+
+    token: function(stream, state) {
+      var ctx = state.context;
+      if (stream.sol()) {
+        if (ctx.align == null) ctx.align = false;
+        state.indented = stream.indentation();
+        state.startOfLine = true;
+      }
+      if (stream.eatSpace()) { maybeEOL(stream, state); return null; }
+      curPunc = isDefKeyword = null;
+      var style = (state.tokenize || tokenBase)(stream, state);
+      if (style == "comment" || style == "meta") return style;
+      if (ctx.align == null) ctx.align = true;
+
+      if (curPunc == ";" || curPunc == ":" || (curPunc == "," && stream.match(/^\s*(?:\/\/.*)?$/, false)))
+        while (state.context.type == "statement") popContext(state);
+      else if (curPunc == "{") pushContext(state, stream.column(), "}");
+      else if (curPunc == "[") pushContext(state, stream.column(), "]");
+      else if (curPunc == "(") pushContext(state, stream.column(), ")");
+      else if (curPunc == "}") {
+        while (ctx.type == "statement") ctx = popContext(state);
+        if (ctx.type == "}") ctx = popContext(state);
+        while (ctx.type == "statement") ctx = popContext(state);
+      }
+      else if (curPunc == ctx.type) popContext(state);
+      else if (indentStatements &&
+               (((ctx.type == "}" || ctx.type == "top") && curPunc != ";") ||
+                (ctx.type == "statement" && curPunc == "newstatement"))) {
+        pushContext(state, stream.column(), "statement", stream.current());
+      }
+
+      if (style == "variable" &&
+          ((state.prevToken == "def" ||
+            (parserConfig.typeFirstDefinitions && typeBefore(stream, state, stream.start) &&
+             isTopScope(state.context) && stream.match(/^\s*\(/, false)))))
+        style = "def";
+
+      if (hooks.token) {
+        var result = hooks.token(stream, state, style);
+        if (result !== undefined) style = result;
+      }
+
+      if (style == "def" && parserConfig.styleDefs === false) style = "variable";
+
+      state.startOfLine = false;
+      state.prevToken = isDefKeyword ? "def" : style || curPunc;
+      maybeEOL(stream, state);
+      return style;
+    },
+
+    indent: function(state, textAfter) {
+      if (state.tokenize != tokenBase && state.tokenize != null || state.typeAtEndOfLine) return CodeMirror.Pass;
+      var ctx = state.context, firstChar = textAfter && textAfter.charAt(0);
+      if (ctx.type == "statement" && firstChar == "}") ctx = ctx.prev;
+      if (parserConfig.dontIndentStatements)
+        while (ctx.type == "statement" && parserConfig.dontIndentStatements.test(ctx.info))
+          ctx = ctx.prev
+      if (hooks.indent) {
+        var hook = hooks.indent(state, ctx, textAfter);
+        if (typeof hook == "number") return hook
+      }
+      var closing = firstChar == ctx.type;
+      var switchBlock = ctx.prev && ctx.prev.info == "switch";
+      if (parserConfig.allmanIndentation && /[{(]/.test(firstChar)) {
+        while (ctx.type != "top" && ctx.type != "}") ctx = ctx.prev
+        return ctx.indented
+      }
+      if (ctx.type == "statement")
+        return ctx.indented + (firstChar == "{" ? 0 : statementIndentUnit);
+      if (ctx.align && (!dontAlignCalls || ctx.type != ")"))
+        return ctx.column + (closing ? 0 : 1);
+      if (ctx.type == ")" && !closing)
+        return ctx.indented + statementIndentUnit;
+
+      return ctx.indented + (closing ? 0 : indentUnit) +
+        (!closing && switchBlock && !/^(?:case|default)\b/.test(textAfter) ? indentUnit : 0);
+    },
+
+    electricInput: indentSwitch ? /^\s*(?:case .*?:|default:|\{\}?|\})$/ : /^\s*[{}]$/,
+    blockCommentStart: "/*",
+    blockCommentEnd: "*/",
+    lineComment: "//",
+    fold: "brace"
+  };
+});
+
+  function words(str) {
+    var obj = {}, words = str.split(" ");
+    for (var i = 0; i < words.length; ++i) obj[words[i]] = true;
+    return obj;
+  }
+  function contains(words, word) {
+    if (typeof words === "function") {
+      return words(word);
+    } else {
+      return words.propertyIsEnumerable(word);
+    }
+  }
+  var cKeywords = "auto if break case register continue return default do sizeof " +
+    "static else struct switch extern typedef union for goto while enum const volatile";
+  var cTypes = "int long char short double float unsigned signed void size_t ptrdiff_t";
+
+  function cppHook(stream, state) {
+    if (!state.startOfLine) return false
+    for (var ch, next = null; ch = stream.peek();) {
+      if (ch == "\\" && stream.match(/^.$/)) {
+        next = cppHook
+        break
+      } else if (ch == "/" && stream.match(/^\/[\/\*]/, false)) {
+        break
+      }
+      stream.next()
+    }
+    state.tokenize = next
+    return "meta"
+  }
+
+  function pointerHook(_stream, state) {
+    if (state.prevToken == "variable-3") return "variable-3";
+    return false;
+  }
+
+  function cpp14Literal(stream) {
+    stream.eatWhile(/[\w\.']/);
+    return "number";
+  }
+
+  function cpp11StringHook(stream, state) {
+    stream.backUp(1);
+    // Raw strings.
+    if (stream.match(/(R|u8R|uR|UR|LR)/)) {
+      var match = stream.match(/"([^\s\\()]{0,16})\(/);
+      if (!match) {
+        return false;
+      }
+      state.cpp11RawStringDelim = match[1];
+      state.tokenize = tokenRawString;
+      return tokenRawString(stream, state);
+    }
+    // Unicode strings/chars.
+    if (stream.match(/(u8|u|U|L)/)) {
+      if (stream.match(/["']/, /* eat */ false)) {
+        return "string";
+      }
+      return false;
+    }
+    // Ignore this hook.
+    stream.next();
+    return false;
+  }
+
+  function cppLooksLikeConstructor(word) {
+    var lastTwo = /(\w+)::(\w+)$/.exec(word);
+    return lastTwo && lastTwo[1] == lastTwo[2];
+  }
+
+  // C#-style strings where "" escapes a quote.
+  function tokenAtString(stream, state) {
+    var next;
+    while ((next = stream.next()) != null) {
+      if (next == '"' && !stream.eat('"')) {
+        state.tokenize = null;
+        break;
+      }
+    }
+    return "string";
+  }
+
+  // C++11 raw string literal is <prefix>"<delim>( anything )<delim>", where
+  // <delim> can be a string up to 16 characters long.
+  function tokenRawString(stream, state) {
+    // Escape characters that have special regex meanings.
+    var delim = state.cpp11RawStringDelim.replace(/[^\w\s]/g, '\\$&');
+    var match = stream.match(new RegExp(".*?\\)" + delim + '"'));
+    if (match)
+      state.tokenize = null;
+    else
+      stream.skipToEnd();
+    return "string";
+  }
+
+  function def(mimes, mode) {
+    if (typeof mimes == "string") mimes = [mimes];
+    var words = [];
+    function add(obj) {
+      if (obj) for (var prop in obj) if (obj.hasOwnProperty(prop))
+        words.push(prop);
+    }
+    add(mode.keywords);
+    add(mode.types);
+    add(mode.builtin);
+    add(mode.atoms);
+    if (words.length) {
+      mode.helperType = mimes[0];
+      CodeMirror.registerHelper("hintWords", mimes[0], words);
+    }
+
+    for (var i = 0; i < mimes.length; ++i)
+      CodeMirror.defineMIME(mimes[i], mode);
+  }
+
+  def(["text/x-csrc", "text/x-c", "text/x-chdr"], {
+    name: "clike",
+    keywords: words(cKeywords),
+    types: words(cTypes + " bool _Complex _Bool float_t double_t intptr_t intmax_t " +
+                 "int8_t int16_t int32_t int64_t uintptr_t uintmax_t uint8_t uint16_t " +
+                 "uint32_t uint64_t"),
+    blockKeywords: words("case do else for if switch while struct"),
+    defKeywords: words("struct"),
+    typeFirstDefinitions: true,
+    atoms: words("null true false"),
+    hooks: {"#": cppHook, "*": pointerHook},
+    modeProps: {fold: ["brace", "include"]}
+  });
+
+  def(["text/x-c++src", "text/x-c++hdr"], {
+    name: "clike",
+    keywords: words(cKeywords + " asm dynamic_cast namespace reinterpret_cast try explicit new " +
+                    "static_cast typeid catch operator template typename class friend private " +
+                    "this using const_cast inline public throw virtual delete mutable protected " +
+                    "alignas alignof constexpr decltype nullptr noexcept thread_local final " +
+                    "static_assert override"),
+    types: words(cTypes + " bool wchar_t"),
+    blockKeywords: words("catch class do else finally for if struct switch try while"),
+    defKeywords: words("class namespace struct enum union"),
+    typeFirstDefinitions: true,
+    atoms: words("true false null"),
+    dontIndentStatements: /^template$/,
+    hooks: {
+      "#": cppHook,
+      "*": pointerHook,
+      "u": cpp11StringHook,
+      "U": cpp11StringHook,
+      "L": cpp11StringHook,
+      "R": cpp11StringHook,
+      "0": cpp14Literal,
+      "1": cpp14Literal,
+      "2": cpp14Literal,
+      "3": cpp14Literal,
+      "4": cpp14Literal,
+      "5": cpp14Literal,
+      "6": cpp14Literal,
+      "7": cpp14Literal,
+      "8": cpp14Literal,
+      "9": cpp14Literal,
+      token: function(stream, state, style) {
+        if (style == "variable" && stream.peek() == "(" &&
+            (state.prevToken == ";" || state.prevToken == null ||
+             state.prevToken == "}") &&
+            cppLooksLikeConstructor(stream.current()))
+          return "def";
+      }
+    },
+    namespaceSeparator: "::",
+    modeProps: {fold: ["brace", "include"]}
+  });
+
+  def("text/x-java", {
+    name: "clike",
+    keywords: words("abstract assert break case catch class const continue default " +
+                    "do else enum extends final finally float for goto if implements import " +
+                    "instanceof interface native new package private protected public " +
+                    "return static strictfp super switch synchronized this throw throws transient " +
+                    "try volatile while"),
+    types: words("byte short int long float double boolean char void Boolean Byte Character Double Float " +
+                 "Integer Long Number Object Short String StringBuffer StringBuilder Void"),
+    blockKeywords: words("catch class do else finally for if switch try while"),
+    defKeywords: words("class interface package enum"),
+    typeFirstDefinitions: true,
+    atoms: words("true false null"),
+    number: /^(?:0x[a-f\d_]+|0b[01_]+|(?:[\d_]+\.?\d*|\.\d+)(?:e[-+]?[\d_]+)?)(u|ll?|l|f)?/i,
+    hooks: {
+      "@": function(stream) {
+        stream.eatWhile(/[\w\$_]/);
+        return "meta";
+      }
+    },
+    modeProps: {fold: ["brace", "import"]}
+  });
+
+  def("text/x-csharp", {
+    name: "clike",
+    keywords: words("abstract as async await base break case catch checked class const continue" +
+                    " default delegate do else enum event explicit extern finally fixed for" +
+                    " foreach goto if implicit in interface internal is lock namespace new" +
+                    " operator out override params private protected public readonly ref return sealed" +
+                    " sizeof stackalloc static struct switch this throw try typeof unchecked" +
+                    " unsafe using virtual void volatile while add alias ascending descending dynamic from get" +
+                    " global group into join let orderby partial remove select set value var yield"),
+    types: words("Action Boolean Byte Char DateTime DateTimeOffset Decimal Double Func" +
+                 " Guid Int16 Int32 Int64 Object SByte Single String Task TimeSpan UInt16 UInt32" +
+                 " UInt64 bool byte char decimal double short int long object"  +
+                 " sbyte float string ushort uint ulong"),
+    blockKeywords: words("catch class do else finally for foreach if struct switch try while"),
+    defKeywords: words("class interface namespace struct var"),
+    typeFirstDefinitions: true,
+    atoms: words("true false null"),
+    hooks: {
+      "@": function(stream, state) {
+        if (stream.eat('"')) {
+          state.tokenize = tokenAtString;
+          return tokenAtString(stream, state);
+        }
+        stream.eatWhile(/[\w\$_]/);
+        return "meta";
+      }
+    }
+  });
+
+  function tokenTripleString(stream, state) {
+    var escaped = false;
+    while (!stream.eol()) {
+      if (!escaped && stream.match('"""')) {
+        state.tokenize = null;
+        break;
+      }
+      escaped = stream.next() == "\\" && !escaped;
+    }
+    return "string";
+  }
+
+  def("text/x-scala", {
+    name: "clike",
+    keywords: words(
+
+      /* scala */
+      "abstract case catch class def do else extends final finally for forSome if " +
+      "implicit import lazy match new null object override package private protected return " +
+      "sealed super this throw trait try type val var while with yield _ : = => <- <: " +
+      "<% >: # @ " +
+
+      /* package scala */
+      "assert assume require print println printf readLine readBoolean readByte readShort " +
+      "readChar readInt readLong readFloat readDouble " +
+
+      ":: #:: "
+    ),
+    types: words(
+      "AnyVal App Application Array BufferedIterator BigDecimal BigInt Char Console Either " +
+      "Enumeration Equiv Error Exception Fractional Function IndexedSeq Int Integral Iterable " +
+      "Iterator List Map Numeric Nil NotNull Option Ordered Ordering PartialFunction PartialOrdering " +
+      "Product Proxy Range Responder Seq Serializable Set Specializable Stream StringBuilder " +
+      "StringContext Symbol Throwable Traversable TraversableOnce Tuple Unit Vector " +
+
+      /* package java.lang */
+      "Boolean Byte Character CharSequence Class ClassLoader Cloneable Comparable " +
+      "Compiler Double Exception Float Integer Long Math Number Object Package Pair Process " +
+      "Runtime Runnable SecurityManager Short StackTraceElement StrictMath String " +
+      "StringBuffer System Thread ThreadGroup ThreadLocal Throwable Triple Void"
+    ),
+    multiLineStrings: true,
+    blockKeywords: words("catch class do else finally for forSome if match switch try while"),
+    defKeywords: words("class def object package trait type val var"),
+    atoms: words("true false null"),
+    indentStatements: false,
+    indentSwitch: false,
+    hooks: {
+      "@": function(stream) {
+        stream.eatWhile(/[\w\$_]/);
+        return "meta";
+      },
+      '"': function(stream, state) {
+        if (!stream.match('""')) return false;
+        state.tokenize = tokenTripleString;
+        return state.tokenize(stream, state);
+      },
+      "'": function(stream) {
+        stream.eatWhile(/[\w\$_\xa1-\uffff]/);
+        return "atom";
+      },
+      "=": function(stream, state) {
+        var cx = state.context
+        if (cx.type == "}" && cx.align && stream.eat(">")) {
+          state.context = new Context(cx.indented, cx.column, cx.type, cx.info, null, cx.prev)
+          return "operator"
+        } else {
+          return false
+        }
+      }
+    },
+    modeProps: {closeBrackets: {triples: '"'}}
+  });
+
+  function tokenKotlinString(tripleString){
+    return function (stream, state) {
+      var escaped = false, next, end = false;
+      while (!stream.eol()) {
+        if (!tripleString && !escaped && stream.match('"') ) {end = true; break;}
+        if (tripleString && stream.match('"""')) {end = true; break;}
+        next = stream.next();
+        if(!escaped && next == "$" && stream.match('{'))
+          stream.skipTo("}");
+        escaped = !escaped && next == "\\" && !tripleString;
+      }
+      if (end || !tripleString)
+        state.tokenize = null;
+      return "string";
+    }
+  }
+
+  def("text/x-kotlin", {
+    name: "clike",
+    keywords: words(
+      /*keywords*/
+      "package as typealias class interface this super val " +
+      "var fun for is in This throw return " +
+      "break continue object if else while do try when !in !is as? " +
+
+      /*soft keywords*/
+      "file import where by get set abstract enum open inner override private public internal " +
+      "protected catch finally out final vararg reified dynamic companion constructor init " +
+      "sealed field property receiver param sparam lateinit data inline noinline tailrec " +
+      "external annotation crossinline const operator infix"
+    ),
+    types: words(
+      /* package java.lang */
+      "Boolean Byte Character CharSequence Class ClassLoader Cloneable Comparable " +
+      "Compiler Double Exception Float Integer Long Math Number Object Package Pair Process " +
+      "Runtime Runnable SecurityManager Short StackTraceElement StrictMath String " +
+      "StringBuffer System Thread ThreadGroup ThreadLocal Throwable Triple Void"
+    ),
+    intendSwitch: false,
+    indentStatements: false,
+    multiLineStrings: true,
+    blockKeywords: words("catch class do else finally for if where try while enum"),
+    defKeywords: words("class val var object package interface fun"),
+    atoms: words("true false null this"),
+    hooks: {
+      '"': function(stream, state) {
+        state.tokenize = tokenKotlinString(stream.match('""'));
+        return state.tokenize(stream, state);
+      }
+    },
+    modeProps: {closeBrackets: {triples: '"'}}
+  });
+
+  def(["x-shader/x-vertex", "x-shader/x-fragment"], {
+    name: "clike",
+    keywords: words("sampler1D sampler2D sampler3D samplerCube " +
+                    "sampler1DShadow sampler2DShadow " +
+                    "const attribute uniform varying " +
+                    "break continue discard return " +
+                    "for while do if else struct " +
+                    "in out inout"),
+    types: words("float int bool void " +
+                 "vec2 vec3 vec4 ivec2 ivec3 ivec4 bvec2 bvec3 bvec4 " +
+                 "mat2 mat3 mat4"),
+    blockKeywords: words("for while do if else struct"),
+    builtin: words("radians degrees sin cos tan asin acos atan " +
+                    "pow exp log exp2 sqrt inversesqrt " +
+                    "abs sign floor ceil fract mod min max clamp mix step smoothstep " +
+                    "length distance dot cross normalize ftransform faceforward " +
+                    "reflect refract matrixCompMult " +
+                    "lessThan lessThanEqual greaterThan greaterThanEqual " +
+                    "equal notEqual any all not " +
+                    "texture1D texture1DProj texture1DLod texture1DProjLod " +
+                    "texture2D texture2DProj texture2DLod texture2DProjLod " +
+                    "texture3D texture3DProj texture3DLod texture3DProjLod " +
+                    "textureCube textureCubeLod " +
+                    "shadow1D shadow2D shadow1DProj shadow2DProj " +
+                    "shadow1DLod shadow2DLod shadow1DProjLod shadow2DProjLod " +
+                    "dFdx dFdy fwidth " +
+                    "noise1 noise2 noise3 noise4"),
+    atoms: words("true false " +
+                "gl_FragColor gl_SecondaryColor gl_Normal gl_Vertex " +
+                "gl_MultiTexCoord0 gl_MultiTexCoord1 gl_MultiTexCoord2 gl_MultiTexCoord3 " +
+                "gl_MultiTexCoord4 gl_MultiTexCoord5 gl_MultiTexCoord6 gl_MultiTexCoord7 " +
+                "gl_FogCoord gl_PointCoord " +
+                "gl_Position gl_PointSize gl_ClipVertex " +
+                "gl_FrontColor gl_BackColor gl_FrontSecondaryColor gl_BackSecondaryColor " +
+                "gl_TexCoord gl_FogFragCoord " +
+                "gl_FragCoord gl_FrontFacing " +
+                "gl_FragData gl_FragDepth " +
+                "gl_ModelViewMatrix gl_ProjectionMatrix gl_ModelViewProjectionMatrix " +
+                "gl_TextureMatrix gl_NormalMatrix gl_ModelViewMatrixInverse " +
+                "gl_ProjectionMatrixInverse gl_ModelViewProjectionMatrixInverse " +
+                "gl_TexureMatrixTranspose gl_ModelViewMatrixInverseTranspose " +
+                "gl_ProjectionMatrixInverseTranspose " +
+                "gl_ModelViewProjectionMatrixInverseTranspose " +
+                "gl_TextureMatrixInverseTranspose " +
+                "gl_NormalScale gl_DepthRange gl_ClipPlane " +
+                "gl_Point gl_FrontMaterial gl_BackMaterial gl_LightSource gl_LightModel " +
+                "gl_FrontLightModelProduct gl_BackLightModelProduct " +
+                "gl_TextureColor gl_EyePlaneS gl_EyePlaneT gl_EyePlaneR gl_EyePlaneQ " +
+                "gl_FogParameters " +
+                "gl_MaxLights gl_MaxClipPlanes gl_MaxTextureUnits gl_MaxTextureCoords " +
+                "gl_MaxVertexAttribs gl_MaxVertexUniformComponents gl_MaxVaryingFloats " +
+                "gl_MaxVertexTextureImageUnits gl_MaxTextureImageUnits " +
+                "gl_MaxFragmentUniformComponents gl_MaxCombineTextureImageUnits " +
+                "gl_MaxDrawBuffers"),
+    indentSwitch: false,
+    hooks: {"#": cppHook},
+    modeProps: {fold: ["brace", "include"]}
+  });
+
+  def("text/x-nesc", {
+    name: "clike",
+    keywords: words(cKeywords + "as atomic async call command component components configuration event generic " +
+                    "implementation includes interface module new norace nx_struct nx_union post provides " +
+                    "signal task uses abstract extends"),
+    types: words(cTypes),
+    blockKeywords: words("case do else for if switch while struct"),
+    atoms: words("null true false"),
+    hooks: {"#": cppHook},
+    modeProps: {fold: ["brace", "include"]}
+  });
+
+  def("text/x-objectivec", {
+    name: "clike",
+    keywords: words(cKeywords + "inline restrict _Bool _Complex _Imaginary BOOL Class bycopy byref id IMP in " +
+                    "inout nil oneway out Protocol SEL self super atomic nonatomic retain copy readwrite readonly"),
+    types: words(cTypes),
+    atoms: words("YES NO NULL NILL ON OFF true false"),
+    hooks: {
+      "@": function(stream) {
+        stream.eatWhile(/[\w\$]/);
+        return "keyword";
+      },
+      "#": cppHook,
+      indent: function(_state, ctx, textAfter) {
+        if (ctx.type == "statement" && /^@\w/.test(textAfter)) return ctx.indented
+      }
+    },
+    modeProps: {fold: "brace"}
+  });
+
+  def("text/x-squirrel", {
+    name: "clike",
+    keywords: words("base break clone continue const default delete enum extends function in class" +
+                    " foreach local resume return this throw typeof yield constructor instanceof static"),
+    types: words(cTypes),
+    blockKeywords: words("case catch class else for foreach if switch try while"),
+    defKeywords: words("function local class"),
+    typeFirstDefinitions: true,
+    atoms: words("true false null"),
+    hooks: {"#": cppHook},
+    modeProps: {fold: ["brace", "include"]}
+  });
+
+  // Ceylon Strings need to deal with interpolation
+  var stringTokenizer = null;
+  function tokenCeylonString(type) {
+    return function(stream, state) {
+      var escaped = false, next, end = false;
+      while (!stream.eol()) {
+        if (!escaped && stream.match('"') &&
+              (type == "single" || stream.match('""'))) {
+          end = true;
+          break;
+        }
+        if (!escaped && stream.match('``')) {
+          stringTokenizer = tokenCeylonString(type);
+          end = true;
+          break;
+        }
+        next = stream.next();
+        escaped = type == "single" && !escaped && next == "\\";
+      }
+      if (end)
+          state.tokenize = null;
+      return "string";
+    }
+  }
+
+  def("text/x-ceylon", {
+    name: "clike",
+    keywords: words("abstracts alias assembly assert assign break case catch class continue dynamic else" +
+                    " exists extends finally for function given if import in interface is let module new" +
+                    " nonempty object of out outer package return satisfies super switch then this throw" +
+                    " try value void while"),
+    types: function(word) {
+        // In Ceylon all identifiers that start with an uppercase are types
+        var first = word.charAt(0);
+        return (first === first.toUpperCase() && first !== first.toLowerCase());
+    },
+    blockKeywords: words("case catch class dynamic else finally for function if interface module new object switch try while"),
+    defKeywords: words("class dynamic function interface module object package value"),
+    builtin: words("abstract actual aliased annotation by default deprecated doc final formal late license" +
+                   " native optional sealed see serializable shared suppressWarnings tagged throws variable"),
+    isPunctuationChar: /[\[\]{}\(\),;\:\.`]/,
+    isOperatorChar: /[+\-*&%=<>!?|^~:\/]/,
+    numberStart: /[\d#$]/,
+    number: /^(?:#[\da-fA-F_]+|\$[01_]+|[\d_]+[kMGTPmunpf]?|[\d_]+\.[\d_]+(?:[eE][-+]?\d+|[kMGTPmunpf]|)|)/i,
+    multiLineStrings: true,
+    typeFirstDefinitions: true,
+    atoms: words("true false null larger smaller equal empty finished"),
+    indentSwitch: false,
+    styleDefs: false,
+    hooks: {
+      "@": function(stream) {
+        stream.eatWhile(/[\w\$_]/);
+        return "meta";
+      },
+      '"': function(stream, state) {
+          state.tokenize = tokenCeylonString(stream.match('""') ? "triple" : "single");
+          return state.tokenize(stream, state);
+        },
+      '`': function(stream, state) {
+          if (!stringTokenizer || !stream.match('`')) return false;
+          state.tokenize = stringTokenizer;
+          stringTokenizer = null;
+          return state.tokenize(stream, state);
+        },
+      "'": function(stream) {
+        stream.eatWhile(/[\w\$_\xa1-\uffff]/);
+        return "atom";
+      },
+      token: function(_stream, state, style) {
+          if ((style == "variable" || style == "variable-3") &&
+              state.prevToken == ".") {
+            return "variable-2";
+          }
+        }
+    },
+    modeProps: {
+        fold: ["brace", "import"],
+        closeBrackets: {triples: '"'}
+    }
+  });
+
+});
