@@ -275,7 +275,7 @@ img, svg {
     padding-top: 30px;
   }
   .header h1 {
-    font-size: 3.6rem;
+    /*font-size: 3.6rem;*/
   }
 }
 
@@ -382,7 +382,7 @@ Articles
     content: 'desktop';
   }
   .articles h1 {
-    font-size: 3.6rem;
+    /*font-size: 3.6rem;*/
   }
 }
 
