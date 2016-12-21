@@ -92,7 +92,7 @@
      <div class="bs-callout bs-callout-info">
          <h4>Adapting input files</h4>
          <p>
-         The ART Processor starts processing with the input file (start file, specification file). ART commands in the start file, and in each subsequently adapted file, are processed in the sequence in which they appear. Whenever the processor encounters an <span class="art-command-span">#adapt</span> command in the currently processed file, processing of the current file is suspended and the Processor starts processing the given file. Once processing of the file is completed, the Processor resumes processing of the current file just after <span class="art-command-span">#adapt</span> command. In that way the processing ends when the Processor reaches the end of the start file.
+         The ART Processor starts processing with the start file a.k.a specification (SPC) file. ART commands in the start file, and in each subsequently adapted file, are processed in the sequence in which they appear. Whenever the processor encounters an <span class="art-command-span">#adapt</span> command in the currently processed file, processing of the current file is suspended and the Processor starts processing the given file. Once processing of the file is completed, the Processor resumes processing of the current file just after <span class="art-command-span">#adapt</span> command. In that way the processing ends when the Processor reaches the end of the start file.
          </p>
      </div>
      <div class="img-crop">
@@ -116,13 +116,15 @@
     <textarea id="snippet-2" class="codearea">
     Value of var_a is: AAA
     </textarea>
+    <br>
+    As we can see, variables can be allocated with the <span class="art-command-span">#set</span> command followed by declaration, and their value can be retrieved with <span class="art-ref-span">?@varname?</span> syntax.
     <p> Let's see a slightly more sophisticated example with the two commands we've learned know so far (<span class="art-command-span">#adapt</span> and <span class="art-command-span">#set</span>) </p>
     <h5>ART snippet:</h5>
     <textarea id="snippet-3" class="codearea">
-    #set date              = "2015-12-15"
+    #set date              = "2016-12-22"
     #set my_name           = "Peter Griffin"
     #set authorized_name   = "Meg Griffin"
-    #set lawyer_name       = "Dr. House"
+    #set lawyer_name       = "Dr. Saul"
     #set days_valid        = "30"
     %All setting done, now we adapt the template file
     #adapt "template.art"
@@ -140,14 +142,14 @@
 
     _________ ?@my_name?
 
-    _________ ?@authorized_name?
+    _________ ?@authorized_name?     (?@date?)
     </textarea>
     <h5>Result:</h5>
     <textarea id="snippet-5" class="codearea">
     Authorization Letter
 
     I Peter Griffin hereby authorize Meg Griffin to collect my
-    property documents from my lawyer Dr. House.
+    property documents from my lawyer Dr. Saul.
     This authorization letter is valid for 30 days from
     the issuance date after which it becomes null and void.
     For security purposes, I have attested below the signature
@@ -155,8 +157,80 @@
 
     _________ Peter Griffin
 
-    _________ Meg Griffin   
+    _________ Meg Griffin            (2016-12-22)
     </textarea>
+    <br>
+    <p>However we have not written source code yet, we can already have an idea of where to use this kind of technology. In the earlier example we can identify a declaration part and a template part. First we set up our values we want to use, then we <b>adapt</b> the template with our variables to get the result we were expecting.</p>
+    <p>Since the template does not care about our specific settings, it can be used by others, with different values without any changes on the template.
+    I can run this with my own set of values, then my neighbor can run it with his own set of values, we both get the output we wanted, even though we were running the through the same template without any changes to it.</p>
+    <p>This looks kinda useful, but it is not that convincing...</p>
+    <h4>Let's add a new command to it.</h4>
+    <p>We can give multiple values to a variable with a <span class="art-command-span">#set-multi</span> command in the following way. This is not the new command, we already knew #set, and this is just a variant of it. (We will see a few more variants of the commands in the future). Our new command is <span class="art-command-span">#foreach</span>, and of course we can guess what is it going to do. Let's see it in action:</p>
+    <h5>ART snippet:</h5>
+    <textarea id="snippet-6" class="codearea">
+    #set-multi class       = "SwordsMan", "Archer", "Knight"
+    #set-multi hp          = "25",        "15".     "150"
+    #set-multi cp          = "40",        "50".     "200"
+    %All setting done, now we adapt the template file
+    #while class, hp, cp
+        #adapt "template.art"
+    #endwhile
+    </textarea>
+    <h5>template.art:</h5>
+    <textarea id="snippet-7" class="codearea">
+    public class ?@class? {
+        public Hp { get; set; }
+        public Cp { get; set; }
+
+        public ?@class?() {
+          this.Hp = ?@hp?;
+          this.Cp = ?@cp?;
+        }
+
+        // ...
+    }
+
+    </textarea>
+    <h5>Result:</h5>
+    <textarea id="snippet-8" class="codearea">
+    public class SwordsMan {
+        public Hp { get; set; }
+        public Cp { get; set; }
+
+        public ?@class?() {
+          this.Hp = 25;
+          this.Cp = 40;
+        }
+
+        // ...
+    }
+
+    public class Archer {
+        public Hp { get; set; }
+        public Cp { get; set; }
+
+        public ?@class?() {
+          this.Hp = 15;
+          this.Cp = 50;
+        }
+
+        // ...
+    }
+
+    public class Knight {
+        public Hp { get; set; }
+        public Cp { get; set; }
+
+        public ?@class?() {
+          this.Hp = 150;
+          this.Cp = 200;
+        }
+
+        // ...
+    }
+    </textarea>
+    <br>
+    <p>OK... Getting closer to useful...</p>
   </article>
   <article class="post">
     <header>

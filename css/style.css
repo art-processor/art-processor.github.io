@@ -632,9 +632,15 @@ i.link-i {
 }
 
 span.art-command-span {
-  font-weight:  bold;
+  /*font-weight:  bold;*/
   color: blue;
 }
+
+span.art-command-span {
+  /*font-weight:  bold;*/
+  color: green;
+}
+
 
 div.img-crop {
     overflow: hidden;
