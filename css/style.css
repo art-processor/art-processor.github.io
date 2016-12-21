@@ -629,3 +629,8 @@ i.link-i {
   font-style: italic;
   float: left;
 }
+
+span.vcl-command-span {
+  font-weight:  bold;
+  color: blue;
+}

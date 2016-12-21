@@ -63,8 +63,9 @@
     <header>
       <h1> About ART </h1>
     </header>
-    <p>
+      <p>
       ART is a <span class="bs-ref-info">Variability Management Technique (VMT)</span> using <span class="bs-ref-warning">Frame Technology (FT)</span>.
+      </p>
       <div class="bs-callout bs-callout-info">
         <h4>Variability  Management  Techniques  (VMT)</h4>
         <p>
@@ -80,14 +81,29 @@
       <p>
       ART is here to help you automate common every day software engineering task through code generation and to help you eliminate human coding mistakes and achieve better code quality. However almost all our examples will talk about examples and usage in software engineering, ART has been proven to be useful in other aspects as well. In example for description to image generation (link, desc) and mass document handling (link, desc).
       </p>
-    </p>
   </article>
   <article class="post">
     <header>
-      <h1> Simple Example </h1>
+      <h1> How it Works </h1>
+    </header>
+     <p>
+     ART is a simple text processor, read text files and outputs text files. If the current line in the currently read file is an ART command <span class="vcl-command-span">(#[cmd])</span>, it will be processed, otherwise it will be emitted to the output.
+     </p>
+     <div class="bs-callout bs-callout-info">
+         <h4>Adapting input files</h4>
+         <p>
+         The ART Processor starts processing with the input file (start file, specification file). ART commands in the start file, and in each subsequently adapted file, are processed in the sequence in which they appear. Whenever the processor encounters an <span class="vcl-command-span">#adapt</span> command in the currently processed file, processing of the current file is suspended and the Processor starts processing the given file. Once processing of the file is completed, the Processor resumes processing of the current file just after <span class="vcl-command-span">#adapt</span> command. In that way the processing ends when VCL Processor reaches the end of the start file.
+         </p>
+     </div>
+     <img src="../img/adapt.gif"/>
+  </article>
+  <article class="post">
+    <header>
+      <h1> Usage and Examples </h1>
     </header>
     <p>
-      
+      Let's see how ART can be applied with some simple code snippet examples.
+      The ART language like other languages allows us to declare and use variables. Let's look at the following simple example:
     </p>
     <textarea id="example1" name="example1" class="codearea">
     #set var_a = "AAA"
@@ -272,28 +288,28 @@
       </li>
       <li>
         <a href="#">
-          <h3><em>Introduction to Progress</em></h3>
+          <h3><em>Usage and Examples</em></h3>
           <small><b>Alexander Russell</b></small>
           <svg x="0px" y="0px" width="36px" height="36px" viewBox="0 0 36 36"><circle fill="none" stroke-width="2" cx="18" cy="18" r="16" stroke-dasharray="100 100" stroke-dashoffset="100" transform="rotate(-90 18 18)"></circle></svg>
         </a>
       </li>
       <li>
         <a href="#">
-          <h3><em>Now, More Than Ever Before...</em></h3>
+          <h3><em>ART Story</em></h3>
           <small><b>Hermann Hesse</b></small>
           <svg x="0px" y="0px" width="36px" height="36px" viewBox="0 0 36 36"><circle fill="none" stroke-width="2" cx="18" cy="18" r="16" stroke-dasharray="100 100" stroke-dashoffset="100" transform="rotate(-90 18 18)"></circle></svg>
         </a>
       </li>
       <li>
         <a href="#">
-          <h3><em>What's Jekyll?</em></h3>
+          <h3><em>Publications</em></h3>
           <small><b></b></small>
           <svg x="0px" y="0px" width="36px" height="36px" viewBox="0 0 36 36"><circle fill="none" stroke-width="2" cx="18" cy="18" r="16" stroke-dasharray="100 100" stroke-dashoffset="100" transform="rotate(-90 18 18)"></circle></svg>
         </a>
       </li>
       <li>
         <a href="#">
-          <h3><em>Post with Figure</em></h3>
+          <h3><em>Learning ART</em></h3>
           <small><b></b></small>
           <svg x="0px" y="0px" width="36px" height="36px" viewBox="0 0 36 36"><circle fill="none" stroke-width="2" cx="18" cy="18" r="16" stroke-dasharray="100 100" stroke-dashoffset="100" transform="rotate(-90 18 18)"></circle></svg>
         </a>
@@ -312,9 +328,7 @@
       </main>
       <footer class="footer tc">
   <small>
-    &copy; 2016 Alex Russell
-    <br>
-    Powered by <a href="http://jekyllrb.com">Jekyll</a> using the <a href="http://alexanderussell.org">Progress Theme</a>.
+    &copy; 2016 ART
   </small>
 </footer>
     <script src="js/jquery-2.1.4.js"></script>
