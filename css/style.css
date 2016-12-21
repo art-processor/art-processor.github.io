@@ -40,8 +40,6 @@
   src: url("https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-bold-webfont.woff");
 }*/
 
-
-/*
 h1, h2, h3, h4, h5, h6 {
   font-weight: bold;
 }
@@ -228,14 +226,14 @@ article img {
   width: 100%;
   height: auto;
   display: block;
-}*/
+}
 
 /* -------------------------------- 
 
 Primary Site style
 
 -------------------------------- */
-/*
+
 *, *::after, *::before {
   box-sizing: border-box;
 }
@@ -245,9 +243,9 @@ html {
 }
 
 body {
-  font-size: 1.6rem;
+  /*font-size: 1.6rem;
   font-family: "sans-serif", "Helvetica Neue", Arial, sans-serif;
-  color: #777;
+  color: #777;*/
   background-color: #ffffff;
 }
 
@@ -270,11 +268,11 @@ img, svg {
   font-family: Georgia, serif;
   font-size: 2rem;
   color: #141414;
-}*/
-/*@media only screen and (min-width: 1100px) {
-  .header {*/
+}
+@media only screen and (min-width: 1100px) {
+  .header {
     /*height: 250px;*/
-   /* padding-top: 30px;
+    padding-top: 30px;
   }
   .header h1 {
     font-size: 3.6rem;
@@ -288,7 +286,7 @@ img, svg {
 .footer small {
   line-height: 1.5;
 }
-*/
+
 /* -------------------------------- 
 
 download button
@@ -338,7 +336,7 @@ download button
 Articles
 
 -------------------------------- */
-/*.articles {
+.articles {
   position: relative;
   width: 90%;
   max-width: 650px;
@@ -346,7 +344,7 @@ Articles
 }
 .articles::before {
   /* never visible - this is used in jQuery to check the current MQ */
-/*  content: 'mobile';
+  content: 'mobile';
   display: none;
 }
 .articles article {
@@ -368,7 +366,7 @@ Articles
   /*padding: 1em 0;
   line-height: 1.6;
   font-weight: 400;*/
-/*}
+}
 .articles p:last-of-type {
   padding-bottom: 0;
 }
@@ -381,7 +379,7 @@ Articles
   }
   .articles::before {
     /* never visible - this is used in jQuery to check the current MQ */
-/*    content: 'desktop';
+    content: 'desktop';
   }
   .articles h1 {
     font-size: 3.6rem;
@@ -390,7 +388,7 @@ Articles
 
 .articles.full-width {
   padding-right: 0;
-}*/
+}
 
 /* -------------------------------- 
 
