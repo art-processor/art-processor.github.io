@@ -13,16 +13,11 @@
   <meta content="website" property="og:type">
   <meta content="" property="og:description">
   <meta content="/img/logo.png" property="og:image">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:site" content="@alexanderussell">
-  <meta name="twitter:creator" content="@alexanderussell">
-  <meta name="twitter:title" content="Progress">
-  <meta name="twitter:description" content="">
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/codemirror/codemirror.css">
   <link rel="stylesheet" href="css/codemirror/neat.css">
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/font-awesome/css/font-awesome.min.css">
   <script src="js/modernizr.js"></script> 
   <style>
         .CodeMirror {
@@ -38,7 +33,7 @@
             max-width: none;
         }
         .CodeMirror-lines {
-            line-height: 1.43;
+            line-height: 1.25;
             font-size: 14px;
             font-family: monospace;
         }
@@ -47,13 +42,13 @@
 <body>
   <header class="header">
   <h1> ART - Adaptive Reuse Technology </h1>
-  <!--<nav>
+  <nav>
     <ul>
-      <li> <a href="">Home</a> </li>
-	    <li> <a href="about">About</a> </li>
-      <li> <a href="archive">Archive</a> </li>
+      <li> <a href="">About ART</a> </li>
+	    <li> <a href="learn">Learn</a> </li>
+      <li> <a href="contact">Contact Me</a> </li>
     </ul>
-  </nav>-->
+  </nav>
   </header>
   <main>
     <div class="articles">
@@ -420,6 +415,8 @@
         }
     }
     </textarea>
+    <br>
+    <p>Of course, there is much more in ART, however with these essential features and mechanisms we can get a great deal of productivity out of it, if used in the correct way.</p>
   </article>
   <article class="post">
     <header>
@@ -430,79 +427,106 @@
       <p> This will be long...  </p>
   </article>
   
-  <article class="post">
+  <article id="publications" class="post">
     <header>
       <h1> Publications </h1>
     </header>
-    <h4>ART era:</h4>
-    <i class="fa fa-trophy" aria-hidden="true"></i><h5>Managing Big Clones to Ease Evolution: Linux Kernel Example</h5>
-    <p>36th IEEE Software Engineering Workshop, Federated Conference on Computer Science and Information Systems (FEDCIS)</p>
-    <p>Jul. 2016</p>
-    Kuldeep Kumar Garg - National University of Singapore, Stan Jarzabek - National University of Singapore, Daniel Dan - ST Electronics,
+    <h2>ART era:</h2>
+    <h4><i class="fa fa-newspaper-o" aria-hidden="true"></i>&nbsp;&nbsp;Managing Big Clones to Ease Evolution: Linux Kernel Example</h4>
+    <p class="conf-p">36th IEEE Software Engineering Workshop, Federated Conference on Computer Science and Information Systems (FEDCIS)</p>
+    <p class="time-p">Jul. 2016</p>
+    <p class="authors-p">
+       <i class="fa fa-user" aria-hidden="true"></i>&nbsp;&nbsp; Kuldeep Kumar Garg - National University of Singapore<br>
+       <i class="fa fa-user" aria-hidden="true"></i>&nbsp;&nbsp; Stan Jarzabek - National University of Singapore<br>
+       <i class="fa fa-user" aria-hidden="true"></i>&nbsp;&nbsp; Daniel Dan - ST Electronics
+    </p>
 
-    <h4>VCL era:</h4>
-    <i class="fa fa-trophy" aria-hidden="true"></i><h5>Configuring Software for Reuse with VCL</h5>
-    <p>13th Symposium on Programming Languages and Software Tools (SPLST)</p>
-    <p>Aug. 2013</p>
-    Daniel Dan - National University of Singapore, Stan Jarzabek - National University of Singapore, Ferenc Rudolf - University of Szeged
+    <h2>VCL era:</h2>
+    <h4><i class="fa fa-newspaper-o" aria-hidden="true"></i>&nbsp;&nbsp;Configuring Software for Reuse with VCL</h4>
+    <p class="conf-p">13th Symposium on Programming Languages and Software Tools (SPLST)</p>
+    <p class="time-p">Aug. 2013</p>
+    <p class="authors-p">
+        <i class="fa fa-user" aria-hidden="true"></i>&nbsp;&nbsp; Daniel Dan - National University of Singapore<br>
+        <i class="fa fa-user" aria-hidden="true"></i>&nbsp;&nbsp; Stan Jarzabek - National University of Singapore<br>
+        <i class="fa fa-user" aria-hidden="true"></i>&nbsp;&nbsp; Ferenc Rudolf - University of Szeged
+    </p>
 
-    <i class="fa fa-trophy" aria-hidden="true"></i><h5>Configuring Software for Reuse with VCL</h5>
-    <p>Scientific Students’ Associations Budapest 2012</p>
-    <p>Nov 2012</p>
-    Daniel Dan
+    <h4><i class="fa fa-newspaper-o" aria-hidden="true"></i>&nbsp;&nbsp;Configuring Software for Reuse with VCL</h4>
+    <p class="conf-p">Scientific Students’ Associations Budapest 2012</p>
+    <p class="time-p">Nov 2012</p>
+    <p class="authors-p">
+        <i class="fa fa-user" aria-hidden="true"></i>&nbsp;&nbsp; Daniel Dan - University of Szeged
+    </p>
 
-    <h4>XVCL era:</h4>
-    <i class="fa fa-trophy" aria-hidden="true"></i><h5>Research journey towards industrial application of reuse technique</h5>
-    <p>28th International Conference on Software Engineering (ICSE 2006)</p>
-    <p>Jan 2006</p>
-    Stan Jarzabek - National University of Singapore, Ulf Pettersson - Singapore Technologies Engineering
+    <h2>XVCL era:</h2>
 
-    <i class="fa fa-trophy" aria-hidden="true"></i><h5>An Industrial Application of a Reuse Technique to a Web Portal Product Line</h5>
-    <p> Proceedings of the 10th European Software Engineering Conference held jointly with 13th ACM SIGSOFT International Symposium on Foundations of Software Engineering</p>
-    <p>Jan 2005</p>
-    Stan Jarzabek - National University of Singapore, Ulf Pettersson - Singapore Technologies Engineering
+    <h4><i class="fa fa-book" aria-hidden="true"></i>&nbsp;&nbsp;Effective Software Maintenance and Evolution: A Reuse-Based Approach</h4>
+    <p class="conf-p">Book</p>
+    <p class="time-p">May 2007</p>
+    <p class="authors-p">
+        <i class="fa fa-user" aria-hidden="true"></i>&nbsp;&nbsp; Stan Jarzabek
+    </p>
 
-    <i class="fa fa-trophy" aria-hidden="true"></i><h5>XVCL: a mechanism for handling variants in software product lines</h5>
-    <p>Science of Computer Programming - Special issue: Software variability management Volume 53 Issue 3, December 2004</p>
-    <p>Dec 2004</p>
-    Stan Jarzabek - National University of Singapore, Hongyu Zhang - Jilin University
+    <h4><i class="fa fa-newspaper-o" aria-hidden="true"></i>&nbsp;&nbsp;Research journey towards industrial application of reuse technique</h4>
+    <p class="conf-p">28th International Conference on Software Engineering (ICSE)</p>
+    <p class="time-p">Jan 2006</p>
+    <p class="authors-p">
+        <i class="fa fa-user" aria-hidden="true"></i>&nbsp;&nbsp; Stan Jarzabek - National University of Singapore<br>
+        <i class="fa fa-user" aria-hidden="true"></i>&nbsp;&nbsp; Ulf Pettersson - Singapore Technologies Engineering
+    </p>
 
-    <i class="fa fa-trophy" aria-hidden="true"></i><h5>XVCL: XML-based Variant Configuration Language</h5>
-    <p>Proceedings Fifth IEEE International Symposium on Requirements Engineering (RE)</p>
-    <p>Jun 2003</p>
+    <h4><i class="fa fa-newspaper-o" aria-hidden="true"></i>&nbsp;&nbsp;An Industrial Application of a Reuse Technique to a Web Portal Product Line</h4>
+    <p class="conf-p"> Proceedings of the 10th European Software Engineering Conference held jointly with 13th ACM SIGSOFT International Symposium on Foundations of Software Engineering</p>
+    <p class="time-p">Jan 2005</p>
+    <p class="authors-p">
+        <i class="fa fa-user" aria-hidden="true"></i>&nbsp;&nbsp; Stan Jarzabek - National University of Singapore<br>
+        <i class="fa fa-user" aria-hidden="true"></i>&nbsp;&nbsp; Ulf Pettersson - Singapore Technologies Engineering
+    </p>
 
-    Stan Jarzabek - National University of Singapore, Paul Bassett, Hongyu Zhang - Jilin University
+    <h4><i class="fa fa-newspaper-o" aria-hidden="true"></i>&nbsp;&nbsp;XVCL: a mechanism for handling variants in software product lines</h4>
+    <p class="conf-p">Science of Computer Programming - Special issue: Software variability management Volume 53 Issue 3, December 2004</p>
+    <p class="time-p">Dec 2004</p>
+    <p class="authors-p">
+        <i class="fa fa-user" aria-hidden="true"></i>&nbsp;&nbsp; Stan Jarzabek - National University of Singapore<br>
+        <i class="fa fa-user" aria-hidden="true"></i>&nbsp;&nbsp; Hongyu Zhang - Jilin University
+    </p>
+
+    <h4><i class="fa fa-newspaper-o" aria-hidden="true"></i>&nbsp;&nbsp;XVCL: XML-based Variant Configuration Language</h4>
+    <p class="conf-p">Proceedings Fifth IEEE International Symposium on Requirements Engineering (RE)</p>
+    <p class="time-p">Jun 2003</p>
+    <p class="authors-p">
+        <i class="fa fa-user" aria-hidden="true"></i>&nbsp;&nbsp; Stan Jarzabek - National University of Singapore<br>
+        <i class="fa fa-user" aria-hidden="true"></i>&nbsp;&nbsp; Paul Bassett<br>
+        <i class="fa fa-user" aria-hidden="true"></i>&nbsp;&nbsp; Hongyu Zhang - Jilin University
+    </p>
   
-    <i class="fa fa-trophy" aria-hidden="true"></i><h5>XVCL: a tutorial</h5>
-    <p>Proceedings of the 14th International Conference on Software Engineering and Knowledge Engineering (SEKE)</p>
-    <p>Jan 2002</p>
-    Soe Myat Swe, Stan Jarzabek - National University of Singapore, Hongyu Zhang - Jilin University
+    <h4><i class="fa fa-newspaper-o" aria-hidden="true"></i>&nbsp;&nbsp;XVCL: a tutorial</h4>
+    <p class="conf-p">Proceedings of the 14th International Conference on Software Engineering and Knowledge Engineering (SEKE)</p>
+    <p class="time-p">Jan 2002</p>
+    <p class="authors-p">
+        <i class="fa fa-user" aria-hidden="true"></i>&nbsp;&nbsp; Soe Myat Swe<br>
+        <i class="fa fa-user" aria-hidden="true"></i>&nbsp;&nbsp; Stan Jarzabek - National University of Singapore<br>
+        <i class="fa fa-user" aria-hidden="true"></i>&nbsp;&nbsp; Hongyu Zhang - Jilin University
+    </p>
 
-
-    <i class="fa fa-trophy" aria-hidden="true"></i><h5>XVCL Approach to Separating Concerns in Product Family Assets</h5>
-    <p>Generative and Component-Based Software Engineering, Third International Conference (GCSE)</p>
+    <h4><i class="fa fa-newspaper-o" aria-hidden="true"></i>&nbsp;&nbsp;XVCL Approach to Separating Concerns in Product Family Assets</h4>
+    <p class="conf-p">Generative and Component-Based Software Engineering, Third International Conference (GCSE)</p>
     <p>Sep 2001</p>
+    <p class="authors-p">
+        <i class="fa fa-user" aria-hidden="true"></i>&nbsp;&nbsp; Hongyu Zhang - Jilin University<br>
+        <i class="fa fa-user" aria-hidden="true"></i>&nbsp;&nbsp; Stan Jarzabek - National University of Singapore<br>
+        <i class="fa fa-user" aria-hidden="true"></i>&nbsp;&nbsp; Soe Mat Swe
+    </p>
 
-    Hongyu Zhang - Jilin University, Stan Jarzabek - National University of Singapore, Soe Mat Swe
-
-    <i class="fa fa-trophy" aria-hidden="true"></i><h5>XML-based Method and Tool for Handling Variant Requirements in Domain Models</h5>
-    <p>Proceedings Fifth IEEE International Symposium on Requirements Engineering (RE)</p>
+    <h4><i class="fa fa-newspaper-o" aria-hidden="true"></i>&nbsp;&nbsp;XML-based Method and Tool for Handling Variant Requirements in Domain Models</h4>
+    <p class="conf-p">Proceedings Fifth IEEE International Symposium on Requirements Engineering (RE)</p>
     <p>Feb 2001</p>
-
-    Hongyu Zhang - Jilin University, Stan Jarzabek - National University of Singapore
+    <p class="authors-p">
+        <i class="fa fa-user" aria-hidden="true"></i>&nbsp;&nbsp; Hongyu Zhang - Jilin University<br>
+        <i class="fa fa-user" aria-hidden="true"></i>&nbsp;&nbsp; Stan Jarzabek - National University of Singapore
+    </p>
 
   </article>
-
-  <article class="post">
-    <header>
-      <h1> Learning ART </h1>
-    </header>
-    <p>A great way to get introduced to ART language is going through a few tutorials. You can find our sample codes and tutorials <a>here</a>.</p>
-    <p>If you want to go through the commands, features and how to use them, you can get started <a>here</a>.</p>
-    <p>You can see some more sophisticated case studies in our publications, we have used Linux code, Java core code, ASP.NET portals etc etc.</p>
-    <p>You can practice your skills and try your understanding of the language with this small online tool executing ART processor on your code snippets. <a>ARTFiddle</a>.</p>
-  </article>
-  
   <aside class="read-more">
     <ul>
       <li>
@@ -540,23 +564,8 @@
           <svg x="0px" y="0px" width="36px" height="36px" viewBox="0 0 36 36"><circle fill="none" stroke-width="2" cx="18" cy="18" r="16" stroke-dasharray="100 100" stroke-dashoffset="100" transform="rotate(-90 18 18)"></circle></svg>
         </a>
       </li>
-      <li>
-        <a href="#">
-          <h3><em>Learning ART</em></h3>
-          <small><b></b></small>
-          <svg x="0px" y="0px" width="36px" height="36px" viewBox="0 0 36 36"><circle fill="none" stroke-width="2" cx="18" cy="18" r="16" stroke-dasharray="100 100" stroke-dashoffset="100" transform="rotate(-90 18 18)"></circle></svg>
-        </a>
-      </li>
     </ul>
   </aside>
-  <div class="pagination nugget-info tc">
-    <a class="button disabled" >
-      Previous
-    </a>
-    <a href="blog/page2" >
-      Next
-    </a>
-  </div>
 </div>
       </main>
       <footer class="footer tc">
@@ -573,14 +582,14 @@
     <script src="js/codemirror/addon/selection/mark-selection.js"></script>
     <script>
     $(function() {
-        createOutputCodeField('snippet-1', 70, "simplemode");
-        createOutputCodeField('snippet-2', 60, "simplemode");
-        createOutputCodeField('snippet-3', 180, "simplemode");
-        createOutputCodeField('snippet-4', 270, "simplemode");
-        createOutputCodeField('snippet-5', 270, "simplemode");
-        createOutputCodeField('snippet-6', 175, "simplemode");
-        createOutputCodeField('snippet-7', 250, "simplemode");
-        createOutputCodeField('snippet-8', 800, "text/x-kotlin");
+        createOutputCodeField('snippet-1', 60, "simplemode");
+        createOutputCodeField('snippet-2', 50, "simplemode");
+        createOutputCodeField('snippet-3', 150, "simplemode");
+        createOutputCodeField('snippet-4', 240, "simplemode");
+        createOutputCodeField('snippet-5', 240, "simplemode");
+        createOutputCodeField('snippet-6', 145, "simplemode");
+        createOutputCodeField('snippet-7', 240, "simplemode");
+        createOutputCodeField('snippet-8', 660, "text/x-kotlin");
         
         
         var snippet9 = CodeMirror.fromTextArea(document.getElementById('snippet-9'), {
@@ -593,7 +602,7 @@
         snippet9.markText({line: 0, ch: 62}, {line: 0, ch: 69}, {className: "code-highlight"});
         snippet9.markText({line: 1, ch: 62}, {line: 1, ch: 67}, {className: "code-highlight"});
         snippet9.markText({line: 2, ch: 62}, {line: 2, ch: 68}, {className: "code-highlight"});
-        snippet9.setSize('', 175);
+        snippet9.setSize('', 150);
 
         var snippet11 = CodeMirror.fromTextArea(document.getElementById('snippet-11'), {
             mode: "text/x-kotlin",
@@ -603,7 +612,7 @@
             readOnly: true
         });
         snippet11.markText({line: 38, ch: 0}, {line: 49, ch: 5}, {className: "code-highlight"});
-        snippet11.setSize('', 1030);
+        snippet11.setSize('', 880);
 
         var snippet12 = CodeMirror.fromTextArea(document.getElementById('snippet-12'), {
             mode: "simplemode",
@@ -613,7 +622,7 @@
             readOnly: true
         });
         snippet12.markText({line: 12, ch: 0}, {line: 16, ch: 10}, {className: "code-highlight"});
-        snippet12.setSize('', 390);
+        snippet12.setSize('', 335);
 
         var snippet13 = CodeMirror.fromTextArea(document.getElementById('snippet-13'), {
             mode: "simplemode",
@@ -623,7 +632,7 @@
             readOnly: true
         });
         snippet13.markText({line: 6, ch: 0}, {line: 16, ch: 20}, {className: "code-highlight"});
-        snippet13.setSize('', 420);
+        snippet13.setSize('', 350);
 
         var snippet14 = CodeMirror.fromTextArea(document.getElementById('snippet-14'), {
             mode: "text/x-kotlin",
@@ -636,7 +645,7 @@
         snippet14.markText({line: 28, ch: 0}, {line: 30, ch: 10}, {className: "code-highlight"});
         snippet14.markText({line: 45, ch: 0}, {line: 48, ch: 10}, {className: "code-highlight"});
         snippet14.markText({line: 63, ch: 0}, {line: 66, ch: 10}, {className: "code-highlight"});
-        snippet14.setSize('', 1200);
+        snippet14.setSize('', 1190);
 
         //createOutputCodeField('snippet-12', 390, "simplemode");
         //createOutputCodeField('snippet-13', 420, "simplemode");

@@ -52,20 +52,21 @@ h1 {
 h2 {
   color: #000000;
   font-size: 22px;
+  margin: 20px 0 10px 0;
 }
 
 h3 {
-  font-size: 18px;
+  font-size: 20px;
   margin: 20px 0 10px 0;
 }
 
 h4 {
-  font-size: 16px;
+  font-size: 19px;
   margin: 20px 0 10px 0;
 }
 
 h5 {
-  font-size: 14px;
+  font-size: 16px;
   margin: 20px 0 10px 0;
 }
 
@@ -650,4 +651,20 @@ div.img-crop {
 
 .code-highlight {
   background-color: #ff7;
+}
+
+p.conf-p {
+  font-style: italic;
+}
+
+p.time-p{
+  color: #777;
+}
+
+article#publications i {
+  color: #555;
+}
+
+p.authors-p {
+  margin-bottom: 35px;
 }
