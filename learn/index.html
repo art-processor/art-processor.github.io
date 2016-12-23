@@ -17,7 +17,7 @@
   <link rel="stylesheet" href="../css/style.css">
   <link rel="stylesheet" href="../css/codemirror/codemirror.css">
   <link rel="stylesheet" href="../css/codemirror/neat.css">
-  <link rel="stylesheet" href="css/codemirror/mdn-like.css">
+  <link rel="stylesheet" href="../css/codemirror/mdn-like.css">
   <link rel="stylesheet" href="../css/font-awesome/css/font-awesome.min.css">
   <script src="../js/modernizr.js"></script> 
   <style>
@@ -57,10 +57,10 @@
     <header>
       <h1> Learning ART </h1>
     </header>
-    <p>A great way to get introduced to ART language is going through a few tutorials. You can find our sample codes and tutorials <a>here</a>.</p>
-    <p>If you want to go through the commands, features and how to use them, you can get started <a>here</a>.</p>
+    <p>A great way to get introduced to ART language is going through a few tutorials. You can find our sample codes and tutorials <a href="#" id="to-tutorials">here</a>.</p>
+    <p>If you want to go through the commands, features and how to use them, you can get started <a href="#" id="to-commands">here</a>.</p>
     <p>You can see some more sophisticated case studies in our publications, we have used Linux code, Java core code, ASP.NET portals etc etc.</p>
-    <p>You can practice your skills and try your understanding of the language with this small online tool executing ART processor on your code snippets. <a>ARTFiddle</a>.</p>    
+    <p>You can practice your skills and try your understanding of the language with this small online tool executing ART processor on your code snippets. <a href="#" id="to-fiddle">ARTFiddle</a>.</p>    
   </article>
 
   <article class="post">
@@ -101,14 +101,14 @@
         </a>
       </li>
       <li>
-        <a href="#">
+        <a href="#" id="a-commands">
           <h3><em>The ART Commands</em></h3>
           <small><b></b></small>
           <svg x="0px" y="0px" width="36px" height="36px" viewBox="0 0 36 36"><circle fill="none" stroke-width="2" cx="18" cy="18" r="16" stroke-dasharray="100 100" stroke-dashoffset="100" transform="rotate(-90 18 18)"></circle></svg>
         </a>
       </li>
       <li>
-        <a href="#">
+        <a href="#" id="a-tutorials">
           <h3><em>Simple Tutorials</em></h3>
           <small><b></b></small>
           <svg x="0px" y="0px" width="36px" height="36px" viewBox="0 0 36 36"><circle fill="none" stroke-width="2" cx="18" cy="18" r="16" stroke-dasharray="100 100" stroke-dashoffset="100" transform="rotate(-90 18 18)"></circle></svg>
@@ -122,7 +122,7 @@
         </a>
       </li>
       <li>
-        <a href="#">
+        <a href="#" id="a-fiddle">
           <h3><em>Next Steps</em></h3>
           <small><b></b></small>
           <svg x="0px" y="0px" width="36px" height="36px" viewBox="0 0 36 36"><circle fill="none" stroke-width="2" cx="18" cy="18" r="16" stroke-dasharray="100 100" stroke-dashoffset="100" transform="rotate(-90 18 18)"></circle></svg>
@@ -286,6 +286,18 @@
             dontIndentStates: ["comment"],
             lineComment: "//"
         }
+    });
+
+    $(function() {
+        $(document).on("click","#to-commands",function(e) {
+            $('#a-commands').click();
+        });
+        $(document).on("click","#to-tutorials",function(e) {
+            $('#a-tutorials').click();
+        });
+        $(document).on("click","#to-fiddle",function(e) {
+            $('#a-fiddle').click();
+        });
     });
 
   </script>
