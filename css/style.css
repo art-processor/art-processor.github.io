@@ -573,7 +573,7 @@ nav a:hover {
   border-bottom: 2px solid #aaa;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 776px) {
   nav {
     margin:0 auto;
   }
@@ -583,6 +583,12 @@ nav a:hover {
   }
 }
 
+/* Landscape */
+@media screen and (orientation:landscape) {
+   #pimg {
+    float: right;
+  }
+}
 
 /* Extras */
 
