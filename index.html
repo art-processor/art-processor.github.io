@@ -12,11 +12,12 @@
   <meta content="Progress" property="og:title">
   <meta content="website" property="og:type">
   <meta content="" property="og:description">
-  <meta content="/img/logo.png" property="og:image">
-  <link rel="stylesheet" href="css/reset.css">
+  <meta content="/img/logo.png" property="og:image"> 
+<!--  <link rel="stylesheet" href="css/reset.css"> -->
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/codemirror/codemirror.css">
   <link rel="stylesheet" href="css/codemirror/neat.css">
+  <link rel="stylesheet" href="css/codemirror/mdn-like.css">
   <link rel="stylesheet" href="css/font-awesome/css/font-awesome.min.css">
   <script src="js/modernizr.js"></script> 
   <style>
@@ -422,9 +423,48 @@
     <header>
       <h1> ART Story </h1>
     </header>
-      <p> This will be long...  </p>
-      <p> This will be long...  </p>
-      <p> This will be long...  </p>
+      <h2>XVCL era (2001 &ndash; 2012):</h2>
+      <p><b>XVCL (XML-based Variant Configuration Language)</b>, an open source variability technique and tool was designed and built in 2001 with the collaboration of <b>Stan Jarzabek</b>, grand master of Code Clones and Software Product Lines and <b>Paul Bassett</b>, inventor of Frame Technology.</p>
+      <div class="bs-callout bs-callout-info">
+      <h4>Software Product Lines (SPL)</h4>
+      <p>
+        Software product lines, or software product line development, refers to software engineering methods, tools and techniques for creating a collection of similar software systems from a shared set of software assets using a common means of production.<br><br>
+
+        Carnegie Mellon Software Engineering Institute defines a software product line as <br><br> <i>"A set of software-intensive systems that share a common, managed set of features satisfying the specific needs of a particular market segment or mission and that are developed from a common set of core assets in a prescribed way."</i>
+      </p>
+      </div>
+      <p>XVCL was developed in Software Engineering Lab at NUS (National University of Singapore). Initially, this work focused on variability management, to help domain engineers design generic, adaptable core assets, and to automated reuse-based product development. It is a uniform technique to manage variability in SPL core assets such as code, configurations, documentation, models, test cases, etc.</p>
+      <p>XVCL has been applied to manage variability in SPLs in a range of application domains (command & control systems, business applications, games for mobile phones, Web portals), using variety of programming technologies (Java, ASP, .NET, JEE). The technology became popular in research and industry projects as well. (See Publications section)</p>
+      <div class="bs-callout bs-callout-warning">
+      <h4>Some if the XVCL achievements</h4>
+      <p>
+          Case studies[5][6] were showing that using XVCL managed code fragments gives a 50 - 65% code base reduction, and makes code much easier to manage.<br>
+          In the ASP.NET case study[6] the findings show an estimated eight-fold reduction of development effort and time-to-market in creating a new portal by reusing common code fragments.
+      </p>
+      </div>
+      
+      <h2>VCL era (2012 &ndash; 2015):</h2>
+      <p>As programming languages became easier to use and less strict in syntax. XML syntax seemed to become less popular and very restrictive compared to other options.</p>
+      <p>I've been fortunate to join an internship in 2012 January at NUS School of Computing. Before, I have been studying and working in Hungary at the University of Szeged, mostly working with and researching Software Code Quality and Software Code Maintenance.</p>
+      <p>During my internship in Singapore, working with Stan, we implemented XVCL as <b>VCL (Variant Configuration Language)</b> in an XML-free more user friendly and flexible syntax and conducted case studies with the outcome on Linux core code, Java Buffer Library and other projects as well. (See Publications section)</p>
+      <div class="bs-callout bs-callout-warning">
+      <h4>Some if the VCL achievements</h4>
+      <p>
+          Achieved 77.2% code reduction in the well-known Java Buffer Library by using VCL templates[2], making the code easier to read and enhance[x].<br>
+          VCL is used today in industry for APS.NET web portal generation, has helped many projects which have won innovation and quality awards for development effort reduction and code stability improvements.
+      </p>
+      </div>
+
+      <h2>ART era (2015 &ndash; ):</h2>
+      <p><b>ART (Adaptive Reuse Technology)</b> is for research purpose. Built for you &ndash; <i>for the community</i> &ndash; to let you discover the potential behind this language and tool set and unlock the yet undiscovered potential in it.</p>
+      <p>ART is not exclusively for programming and/or source code generation. It has been used for generating image files, RTF documents, descriptions of products etc.<br> We are trying to keep an open mind. Most examples will be about source code as that is what we are good at, and it is easiest to enhance the things we understand and benefit from.</p>
+      <div class="bs-callout bs-callout-warning">
+      <h4>Some if the VCL achievements</h4>
+      <p>
+          Achieved 61% code compression by refactoring cloned code instances into generic VCL templates in Linux driver source code[1]. This allowed us to greatly enhance maintainability of the input driver code in Linux kernel code.
+      </p>
+      </div>
+
   </article>
   
   <article id="publications" class="post">
@@ -432,7 +472,7 @@
       <h1> Publications </h1>
     </header>
     <h2>ART era:</h2>
-    <h4><i class="fa fa-newspaper-o" aria-hidden="true"></i>&nbsp;&nbsp;Managing Big Clones to Ease Evolution: Linux Kernel Example</h4>
+    <h4><i class="fa fa-newspaper-o" aria-hidden="true"></i>&nbsp;&nbsp;<i class="fa">[1]</i> Managing Big Clones to Ease Evolution: Linux Kernel Example</h4>
     <p class="conf-p">36th IEEE Software Engineering Workshop, Federated Conference on Computer Science and Information Systems (FEDCIS)</p>
     <p class="time-p">Jul. 2016</p>
     <p class="authors-p">
@@ -442,7 +482,7 @@
     </p>
 
     <h2>VCL era:</h2>
-    <h4><i class="fa fa-newspaper-o" aria-hidden="true"></i>&nbsp;&nbsp;Configuring Software for Reuse with VCL</h4>
+    <h4><i class="fa fa-newspaper-o" aria-hidden="true"></i>&nbsp;&nbsp;<i class="fa">[2]</i> Configuring Software for Reuse with VCL</h4>
     <p class="conf-p">13th Symposium on Programming Languages and Software Tools (SPLST)</p>
     <p class="time-p">Aug. 2013</p>
     <p class="authors-p">
@@ -451,7 +491,7 @@
         <i class="fa fa-user" aria-hidden="true"></i>&nbsp;&nbsp; Ferenc Rudolf - University of Szeged
     </p>
 
-    <h4><i class="fa fa-newspaper-o" aria-hidden="true"></i>&nbsp;&nbsp;Configuring Software for Reuse with VCL</h4>
+    <h4><i class="fa fa-newspaper-o" aria-hidden="true"></i>&nbsp;&nbsp;<i class="fa">[3]</i> Configuring Software for Reuse with VCL</h4>
     <p class="conf-p">Scientific Students’ Associations Budapest 2012</p>
     <p class="time-p">Nov 2012</p>
     <p class="authors-p">
@@ -460,14 +500,14 @@
 
     <h2>XVCL era:</h2>
 
-    <h4><i class="fa fa-book" aria-hidden="true"></i>&nbsp;&nbsp;Effective Software Maintenance and Evolution: A Reuse-Based Approach</h4>
+    <h4><i class="fa fa-book" aria-hidden="true"></i>&nbsp;&nbsp;<i class="fa">[4]</i> Effective Software Maintenance and Evolution: A Reuse-Based Approach</h4>
     <p class="conf-p">Book</p>
     <p class="time-p">May 2007</p>
     <p class="authors-p">
         <i class="fa fa-user" aria-hidden="true"></i>&nbsp;&nbsp; Stan Jarzabek
     </p>
 
-    <h4><i class="fa fa-newspaper-o" aria-hidden="true"></i>&nbsp;&nbsp;Research journey towards industrial application of reuse technique</h4>
+    <h4><i class="fa fa-newspaper-o" aria-hidden="true"></i>&nbsp;&nbsp;<i class="fa">[5]</i> Research journey towards industrial application of reuse technique</h4>
     <p class="conf-p">28th International Conference on Software Engineering (ICSE)</p>
     <p class="time-p">Jan 2006</p>
     <p class="authors-p">
@@ -475,7 +515,7 @@
         <i class="fa fa-user" aria-hidden="true"></i>&nbsp;&nbsp; Ulf Pettersson - Singapore Technologies Engineering
     </p>
 
-    <h4><i class="fa fa-newspaper-o" aria-hidden="true"></i>&nbsp;&nbsp;An Industrial Application of a Reuse Technique to a Web Portal Product Line</h4>
+    <h4><i class="fa fa-newspaper-o" aria-hidden="true"></i>&nbsp;&nbsp;<i class="fa">[6]</i> An Industrial Application of a Reuse Technique to a Web Portal Product Line</h4>
     <p class="conf-p"> Proceedings of the 10th European Software Engineering Conference held jointly with 13th ACM SIGSOFT International Symposium on Foundations of Software Engineering</p>
     <p class="time-p">Jan 2005</p>
     <p class="authors-p">
@@ -483,7 +523,7 @@
         <i class="fa fa-user" aria-hidden="true"></i>&nbsp;&nbsp; Ulf Pettersson - Singapore Technologies Engineering
     </p>
 
-    <h4><i class="fa fa-newspaper-o" aria-hidden="true"></i>&nbsp;&nbsp;XVCL: a mechanism for handling variants in software product lines</h4>
+    <h4><i class="fa fa-newspaper-o" aria-hidden="true"></i>&nbsp;&nbsp;<i class="fa">[7]</i> XVCL: a mechanism for handling variants in software product lines</h4>
     <p class="conf-p">Science of Computer Programming - Special issue: Software variability management Volume 53 Issue 3, December 2004</p>
     <p class="time-p">Dec 2004</p>
     <p class="authors-p">
@@ -491,7 +531,7 @@
         <i class="fa fa-user" aria-hidden="true"></i>&nbsp;&nbsp; Hongyu Zhang - Jilin University
     </p>
 
-    <h4><i class="fa fa-newspaper-o" aria-hidden="true"></i>&nbsp;&nbsp;XVCL: XML-based Variant Configuration Language</h4>
+    <h4><i class="fa fa-newspaper-o" aria-hidden="true"></i>&nbsp;&nbsp;<i class="fa">[8]</i> XVCL: XML-based Variant Configuration Language</h4>
     <p class="conf-p">Proceedings Fifth IEEE International Symposium on Requirements Engineering (RE)</p>
     <p class="time-p">Jun 2003</p>
     <p class="authors-p">
@@ -500,7 +540,7 @@
         <i class="fa fa-user" aria-hidden="true"></i>&nbsp;&nbsp; Hongyu Zhang - Jilin University
     </p>
   
-    <h4><i class="fa fa-newspaper-o" aria-hidden="true"></i>&nbsp;&nbsp;XVCL: a tutorial</h4>
+    <h4><i class="fa fa-newspaper-o" aria-hidden="true"></i>&nbsp;&nbsp;<i class="fa">[9]</i> XVCL: a tutorial</h4>
     <p class="conf-p">Proceedings of the 14th International Conference on Software Engineering and Knowledge Engineering (SEKE)</p>
     <p class="time-p">Jan 2002</p>
     <p class="authors-p">
@@ -509,7 +549,7 @@
         <i class="fa fa-user" aria-hidden="true"></i>&nbsp;&nbsp; Hongyu Zhang - Jilin University
     </p>
 
-    <h4><i class="fa fa-newspaper-o" aria-hidden="true"></i>&nbsp;&nbsp;XVCL Approach to Separating Concerns in Product Family Assets</h4>
+    <h4><i class="fa fa-newspaper-o" aria-hidden="true"></i>&nbsp;&nbsp;<i class="fa">[10]</i> XVCL Approach to Separating Concerns in Product Family Assets</h4>
     <p class="conf-p">Generative and Component-Based Software Engineering, Third International Conference (GCSE)</p>
     <p>Sep 2001</p>
     <p class="authors-p">
@@ -518,7 +558,7 @@
         <i class="fa fa-user" aria-hidden="true"></i>&nbsp;&nbsp; Soe Mat Swe
     </p>
 
-    <h4><i class="fa fa-newspaper-o" aria-hidden="true"></i>&nbsp;&nbsp;XML-based Method and Tool for Handling Variant Requirements in Domain Models</h4>
+    <h4><i class="fa fa-newspaper-o" aria-hidden="true"></i>&nbsp;&nbsp;<i class="fa">[11]</i> XML-based Method and Tool for Handling Variant Requirements in Domain Models</h4>
     <p class="conf-p">Proceedings Fifth IEEE International Symposium on Requirements Engineering (RE)</p>
     <p>Feb 2001</p>
     <p class="authors-p">
@@ -582,14 +622,14 @@
     <script src="js/codemirror/addon/selection/mark-selection.js"></script>
     <script>
     $(function() {
-        createOutputCodeField('snippet-1', 60, "simplemode");
-        createOutputCodeField('snippet-2', 50, "simplemode");
-        createOutputCodeField('snippet-3', 150, "simplemode");
-        createOutputCodeField('snippet-4', 240, "simplemode");
-        createOutputCodeField('snippet-5', 240, "simplemode");
-        createOutputCodeField('snippet-6', 145, "simplemode");
-        createOutputCodeField('snippet-7', 240, "simplemode");
-        createOutputCodeField('snippet-8', 660, "text/x-kotlin");
+        createOutputCodeField('snippet-1', 60, "simplemode", "neat");
+        createOutputCodeField('snippet-2', 50, "simplemode", "mdn-like");
+        createOutputCodeField('snippet-3', 150, "simplemode", "neat");
+        createOutputCodeField('snippet-4', 240, "simplemode", "neat");
+        createOutputCodeField('snippet-5', 240, "simplemode", "mdn-like");
+        createOutputCodeField('snippet-6', 145, "simplemode", "neat");
+        createOutputCodeField('snippet-7', 240, "simplemode", "neat");
+        createOutputCodeField('snippet-8', 660, "text/x-kotlin", "mdn-like");
         
         
         var snippet9 = CodeMirror.fromTextArea(document.getElementById('snippet-9'), {
@@ -606,7 +646,7 @@
 
         var snippet11 = CodeMirror.fromTextArea(document.getElementById('snippet-11'), {
             mode: "text/x-kotlin",
-            theme: "neat",
+            theme: "mdn-like",
             lineNumbers: true,
             styleSelectedText: true,
             readOnly: true
@@ -636,7 +676,7 @@
 
         var snippet14 = CodeMirror.fromTextArea(document.getElementById('snippet-14'), {
             mode: "text/x-kotlin",
-            theme: "neat",
+            theme: "mdn-like",
             lineNumbers: true,
             styleSelectedText: true,
             readOnly: true
@@ -646,24 +686,20 @@
         snippet14.markText({line: 45, ch: 0}, {line: 48, ch: 10}, {className: "code-highlight"});
         snippet14.markText({line: 63, ch: 0}, {line: 66, ch: 10}, {className: "code-highlight"});
         snippet14.setSize('', 1190);
-
-        //createOutputCodeField('snippet-12', 390, "simplemode");
-        //createOutputCodeField('snippet-13', 420, "simplemode");
-        //createOutputCodeField('snippet-14', 1200, "text/x-kotlin");
     });
 
-    function createInputCodeField(id, size, mode) {
+    function createInputCodeField(id, size, mode, theme) {
         var editableCodeMirror = CodeMirror.fromTextArea(document.getElementById(id), {
             mode: mode,
-            theme: "neat",
+            theme: theme,
             lineNumbers: true
         }).setSize('', size);
     }
 
-    function createOutputCodeField(id, size, mode) {
+    function createOutputCodeField(id, size, mode, theme) {
         var editableCodeMirror = CodeMirror.fromTextArea(document.getElementById(id), {
             mode: mode,
-            theme: "neat",
+            theme: theme,
             lineNumbers: true,
             readOnly: true
         }).setSize('', size);

@@ -264,7 +264,7 @@ img, svg {
 
 .header {
   height: 140px;
-  border-bottom: 1px solid #e6e6e6;
+  /*border-bottom: 1px solid #e6e6e6;*/
   text-align: center;
   padding-top: 24px;
 }
@@ -667,4 +667,8 @@ article#publications i {
 
 p.authors-p {
   margin-bottom: 35px;
+}
+
+ul {
+  padding: 0;
 }
