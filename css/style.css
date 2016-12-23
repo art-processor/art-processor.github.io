@@ -577,6 +577,10 @@ nav a:hover {
   nav {
     margin:0 auto;
   }
+
+  #pimg {
+    float: right;
+  }
 }
 
 
