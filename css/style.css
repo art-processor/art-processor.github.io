@@ -573,7 +573,7 @@ nav a:hover {
   border-bottom: 2px solid #aaa;
 }
 
-@media (min-width: 776px) {
+@media (min-width: 768px) {
   nav {
     margin:0 auto;
   }
