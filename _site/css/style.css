@@ -352,7 +352,7 @@ Articles
   display: none;
 }
 .articles article {
-  padding: 3em 0;
+  margin: 3em 0;
   border-bottom: 1px solid #e6e6e6;
 }
 .articles article:last-of-type {
