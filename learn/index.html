@@ -67,7 +67,213 @@
     <header>
       <h1> The ART Commands </h1>
     </header>
-    <p>Here will be the description of the available commands in ART</p>    
+    <h2>Adapting files</h2>
+    <div class="bs-callout bs-callout-info">
+        <p>You can control the file adaption flow with <span class="art-command-span">#adapt</span> command.
+        <br><b>Syntax:</b><br>
+        <span class="syntax">
+    <span class=mandatory>#adapt</span>[(-samelevel|-copy)][:] <span class="mandatory">path</span> [output-folder] [output-file] 
+      ( art-command )*
+    [#endadapt]
+        </span>
+        </p>
+    </div>
+    <p>
+     The ART Processor starts processing with the start file a.k.a specification (SPC) file. ART commands in the start file, and in each subsequently adapted file, are processed in the sequence in which they appear. Whenever the processor encounters an <span class="art-command-span">#adapt</span> command in the currently processed file, processing of the current file is suspended and the Processor starts processing the given file. Once processing of the file is completed, the Processor resumes processing of the current file just after <span class="art-command-span">#adapt</span> command. In that way the processing ends when the Processor reaches the end of the start file.
+     <div class="img-crop">
+        <img style="margin-top: -10px;" src="../img/adapt.gif"/>
+     </div>
+    </p>
+    <p><b>Options:</b><br>
+     -samelevel :  The scope of the adapted file will be raised to the current level which makes it possible to override variables (we’ll get back to scoping levels)<br>-copy      :  Instead of processing the file, copy it to the output. No ART processing will be done in the file. <i>Can be used to copy non-textual files (.i.e. png, zip)</i><br>
+      Command <span class="art-command-span">#adapt</span> may specify customizations that should be applied to the adapted file. 
+      <textarea id="snippet-1" class="codearea">
+      #adapt: file 
+        <customizations>
+      #endadapt
+      </textarea>
+
+      It is important not to miss the semicolon “:” character after the #adapt keyword. Customizations may include any ART commands. The syntax and scoping rules for commands used under #adapt command are the same as outside the #adapt command. Important: A chain of #adapt commands must not lead to recursion, i.e., no file can adapt itself directly or indirectly.
+    </p>
+    <p>
+     <b>Examples:</b> 
+      <textarea id="snippet-2" class="codearea">
+  #adapt  “test.art
+      </textarea><br>
+      <textarea id="snippet-3" class="codearea">
+  #adapt-samelevel  "Settings.art
+      </textarea><br>
+      <textarea id="snippet-4" class="codearea">
+  #adapt-copy "Images/img1.png", "output/Images/", "img1.png“
+      </textarea><br>
+      <textarea id="snippet-5" class="codearea">
+  #adapt: "template.art"   
+   #insert "special_attack"
+    Console.WriteLine("Special Attack!!!");
+    Console.WriteLine("Fireballs!!!");
+   #endinsert
+  #endadapt
+      </textarea>
+    </p>
+<h2>Variables</h2>
+    <div class="bs-callout bs-callout-info">
+    <p><span class="art-command-span">#set</span> commands declare variable and assigns value to it.
+    <br><b>Syntax:</b><br>
+    <span class="syntax">
+<span class=mandatory>#set</span>[-multi]<span class=mandatory> varname = “value”</span>[, “value”]*
+    </span>
+    </p>
+    </div>
+    <p><b>Options:</b><br>
+     -defer :  We can defer evaluation of the variable's value. This will be explained later<br>
+     -multi :  The variable will contain multiple values (similar to array or list)<br>
+
+     Command <span class="art-command-span">#set</span> may assign a single value, or multiple values to the variable, making it a multi-variable.
+     <div class="bs-callout bs-callout-info">
+      <p>Syntax to retrieve value(s) of a variable: <span class="art-ref-span">?@varname?</span></p>
+     </div>
+    </p>
+    <p>
+     <b>Examples:</b> 
+      <textarea id="snippet-6" class="codearea">
+  #set testVar = “aaa”
+  #set-multi testList = “a”, “b”, “c
+
+  ?@testVar?
+  ?@testList?
+      </textarea><br>
+  <h5>Result:</h5>
+      <textarea id="snippet-7" class="codearea">
+  aaa
+  [“a”, “b”, “c”] 
+      </textarea><br>
+    </p>
+
+    <h2>Loops and Selection</h2>
+    <div class="bs-callout bs-callout-info">
+    <p><span class="art-command-span">#while</span> command is a generation loop that iterates over its content and generates custom text at each iteration.
+    <br><b>Syntax:</b><br>
+    <span class="syntax">
+<span class=mandatory>#while varname</span> [, varName]*
+<span class=mandatory>    ( textual-content | art-command )*
+#endwhile</span>
+    </span>
+    </p>
+    </div>
+    <p>
+    The <span class="art-command-span">#while</span> command is controlled by one or more multi-value variables. The i<sup>th</sup> value of each of the control variables is used in i<sup>th</sup> iteration of the loop. This means that all the control variables should have the same number of values, and the number of values determines the number of iterations of the loop. ART Processor interprets the loop body in each iteration and emits custom text accordingly.<br>
+    The processor interprets the loop body in each iteration and emits custom text accordingly. 
+    </p>
+    <b>Example:</b> 
+    <textarea id="snippet-8" class="codearea">
+  #set x = "1","2","3"
+  #set y = "a","b","c"
+  #while x, y
+    Value of x is "@x" and value of y is "@y"
+  #endwhile
+      </textarea><br>
+    <h5>Result:</h5>
+      <textarea id="snippet-9" class="codearea">
+    Value of x is "1" and value of y is "a"
+    Value of x is "2" and value of y is "b"
+    Value of x is "3" and value of y is "c"
+      </textarea><br>
+    <div class="bs-callout bs-callout-info">
+    <p><span class="art-command-span">#select</span> allows us to choose one of many customization options.
+    <br><b>Syntax:</b><br>
+    <span class="syntax">
+<span class=mandatory>#select varname</span>
+     [#option-undefined
+    ( textual-content | art-command )*     
+     #endoption-undefined]
+     <span class=mandatory>[#option value[(|value)*] ( textual-content | art-command )*     
+      #endoption]+</span>
+     [#otherwise                 
+     ( textual-content | art-command )*     
+     #endotherwise]
+<span class=mandatory>#endselect</span>
+    </span>
+    </p>
+    </div>
+    <p>
+    In the <span class="art-command-span">#select</span> body we can have any number of <span class="art-command-span">#options</span>, zero or one <span class="art-command-span">#option-undefined</span> clause, and zero or one <span class="art-command-span">#otherwise</span> clause. ART Processor checks <span class="art-command-span">#options</span> in sequential order. If the value given in the option clause is the same as the value of the <span class="art-command-span">#select</span>'s control variable, the body of that <span class="art-command-span">#option</span> is processed. We can use the pipe character “|” as OR in the option’ s value.</p>
+    <p>The processor selects and processes in turn all the <span class="art-command-span">#options</span> whose values match the value of the control variable. <span class="art-command-span">#option-undefined</span> is processed if control variable is undefined. <span class="art-command-span">#otherwise</span> is processed if none of the <span class="art-command-span">#options</span> can be selected.
+    </p>
+    <p>
+    <span class="art-command-span">#select</span> is often placed in the body of <span class="art-command-span">#while</span>. This allows us to apply different customization in each of the iteration of the generation loop.
+    </p>
+    <p>
+     <b>Examples:</b> 
+      <textarea id="snippet-10" class="codearea">
+#set shape = "Triangle", "Circle", "Rectangle", "Square"
+  #while shape
+  Class ?@shape? {
+  #select shape
+    #option "Triangle"
+      #adapt: genericShape
+        customizations for Triangle class
+      #endadapt
+    #endoption
+    #option "Circle"
+      #adapt: genericShape
+        customizations for Circle class
+      #endadapt
+    #endoption
+    #otherwise
+      #adapt: genericShape
+        customizations for all remaining classes
+      #endadapt
+    #endotherwise
+  #endselect
+#endwhile
+      </textarea><br>
+    </p>
+  <div class="bs-callout bs-callout-info">
+      <p>A more simple way for selection is using<span class="art-command-span"> #if - #elif - #else</span> commands.
+      <br><b>Syntax:</b><br>
+      <span class="syntax">
+<span class=mandatory>#if expression
+  ( textual-content  | art-command )*</span>
+[#elif expression 
+  ( textual-content | art-command )*]*
+[#else
+  ( textual-content  | art-command )*]
+<span class=mandatory>#endif</span>
+    </span>
+      </p>
+  </div>
+<h2>The insert-break Mechanism</h2>
+    <div class="bs-callout bs-callout-info">
+    <p>An <span class="art-command-span">#insert</span> command replaces all matching <span class="art-command-span">#breaks</span> with its content. Matching is done by a name (breakname). <span class="art-command-span">#break</span> commands in all files reached via <span class="art-command-span">#adapt</span> chain can be affected.
+    <br><b>Syntax: break</b><br>
+    <span class="syntax">
+<span class=mandatory>#break</span>[:] <span class=mandatory>breakname</span>
+  ( textual-content | art-command )*
+#endbreak
+    </span>
+
+    <br><b>Syntax: insert</b><br>
+    <span class="syntax">
+<span class=mandatory>#insert</span>[-before|-after] <span class=mandatory>breakname
+  ( textual-content | art-command )*
+#endinsert</span>
+    </span>
+    </p>
+    </div>
+     <span class="art-command-span">#insert-before</span> will append the insert body before the breakpoint and keeps the breakpoint’s default content if any.<br>
+     <span class="art-command-span">#insert-after</span> will append the insert body after the breakpoint and keeps the breakpoint’s default content if any.<br>
+     <span class="art-command-span">#insert</span> will replace the breakpoint’s default content if any<br>
+    </p>
+    <p>
+     <b>Examples:</b> 
+      <textarea id="snippet-6" class="codearea">
+  
+      </textarea><br>
+  <h5>Result:</h5>
+      <textarea id="snippet-7" class="codearea">
+      </textarea><br>
+    </p>
+
   </article>
 
   <article class="post">
@@ -81,7 +287,7 @@
     <header>
       <h1> Try It Out Online </h1>
     </header>
-    <p>ART Fiddle, running ART code snippets online</p>    
+    <p>ART Fiddle, running ART code snippets online</p>
   </article>
 
   <article class="post">
@@ -146,6 +352,17 @@
     <script src="../js/codemirror/addon/selection/mark-selection.js"></script>
     <script>
     $(function() {
+        createOutputCodeField('snippet-1', 90, "simplemode");
+        createOutputCodeField('snippet-2', 50, "simplemode");
+        createOutputCodeField('snippet-3', 50, "simplemode");
+        createOutputCodeField('snippet-4', 50, "simplemode");
+        createOutputCodeField('snippet-5', 140, "simplemode");
+        createOutputCodeField('snippet-6', 120, "simplemode");
+        createOutputCodeField('snippet-7', 60, "simplemode");
+        createOutputCodeField('snippet-8', 115, "simplemode");
+        createOutputCodeField('snippet-9', 80, "simplemode");
+        createOutputCodeField('snippet-10', 390, "simplemode");
+
         /*createOutputCodeField('snippet-1', 60, "simplemode");
         createOutputCodeField('snippet-2', 50, "simplemode");
         createOutputCodeField('snippet-3', 150, "simplemode");
@@ -248,7 +465,7 @@
           // Rules are matched in the order in which they appear, so there is
           // no ambiguity between this one and the one above
           {
-              regex: /(?:#(set|set-multi|adapt|adapt-samelevel|adapt-continue|while|endwhile|if|else|elseif|endif|select|option|endoption|otherwise|endotherwise|adapt|endadapt|break|endbreak|insert|endinsert))\b/,
+              regex: /(?:#(set|set-multi|adapt|adapt-samelevel|adapt-continue|adapt-copy|while|endwhile|if|else|elseif|endif|select|option|endoption|otherwise|endotherwise|adapt|endadapt|break|endbreak|insert|endinsert))\b/,
               token: "keyword"
           },
           { regex: /true|false|null|undefined/, token: "atom" },

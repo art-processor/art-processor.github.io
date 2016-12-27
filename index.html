@@ -724,7 +724,7 @@
           // Rules are matched in the order in which they appear, so there is
           // no ambiguity between this one and the one above
           {
-              regex: /(?:#(set|set-multi|adapt|adapt-samelevel|adapt-continue|while|endwhile|if|else|elseif|endif|select|option|endoption|otherwise|endotherwise|adapt|endadapt|break|endbreak|insert|endinsert))\b/,
+              regex: /(?:#(set|set-multi|adapt|adapt-samelevel|adapt-continue|adapt-copy|while|endwhile|if|else|elseif|endif|select|option|endoption|otherwise|endotherwise|adapt|endadapt|break|endbreak|insert|endinsert))\b/,
               token: "keyword"
           },
           { regex: /true|false|null|undefined/, token: "atom" },

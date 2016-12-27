@@ -682,3 +682,14 @@ p.authors-p {
 ul {
   padding: 0;
 }
+
+span.syntax {
+  color: #888;
+  font-family: monospace;
+  white-space: pre;
+}
+
+span.mandatory {
+  color: black;
+  font-weight: bold;
+} 
