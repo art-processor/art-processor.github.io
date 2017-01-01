@@ -172,12 +172,12 @@
     I can run this with my own set of values, then my neighbor can run it with his own set of values, we both get the output we wanted, even though we were running the through the same template without any changes to it.</p>
     <p>This looks kinda useful, but it is not that convincing...</p>
     <h4>Let's shake it up a bit! Let's see a new command!</h4>
-    <p>We can give multiple values to a variable with a <span class="art-command-span">#set-multi</span> command. This is not the new command, we already knew <span class="art-command-span">#set</span>, and this is just a variant of it. (We will see a few more variants of the commands in the future). Our new command is <span class="art-command-span">#while</span>. This command will let us loop over the values of a multi-value variable. Let's see it:</p>
+    <p>We can give multiple values to a variable with a <span class="art-command-span">#set</span> command, by defining the values separated by comma. These variables in ART are called multi-variables.<br>Our new command is <span class="art-command-span">#while</span>. This command will let us loop over the values of a multi-value variable. Let's see it:</p>
     <h5>ART snippet:</h5>
     <textarea id="snippet-6" class="codearea">
-    #set-multi class       = "SwordsMan", "Archer", "Knight"
-    #set-multi hp          = "25",        "15".     "150"
-    #set-multi cp          = "40",        "50".     "200"
+    #set class       = "SwordsMan", "Archer", "Knight"
+    #set hp          = "25",        "15".     "150"
+    #set cp          = "40",        "50".     "200"
     %All setting done, now we adapt the template file
     #while class, hp, cp
         #adapt "template.art"
@@ -242,9 +242,9 @@
     <p>OK... Getting closer to useful... Let's modify our code.<br>Let's say it is time to add another class to it called <i>'Mage'</i>. Now to do that we only need to make a very small change in our definition and we don't need to change the template code at all. Let's see:</p>
     <h5>ART snippet (added Mage class and values):</h5>
     <textarea id="snippet-9" class="codearea">
-    #set-multi class       = "SwordsMan", "Archer", "Knight", "Mage"
-    #set-multi hp          = "25",        "15".     "150",    "90"
-    #set-multi cp          = "40",        "50".     "200",    "240"
+    #set class       = "SwordsMan", "Archer", "Knight", "Mage"
+    #set hp          = "25",        "15".     "150",    "90"
+    #set cp          = "40",        "50".     "200",    "240"
     %All setting done, now we adapt the template file
     #while class, hp, cp
         #adapt "template.art"
@@ -335,9 +335,9 @@
   </textarea>
   <h5>the new spec file:</h5>
   <textarea id="snippet-13" class="codearea">
-    #set-multi class       = "SwordsMan", "Archer", "Knight", "Mage"
-    #set-multi hp          = "25",        "15".     "150",    "90"
-    #set-multi cp          = "40",        "50".     "200",    "240"
+    #set class       = "SwordsMan", "Archer", "Knight", "Mage"
+    #set hp          = "25",        "15".     "150",    "90"
+    #set cp          = "40",        "50".     "200",    "240"
     %All setting done, now we adapt the template file
     #while class, hp, cp
         #adapt: "template.art"
