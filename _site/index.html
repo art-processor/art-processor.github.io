@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>
-      ART - Adaptive Reuse Technology
+      ART - Adaptive Reuse Technique
   </title>
 <!-- Social Metadata -->
   <meta content="your_facebook_app_id" property="fb:app_id">
@@ -42,7 +42,7 @@
 </head>
 <body>
   <header class="header">
-  <h1> ART - Adaptive Reuse Technology </h1>
+  <h1> ART - Adaptive Reuse Technique </h1>
   <nav>
     <ul>
       <li> <a href="">About ART</a> </li>
@@ -70,37 +70,48 @@
     <header>
       <h1> About ART </h1>
     </header>
-      <p>
-      ART is a <span class="bs-ref-info">Variability Management Technique (VMT)</span> using <span class="bs-ref-warning">Frame Technology (FT)</span>.
-      </p>
+      <p>ART is a notation to represent families of similar programs as highly parameterized, adaptable templates, for ease of <b>maintenance</b> and <b>reuse</b>. Typically, a program family comprises of program versions that have much in common, but differ in some user requirements, platforms or design/implementation details. </p>
+	  <p>ART templates contain code that is common for all program versions in a family - in parameterized form, for ease of adaptation. ART Processor derives program versions from ART templates, based on specifications of requirements that are specific to a given program version (i.e., requirements that have not been implemented as a common part in ART templates).</p>
+	  <p>ART can be pictured as an advanced form of macros that evolved into well throughout program instrumentation notation, avoiding well-known pitfalls of macros, and greatly extending their power to tackle problems of program versioning. For example, ART gives a programmer full control over propagation of <span class="art-command-span">#define</span> parameters to included files (<span class="art-command-span">#include</span>) to enhance their reusability. Any similar files (or other program structures) can be represented as generic ART templates from which ART Processor generates concrete program files.</p>
+	  <p>ART can be also pictured as an advanced template system, where any program structure (not only classes or functions) may become a parameterized template, and where parameters may be just anything we wish – types, program fragments, files or program structures of any kind and size.</p>
+	  <p>In SPL (Software Product Line) reuse, ART plays a role of <span class="bs-ref-info">Variability Management Technique (VMT)</span> that handles adaptive changes at the architecture to code. In practical SPL reuse scenarios, we typically use a range of VMTs such as macros, scripts, build tools (Ant or make), design patterns, or commenting out variant/optional code for manual inclusion/exclusion. As ART does what the other VMTs collectively can do, there is no need to use multiple (sometimes incompatible) VMTs.</p>
       <div class="bs-callout bs-callout-info">
         <h4>Variability  Management  Techniques  (VMT)</h4>
         <p>
         help  developers  manage the  base  code  for  families  of  system variants,  e.g.,  a  family  of  Linux  versions  running  on  various  platforms,  or  financial  systems  used  in  different companies.  VMTs  organize  and/or  instrument  the  base  code  for  ease  of  adaptation  and  reuse.
         </p>
       </div>
+	  <p>ART and its predecessor XVCL have been applied in industrial projects as a variability technique to manage reuse in product lines of web portals, command and control systems, mobile games, information systems, and to eliminate redundancies in software libraries (STL, Buffer).</p>
+ 
+      <h3>How is ART different from the earlier XVCL?</h3>
+	  
+	  <p>ART is an enhanced, lightweight and XML-free version of XVCL. Like XVCL, ART is based on concepts of Bassett’s <span class="bs-ref-warning">Frame Technology<sup>TM</sup></span>.</p>
       <div class="bs-callout bs-callout-warning">
-        <h4>Frame technology (FT)</h4>
+        <h4>Frame Technology </h4>
         <p> is a language-neutral (i.e., processes various languages) system that manufactures custom software from reusable, machine-adaptable building blocks, called frames. FT is used to reduce the time, effort, and errors involved in the design, construction, and evolution of large, complex software systems. 
         <!--<a href="https://en.wikipedia.org/wiki/Frame_technology_(software_engineering)"><i class="link-i">More about FT</i></a>-->
         </p>
       </div>
-      <p>
-      ART is here to help you automate common every day software engineering task through code generation and to help you eliminate human coding mistakes and achieve better code quality. However almost all our examples will talk about examples and usage in software engineering, ART has been proven to be useful in other aspects as well. In example for description to image generation (link, desc) and mass document handling (link, desc).
-      </p>
+	  <p>ART improves the user experience by providing the following improvements to XVCL</p>
+      <p class="listing">Easy to learn and use: XVCL is a dialect of XML and uses XML trees and a parser for processing</p>
+	  <p>ART parts with XML syntax and processing. You can define your own syntax for ART commands, to suit your programming environment and taste, and to avoid conflicts with the base languages. As default, ART offers a simple cpp-like syntax.</p>
+	  <p class="listing">Expanding the customization options under #adapt command</p>
+	  <p>In XVCL, the only command that you can place under adapt is insert. ART allows to use any command under <span class="art-command-span">#adapt</span>. We found using <span class="art-command-span">#set</span>, <span class="art-command-span">#while</span> and <span class="art-command-span">#select</span> commands under <span class="art-command-span">#adapt</span> to be particularly very useful.</p>
+	  <p class="listing">Robust structure instead of unreadable loops</p>
+	  <p>In XVCL, while loops using many multi-value variables can be quite confusing. ART introduces a structure called set-loop which gives the possibility to store and use more multi-value variables together as one loop descriptor data structure.</p>
+	  <p class="listing">More flexible</p>
+	  <p>ART is more flexible than XVCL, as it allows the adaptation of a file even though the file might not contain any ART commands. Such adaptation would simply copy the adapted file to the output stream.</p>
   </article>
   <article class="post">
     <header>
       <h1> How it Works </h1>
     </header>
      <p>
-     ART is a simple text processor, reads text files line by line and outputs text files. If the current line in the currently read file is an ART command <span class="art-command-span">(#[cmd])</span>, it will be processed, otherwise it will be emitted to the output.
+     Like other pre-processors, ART is a text manipulation system. ART Processor reads ART templates (source code files with embedded ART commands), and outputs source code files ready for compilation. ART commands <span class="art-command-span">(#[cmd])</span> are processed, while code is emitted to the output. The processing sequence is defined by ART commands, which will be explained in this tutorial.
      </p>
      <div class="bs-callout bs-callout-info">
          <h4>Adapting input files</h4>
-         <p>
-         The ART Processor starts processing with the start file a.k.a specification (SPC) file. ART commands in the start file, and in each subsequently adapted file, are processed in the sequence in which they appear. Whenever the processor encounters an <span class="art-command-span">#adapt</span> command in the currently processed file, processing of the current file is suspended and the Processor starts processing the given file. Once processing of the file is completed, the Processor resumes processing of the current file just after <span class="art-command-span">#adapt</span> command. In that way the processing ends when the Processor reaches the end of the start file.
-         </p>
+         <p> To start processing, we feed to ART Processor the specification file called SPC. ART commands in SPC, and in each subsequently processed file (ART template), are processed in the sequence in which they appear. When ART Processor encounters an <span class="art-command-span">#adapt</span> <i>f2</i> command while processing file <i>f1</i>, it suspends processing of file <i>f1</i> and starts processing file <i>f2</i>. Once processing of file <i>f2</i> is completed, ART Processor resumes processing of file <i>f1</i> just after <span class="art-command-span">#adapt</span> command. In that way the processing ends when the Processor reaches the end of the SPC.</p>
      </div>
      <div class="img-crop">
         <img style="margin-top: -10px;" src="../img/adapt.gif"/>
