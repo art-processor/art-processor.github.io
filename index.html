@@ -70,8 +70,9 @@
     <header>
       <h1> About ART </h1>
     </header>
-      <p>ART is a notation to represent families of similar programs as highly parameterized, adaptable templates, for ease of <b>maintenance</b> and <b>reuse</b>. Typically, a program family comprises of program versions that have much in common, but differ in some user requirements, platforms or design/implementation details. </p>
-	  <p>ART templates contain code that is common for all program versions in a family - in parameterized form, for ease of adaptation. ART Processor derives program versions from ART templates, based on specifications of requirements that are specific to a given program version (i.e., requirements that have not been implemented as a common part in ART templates).</p>
+      <p>ART is a notation to represent families of similar programs as highly parameterized, adaptable templates, for ease of <b>maintenance</b> and <b>reuse</b>. Typically, a program family comprises program versions that evolved from a single original program as new requirements have been implemented to it over time. Each program version addresses a specific customer segment or platform. Such program versions have much in common, but differ in some user requirements or design/implementation details.</p>
+	  <p>ART provides an end-to- end solution for managing program families that eliminates the need for other mechanisms that are often used for that purpose such as macros or design patterns, and significantly reduces the scope in which we apply configuration management systems.</p>
+    <p>ART templates contain code that is common for all program versions in a family - in parameterized form, for ease of adaptation. ART Processor derives program versions from ART templates, based on specifications of requirements that are specific to a given program version (i.e., requirements that have not been implemented as a common part in ART templates).</p>
 	  <p>ART can be pictured as an advanced form of macros that evolved into well throughout program instrumentation notation, avoiding well-known pitfalls of macros, and greatly extending their power to tackle problems of program versioning. For example, ART gives a programmer full control over propagation of <span class="art-command-span">#define</span> parameters to included files (<span class="art-command-span">#include</span>) to enhance their reusability. Any similar files (or other program structures) can be represented as generic ART templates from which ART Processor generates concrete program files.</p>
 	  <p>ART can be also pictured as an advanced template system, where any program structure (not only classes or functions) may become a parameterized template, and where parameters may be just anything we wish – types, program fragments, files or program structures of any kind and size.</p>
 	  <p>In SPL (Software Product Line) reuse, ART plays a role of <span class="bs-ref-info">Variability Management Technique (VMT)</span> that handles adaptive changes at the architecture to code. In practical SPL reuse scenarios, we typically use a range of VMTs such as macros, scripts, build tools (Ant or make), design patterns, or commenting out variant/optional code for manual inclusion/exclusion. As ART does what the other VMTs collectively can do, there is no need to use multiple (sometimes incompatible) VMTs.</p>
@@ -115,7 +116,10 @@
      </div>
      <div class="img-crop">
         <img style="margin-top: -10px;" src="../img/adapt.gif"/>
-      </div>
+     </div>
+     <p>
+     So far, ART’s <span class="art-command-span">#adapt</span> looks like a cpp’s <span class="art-command-span">#inclide</span>. However, there is an important difference: unlike <span class="art-command-span">#include</span>, <span class="art-command-span">#adapt</span> “A” (as the command name suggests) can modify file “A” at the inclusion point, and it can do so differently at differentinclusion points. Many software components have a potential for reuse, but most often they have to be modified to fit a specific reuse context. ART’s <span class="art-command-span">#adapt</span> together with other commands provide a powerful mechanism to do so. Examples that follow explain how this is done.
+     </p>
   </article>
   <article class="post">
     <header>
@@ -135,8 +139,8 @@
     Value of var_a is: AAA
     </textarea>
     <br>
-    As we can see, variables can be allocated with the <span class="art-command-span">#set</span> command followed by declaration, and their value can be retrieved with <span class="art-ref-span">?@varname?</span> syntax.
-    <p> Let's see a slightly more sophisticated example with the two commands we've learned know so far (<span class="art-command-span">#adapt</span> and <span class="art-command-span">#set</span>) </p>
+    As we can see, variables can be allocated with the <span class="art-command-span">#set</span> command, and <span class="art-ref-span">?@varname?</span> retrieves their value.
+    <p> Values of variables propagate to the <span class="art-command-span">#adapt</span>-ed files. Let’s see an example where  <span class="art-command-span">#adapt</span> and <span class="art-command-span">#set</span> are used together, allowing for a simple form of adaptive reuse of files:</p>
     <h5>ART snippet:</h5>
     <textarea id="snippet-3" class="codearea">
     #set date              = "2016-12-22"
@@ -178,12 +182,10 @@
     _________ Meg Griffin            (2016-12-22)
     </textarea>
     <br>
-    <p>However we have not written source code yet, we can already have an idea of where to use this kind of technology. In the earlier example we can identify a declaration part and a template part. First we set up our values we want to use, then we <b>adapt</b> the template with our variables to get the result we were expecting.</p>
-    <p>Since the template does not care about our specific settings, it can be used by others, with different values without any changes on the template.
-    I can run this with my own set of values, then my neighbor can run it with his own set of values, we both get the output we wanted, even though we were running the through the same template without any changes to it.</p>
-    <p>This looks kinda useful, but it is not that convincing...</p>
-    <h4>Let's shake it up a bit! Let's see a new command!</h4>
-    <p>We can give multiple values to a variable with a <span class="art-command-span">#set</span> command, by defining the values separated by comma. These variables in ART are called multi-variables.<br>Our new command is <span class="art-command-span">#while</span>. This command will let us loop over the values of a multi-value variable. Let's see it:</p>
+    <p>A template is reusable program component: First we set up values for variables (template parameters), then we <span class="art-command-span">#adapt</span> a template with our variables to get the result we were expecting. </p>
+    <p>Since the template does not know about our specific settings, we can (re)use it in other contexts, with different values of variables, without any changes done to the template. I can <span class="art-command-span">#adapt</span> a template with my own set of values, and my neighbour can <span class="art-command-span">#adapt</span> it with his own set of values, and we both get the output we wanted, without making any changes to the template.
+    <h4>Multi-value variables and loops in ART</h4>
+    <p>We can give multiple values to a variable with a <span class="art-command-span">#set</span> command, by defining the values separated by comma. These variables in ART are called multi-variables or multi-value variables.<br>ART's <span class="art-command-span">#while</span> command will let us loop over the values of a multi-value variable. Example:</p>
     <h5>ART snippet:</h5>
     <textarea id="snippet-6" class="codearea">
     #set class       = "SwordsMan", "Archer", "Knight"
@@ -250,7 +252,7 @@
     }
     </textarea>
     <br>
-    <p>OK... Getting closer to useful... Let's modify our code.<br>Let's say it is time to add another class to it called <i>'Mage'</i>. Now to do that we only need to make a very small change in our definition and we don't need to change the template code at all. Let's see:</p>
+    <p>ART templates not only let us generate source code from reusing templates, but grealy hepl in maintenance and code evolution as well.<br>Let's say we need to add another class to our example called <i>'Mage'</i>. To do that we only need to make a very small change in our definition and we don't need to change the template code at all. The change is the following:</p>
     <h5>ART snippet (added Mage class and values):</h5>
     <textarea id="snippet-9" class="codearea">
     #set class       = "SwordsMan", "Archer", "Knight", "Mage"
@@ -316,11 +318,8 @@
     }
     </textarea>
     <br>
-    <p>That was fast and easy, and no copy-paste errors. Great!</p>
-    <p>Now it is starting to boost our productivity and we don't need to swipe over in the code if anything changes in the template. We just know it is correct.</p>
-    <p>Imagine this being applied on thousands of lines of code templates...</p>
-    <p style="color:red">"Sure sure, that is pretty cool, but my classes are never like this, my code always differs, I cannot apply the same code on every file."</p>
-    <p>I know, Let's add a small change to our code! Let's say some warrior classes will have special attack, some will not have, and the ones who have, will have different ones.</p>
+    <p>This way ART can greatly boost our productivity and we don't need to worry about copy-paste errors or similar inconsistencies caused by user-error.</p>
+    <p>Let's add another small change to our code! Say some warrior classes will have special attack, some will not have, and the ones who have, can have different ones.</p>
     <p>We need to learn two new commands for this. We will use the <span class="art-command-span">#insert</span> - <span class="art-command-span">#break</span> mechanism</p>
     <p>Our template will have a <b>breakpoint</b> where we can extend with additional content from our <b>specification</b>, meaning, we can change the template from outside the template without affecting others. Let's see:</p>
     <h5>the new template.art:</h5>
@@ -367,7 +366,7 @@
     #endwhile
   </textarea>
   <div class="bs-callout bs-callout-info">
-  Later I will show better ways of injecting code, now we used a simple <span class="art-command-span">#if</span> command and matching the class name. We will have better ways than that
+  Later we will show better ways of injecting code, now we used a simple <span class="art-command-span">#if</span> command and matching the class name.
   </div>
   <h5>Result:</h5>
     <textarea id="snippet-14" class="codearea">
@@ -683,9 +682,9 @@
             styleSelectedText: true,
             readOnly: true
         });
-        snippet9.markText({line: 0, ch: 62}, {line: 0, ch: 69}, {className: "code-highlight"});
-        snippet9.markText({line: 1, ch: 62}, {line: 1, ch: 67}, {className: "code-highlight"});
-        snippet9.markText({line: 2, ch: 62}, {line: 2, ch: 68}, {className: "code-highlight"});
+        snippet9.markText({line: 0, ch: 56}, {line: 0, ch: 69}, {className: "code-highlight"});
+        snippet9.markText({line: 1, ch: 56}, {line: 1, ch: 67}, {className: "code-highlight"});
+        snippet9.markText({line: 2, ch: 56}, {line: 2, ch: 68}, {className: "code-highlight"});
         snippet9.setSize('', 150);
 
         var snippet11 = CodeMirror.fromTextArea(document.getElementById('snippet-11'), {
