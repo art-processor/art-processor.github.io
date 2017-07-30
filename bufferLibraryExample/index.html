@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>
+      ART - Adaptive Reuse Technology
+  </title>
+<!-- Social Metadata -->
+  <meta content="your_facebook_app_id" property="fb:app_id">
+  <meta content="Progress" property="og:site_name">
+  <meta content="Progress" property="og:title">
+  <meta content="website" property="og:type">
+  <meta content="" property="og:description">
+  <meta content="../img/logo.png" property="og:image">
+<!--  <link rel="stylesheet" href="css/reset.css"> -->
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/font-awesome/css/font-awesome.min.css">
+  <script src="../js/modernizr.js"></script> 
+  <style>
+      i.fa, a {
+        color: #555;
+      }
+
+      #pimg1 {
+        height: 150px;
+        width: 150px;
+        padding-right: 10px;
+        float: left;
+        margin-bottom: 0;
+      }
+	  
+	  #pimg2 {
+        height: 150px;
+        width: 150px;
+        padding-left: 10px;
+        float: right;
+        margin-bottom: 0;
+      }
+	  
+	  ul > li {
+	    margin-left: 2em;        
+	  }
+	  
+  </style>
+</head>
+<body>
+  <header class="header">
+  <h1> ART - Adaptive Reuse Technology </h1>
+  <nav>
+    <ul>
+      <li> <a href="../">About ART</a> </li>
+	    <li> <a href="../learn">Learn</a> </li>
+      <li> <a href="../contact">Contact Us</a> </li>
+    </ul>
+  </nav>
+  </header>
+  <nav id="footer" style="display: none;">
+    <footer class="footer tc">
+      <small>
+        &copy; 2017 ART
+      </small>
+    </footer>
+    <ul>
+      <li> <a href="#" id="to-top"><i class="fa fa-arrow-up" aria-hidden="true"></i> Back to Top</a></li>
+      <li> <a href="../">About ART</a> </li>
+      <li> <a href="../learn">Learn</a> </li>
+      <li> <a href="../contact">Contact Us</a> </li>
+    </ul>
+  </nav>
+  <main>
+    <div class="articles" style="padding-right: 0">
+  <article class="post">
+    <header>
+      <h1> Buffer Library Example </h1>
+    </header>
+    <div class="container">
+      <div class="row">
+        <div class="col col-md-12">
+			Studies show that even in well-designed programs, we typically find 50%-90% of code contained in clones, repeated many times. For example, the extent of the redundant code in the Java Buffer library is 68% [1], in parts of STL (C++) - over 50% [2], in J2EE Web Portals - 61% [3], and in certain ASP Web portal modules - up to 90% [4].
+			
+			Redundant code obstructs program understanding during the maintenance in at least, two ways: 
+			<ul>
+			  <li>A programmer must maintain more code than he/she would have to maintain</li>
+			  <li>When one logical source of change affects many replicated code fragments scattered throughout a program, to implement a change, a programmer must find and update all the instances of the replicated fragment. </li>
+			</ul>
+			
+			The engineering benefits of non-redundancy become evident especially if we pay attention to large granularity clones.<br>
+			In this section we demonstrate ART's potential to reduce program complexity by eliminating redundant codes.
+			
+			<h4>Buffer Class in ART</h4>
+			
+			A buffer contains data in a linear sequence for reading and writing. Buffer classes differ in features such as a buffer element type, memory allocation scheme, byte ordering and access mode, as described in [5]. Buffer classes can be found in java.nio.* package. Each legal combination of features yields a unique buffer class. That is why, even though all the buffer classes play essentially the same role, there are 74 classes in the Java Buffer library. In earlier case studies about Java Buffer library, [1][5] they group the Buffer classes in three main levels. In this paper we will use the same classification:
+			
+			<ul>
+			  <li><b>Level1:</b> buffer data element type: <b><i>byte, char, int, float, double, long, short</i></b></li>
+			  <li><b>Level2:</b> 
+				  <li style="list-style-type:none">
+					<ul style="list-style-type: circle; padding-bottom: 0;">
+						<li style="margin-left: 3em">memory allocation scheme: <b><i>direct, non-direct</i></b></li>
+						<li style="margin-left: 3em">byte ordering: <b><i>native, non-native, big endian, little endian</i></b></li>
+					</ul>
+				  </li>
+			  </li>
+			  <li><b>Level3:</b> access mode: <b><i>writable, read-only</i></b></li>		
+			</ul>
+			
+			<h4>Buffer Classes in VCL</h4>
+			
+			Representing repeated code with a generic adaptable form is a good approach to make the code smaller and easier to understand. We start by creating groups of similar Buffer classes. For example, classes <i>ByteBufferR, IntBufferR, LognBufferR...</i> form a group of similar classes. The Figure below highlights similarities and differences between classes <i>HeapByteBufferR</i> and <i>HeapIntBufferR</i>.
+			
+			<img style="padding: 15px; width: 60%;" src="../img/bufferlib/similarities.png"/>
+			
+			71 classes (all classes except Buffer, MappedByteBuffer and StringCharBuffer) can be categorized into seven similartity groups as follows:
+			
+			<ul>
+			  <li><b>[T]Buffer: </b> contains 7 buffer classes of type T (level 1).T denotes one of the buffer element types, namely, Byte, Char, Int, Double, Float, Long, Short.</li>
+			  <li><b>Heap[T]Buffer: </b> contains 7 Heap classes of type T (level 2)</li> 
+			  <li><b>Direct[T]Buffer[S|U]: </b> contains 13 Direct classes (level 2) U denotes native and S - non-native byte ordering.</li> 
+			  <li><b>Heap[T]BufferR: </b> contains 7 Heap read-only classes (level 3)</li> 
+			  <li><b>Direct[T]BufferR[S|U]: : </b> contains 13 Direct read-only classes (level 3)</li> 
+			  <li><b>ByteBufferAs[T]Buffer[B|L]: </b> contains 12 classes (level 2) providing views T of a Byte buffer with different byte orderings (B or L). T here denotes buffer element type except Byte. B denotes big endian and L - little endian byte ordering.</li> 
+			  <li><b>Heap[T]Buffer: </b> contains 7 Heap classes of type T (level 2)</li> 
+			  <li><b>ByteBufferAs[T]BufferR[B|L]: </b> contains 12 read-only classes (level 2) providing views T of a Byte buffer with different byte orderings (B or L). T here denotes buffer element type except Byte. B denotes big endian and L - little endian byte ordering</li>			  
+			</ul>
+			
+			We can build a VCL generic representation for each group. This generic representation can then be adapted to form each of the individual classes.
+			
+			For example, generation of classes in the group <b>Heap[T]BufferR</b> is done as follows:
+	
+			<ul style="list-style-type: decimal;">
+			  <li> We build a so-called meta-class which will lead the generation of all files from this group, in this case this meta-class will be named Heap[T]BufferR. In the meta-class we declare the type of the Buffer class (T) as a multi value variable using <span class="art-command-span">#set</span> command.
+			  
+			  <pre>
+	#set elmtType = "Byte", "Char", "Double", "Float", "Int", "Long", "Short"</pre>
+			  </li>
+			  
+			  <li> In a loop command we iterate over variable elmtType adapting the common template for all classes using <span class="art-command-span">#adapt</span> command.
+			  <pre>
+	#while elmtType
+		#adapt Heap[T]BufferR.tmp
+	#endwhile</pre>
+			  </li>
+			  
+			  <li> Customizing the adapt command, we insert the unique codes in the template using <span class="art-command-span">#insert</span> commands. We decide about the insertions based on the value of the variable elmtType using <span class="art-command-span">#select</span> command inside of the <span class="art-command-span">#adapt</span> command with <span class="art-command-span">#option</span> and <span class="art-command-span">#otherwise</span> clauses.
+			  <pre>
+	#while elmtType
+		#adapt: Heap[T]BufferR.tmp
+		   #select elmtType
+			   #option Byte
+				   #insert-after moreMethods
+					   #adapt byteMoreMethods
+				   #endinsert
+			   #endoption
+			   #option Char
+				   #insert-after moreMethods
+					   #adapt charMoreMethods
+				   #endinsert
+				   #insert toString
+					   #adapt chartoString
+				   #endinsert
+			   #endoption
+			   #otherwise
+				   #insert-after moreMethods
+					   #adapt otherMethods
+				   #endinsert
+			   #endotherwise
+		   #endselect
+		#endadapt
+	#endwhile</pre>
+			  </li>
+			  <li> The code fragments mentioned before, are taking place in the SPC file. In the template file Heap[T]BufferR.tmp we control generation of files using #output command, and we give place to #break commands for customizing the content.
+			  
+			  <pre>
+	#output "output/Heap"?@elmtType?"BufferR.java"
+	...
+	[Template content]
+	...
+	#break moreMethods
+	...
+	[Template content]
+	...
+	#break: toString
+		[Default toString]
+	#endbreak</pre>
+			  </li>
+			</ul>
+	
+			With this approach we can generate all the classes in the seven groups mentioned earlier. Bonding together the representation of the seven groups with a specification (SPC) file, we can define a structure that generates the whole Buffer library code.
+	
+			<img style="padding: 15px;" src="../img/bufferlib/solution.png"/>
+	
+			The groups of the similar classes are represented by the meta-classes marked in the Figure above. Meta-methods are representations of similar Java methods, and meta-fragments are representations of smaller code fragments. In the Figure above we indicate adaption of meta-components by a black arrow. Any meta-component can adapt other meta-components, and any meta-component can be easily reused with parametrization. <br><br>
+			The reader can find the structure and the source files of the solution <a href="BufferSource/allBuffer.html">here</a> <br>
+			The example's source code can be downloaded from <a href="BufferSource/source.zip">here</a>. <br><br>
+			The original representation of the mentioned 71 classes consists of 16299 lines of code including comments. The representation with VCL consists of 3720 lines of code. With the VCL representation we could eliminate 77.2% of the code using the commonalities between les.
+
+			<h4>References</h4>
+			
+			[1] S. Jarzabek, and S. Li, "Eliminating Redundancies with a "Composition with Adaptation" Meta-programming Technique," Proc. European Soft. Eng. Conf. and ACM SIGSOFT Symp. on the Foundations of Soft. Eng., ESEC-FSE'03, Sept. 2003, Helsinki, pp. 237-246<br>
+			[2] Basit, H.A., Rajapakse, D.C., and Jarzabek, S."Beyond Templates: a Study of Clones in the STL and Some General Implications," In t. Conf. Software Engineering, ICSE'05, St.Louis, USA, May 2005, pp. 451-459<br>
+			[3] J. Yang, and S. Jarzabek, "Applying a Generative Technique for Enhanced Reuse on JEE Platform," 4th Int. Conf. on Generative Programming and Component Engineering, GPCE'05, Sep 29 - Oct 1, 2005, Tallinn, pp.. 237-255<br>
+			[4] U. Pettersson, and S. Jarzabek, "An Industrial Application of a Reuse Technique to a Web Portal Product Line," European Soft. Eng. Conf. and ACM SIGSOFT Symp. on the Foundations of Soft. Eng., ESEC-FSE'05, Sept. 2005, Lisbon, pp. 326-335<br>
+			[5] Jarzabek, S. and Li, S. (2006), Unifying clones with a generative programming technique: a case study. J. Softw. Maint. Evol.: Res. Pract., 18: 267292. doi: 10.1002/smr.333
+			<br><br><br>
+        </div>
+      </div>
+    <div>
+    <br>
+
+  </article>
+</div>
+      </main>
+    <script src="../js/jquery-2.1.4.js"></script>
+    <script src="../js/main.js"></script>
+  <script>
+
+
+    $(function() {
+        $(document).on("click","#to-top",function(e) {
+            $('html,body').animate({ scrollTop: 0 }, 'slow');
+            return false;
+        });
+
+        //if ($("body").height() < $(window).height()) {
+        //    $('#footer').slideDown();
+        //}
+    });
+
+    $(window).scroll(function() {
+      if ($(document).height() <= ($(window).height() + $(window).scrollTop())) {
+          $('#footer').slideDown();
+      } else {
+          $('#footer').hide();
+      }
+    });
+  </script>
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-97114185-1', 'auto');
+    ga('send', 'pageview');
+
+  </script>
+  </body>
+</html>
